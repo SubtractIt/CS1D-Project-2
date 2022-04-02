@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     collegehashmap.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    parser.cpp
 
 HEADERS += \
     collegehashmap.h \
-    mainwindow.h
+    mainwindow.h \
+    parser.h
 
 FORMS += \
     mainwindow.ui
