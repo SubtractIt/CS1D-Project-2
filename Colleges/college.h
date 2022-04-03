@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <iostream>
+#include <unordered_map>
 
 #define MAX_SOUVENIR_ITEMS 7
 
@@ -30,7 +31,7 @@ public:
     /// @param id of College we are trying to find the distance to
     /// @return a double representing the distance from the calling college to the college passed in
     /// ///
-    std::map<int, float> getDistances() const { return distances; }
+    std::unordered_map<int, float> getDistances() const { return distances; }
 
     ///
     /// @brief Returns vector of college's souvenirs
@@ -120,7 +121,7 @@ private:
     QString state;
     int numUndergraduates;
     float distanceFromSaddleback;
-    std::map<int, float> distances;
+    std::unordered_map<int, float> distances;
     std::vector<Souvenir> souvenirs;
 };
 
