@@ -1,9 +1,10 @@
 #ifndef COLLEGE_H
 #define COLLEGE_H
 
-#include <QObject>
 #include <iostream>
+#include <QString>
 #include <unordered_map>
+#include <vector>
 
 #define MAX_SOUVENIR_ITEMS 7
 
@@ -18,11 +19,14 @@ struct Souvenir {
 class College
 {
 public:
-
     ///
-    /// @brief constructor
+    /// @brief empty constructor
     ///
-    College();
+    College() {}
+    ///
+    /// @brief empty destructor
+    ///
+    ~College() {}
 
     //Accesors
 
@@ -113,6 +117,11 @@ public:
     /// @param number of undergrads
     ///
     void setSize(int numUndergraduates);
+
+    ///
+    /// @brief Prints the details of this college
+    ///
+    void print() const;
 
 
 private:
