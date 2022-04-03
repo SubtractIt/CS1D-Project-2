@@ -45,6 +45,10 @@ void College::setDistance(int id, float distance){
    distances[id] = distance;
 }
 
+void College::removeDistance(int id) {
+    distances.erase(id);
+}
+
 void College::setDistanceFromSaddleback(int distance) {
     this->distanceFromSaddleback = distance;
 }

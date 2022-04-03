@@ -107,6 +107,12 @@ public:
     void setDistance(int id, float distance);
 
     ///
+    /// @brief Removes distance from college with given id
+    /// @param other college's id
+    ///
+    void removeDistance(int id);
+
+    ///
     /// @brief Sets the distance from this college to Saddleback
     /// @param this college's distance from Saddleback
     ///
