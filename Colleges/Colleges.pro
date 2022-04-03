@@ -22,7 +22,8 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    parser.cpp
+    parser.cpp \
+    purchaser.cpp
 
 HEADERS += \
     admin.h \
@@ -30,7 +31,8 @@ HEADERS += \
     collegehashmap.h \
     dbmanager.h \
     mainwindow.h \
-    parser.h
+    parser.h \
+    purchaser.h
 
 FORMS += \
     admin.ui \

@@ -1,6 +1,12 @@
+///
+/// @author Ethan Safai
+/// @file   dbmanager.cpp
+///
 #include "dbmanager.h"
 
 DbManager::DbManager(const QString &path) {
+    parser = new Parser;
+
     // Give the database object a name and a path to the .db file
     dataBase = QSqlDatabase::addDatabase("QSQLITE");
     dataBase.setDatabaseName(path);
@@ -14,6 +20,7 @@ DbManager::DbManager(const QString &path) {
 }
 
 DbManager::~DbManager() {
+    delete parser;
     dataBase.close();
     std::cout << "Database: connection closed\n";
 }
@@ -28,8 +35,7 @@ bool DbManager::updateCollege(const int id, const College& college) {
     QString name = college.getName();
     QString state = college.getState();
     QString souvenirs = getSouvenirsString(college.getSouvenirs());
-    QString distances = getDistancesString(college.getDistanceFromSaddleback(),
-                                           college.getDistances());
+    QString distances = getDistancesString(college.getDistances());
     int numStudents = college.size();
 
     // Construct the UPDATE query with the appropriate parameters
@@ -63,8 +69,7 @@ bool DbManager::addCollege(const College &college) {
     QString name = college.getName();
     QString state = college.getState();
     QString souvenirs = getSouvenirsString(college.getSouvenirs());
-    QString distances = getDistancesString(college.getDistanceFromSaddleback(),
-                                           college.getDistances());
+    QString distances = getDistancesString(college.getDistances());
     int numStudents = college.size();
 
     // Construct the INSERT query with the appropriate parameters
@@ -130,6 +135,26 @@ bool DbManager::deleteCollegeById(const int id)
 
 void DbManager::deleteAllColleges() {
     QSqlQuery query("DELETE FROM colleges");
+}
+
+void DbManager::addFromTextFile(bool reset) {
+    if (reset) {
+        // Clear the database
+        deleteAllColleges();
+    }
+
+    // Parse CSV file and add its colleges
+    CollegeHashMap data;
+    std::vector<int> ids;
+    auto existingIds = getAllIds();
+    parser->read(data, existingIds, ids);
+
+    for (int id : ids) {
+        College c = data.find(id)->college;
+        if (!addCollege(c)) {
+            std::cout << "Error occurred when resetting db with CSV file.\n";
+        }
+    }
 }
 
 CollegeHashMap DbManager::getAllColleges() const {
@@ -213,11 +238,9 @@ College DbManager::getCollegeFromRecord(const QSqlRecord &rec) const {
     // (split db's distances string by comma and space into an array then
     //  convert type)
     auto distancesStrings = rec.value("DISTANCES").toString().split(", ");
-    // Distance from Saddleback is first distance (convert to float)
-    college.setDistanceFromSaddleback(distancesStrings[0].toFloat());
     // Setting the rest of the distances
     // Format: "IntId FloatDistance" (separated by commas)
-    for (unsigned i = 1, n = distancesStrings.size(); i < n; ++i) {
+    for (unsigned i = 0, n = distancesStrings.size(); i < n; ++i) {
         QString pair = distancesStrings[i];
         int spaceIndex = pair.indexOf(' ');
         // Extract id before space char
@@ -248,16 +271,11 @@ QString DbManager::getSouvenirsString(const std::vector<Souvenir>& souvenirs) co
     return souvenirsString;
 }
 
-QString DbManager::getDistancesString(const float distanceFromSaddleback,
-                                      const std::unordered_map<int, float>
+QString DbManager::getDistancesString(const std::unordered_map<int, float>
                                       &distances) const {
     // Database wants to see distances as text
-    // Format: "DistanceFromSaddleback, Id1 Distance1, Id2 Distance2, ..."
-    QString distancesString = QString::number(distanceFromSaddleback) + ", ";
-
-    std::cout << "test:\n";
-    for (auto &x : distances) std::cout << x.first << ' ' << x.second << '\n';
-
+    // Format: "Id1 Distance1, Id2 Distance2, ..."
+    QString distancesString = "";
     size_t i = 0;
     for (const auto& d : distances) {
         distancesString += QString::number(d.first) + " " +

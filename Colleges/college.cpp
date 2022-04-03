@@ -1,3 +1,7 @@
+///
+/// @author Christopher Schrader, Ethan Safai
+/// @file   college.cpp
+///
 #include "college.h"
 
 void College::reInitialize() {
@@ -9,8 +13,7 @@ void College::reInitialize() {
     this->numUndergraduates = -1;
 }
 
-//Mutators
-void College::addSouvenir(const Souvenir &souvenir){
+void College::addSouvenir(const Souvenir &souvenir) {
     bool found = false;
     for (auto i = souvenirs.begin(); i != souvenirs.end(); i++){
         if (i->name == souvenir.name){
@@ -29,28 +32,24 @@ void College::addSouvenir(const Souvenir &souvenir){
     }
 }
 
-void College::setName(const QString &name){
+void College::setName(const QString &name) {
     this->name = name;
 }
 
-void College::setID(int id){
+void College::setID(int id) {
     this->id = id;
 }
 
-void College::setState(const QString &state){
+void College::setState(const QString &state) {
     this->state = state;
 }
 
-void College::setDistance(int id, float distance){
+void College::setDistance(int id, float distance) {
    distances[id] = distance;
 }
 
 void College::removeDistance(int id) {
     distances.erase(id);
-}
-
-void College::setDistanceFromSaddleback(int distance) {
-    this->distanceFromSaddleback = distance;
 }
 
 void College::setSize(int numUndergraduates) {
@@ -66,7 +65,6 @@ void College::print() const {
         std::cout << souvenirs[i].name.toStdString() << ": $" << souvenirs[i].price << ' ';
     }
     std::cout << '\n';
-    std::cout << "Distance from Saddleback: " << this->distanceFromSaddleback << '\n';
     for (const auto& d : distances) {
         std::cout << "Distance from college " << d.first << ": " << d.second << '\n';
     }

@@ -1,3 +1,7 @@
+///
+/// @author Ethan Safai
+/// @file   dbmanager.h
+///
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
@@ -5,6 +9,7 @@
 #include <QString>
 #include <QtSql>
 #include "collegehashmap.h"
+#include "parser.h"
 
 // colleges table schema
 //  id INTEGER NOT NULL
@@ -18,18 +23,18 @@
 
 class DbManager {
 private:
+    Parser *parser;
     QSqlDatabase dataBase;
 
     College getCollegeFromRecord(const QSqlRecord &rec) const;
     QString getSouvenirsString(const std::vector<Souvenir>& souvenirs) const;
-    QString getDistancesString(const float distanceFromSaddleback,
-                               const std::unordered_map<int, float>&
+    QString getDistancesString(const std::unordered_map<int, float>&
                                distances) const;
 
 public:
     ///
     /// @brief constructor - opens a connection to the database specified by the
-    /// path
+    ///                      path
     /// @param path path to the database file
     ///
     DbManager(const QString &path);
@@ -39,24 +44,24 @@ public:
     ~DbManager();
 
     ///
-    /// @brief Updates the college with the specified id in the database with
-    /// the passed college
-    /// @param id int
-    /// @param college college
+    /// @brief  Updates the college with the specified id in the database with
+    ///         the passed college
+    /// @param  id      college's id
+    /// @param  college college to update
     /// @return true if college was succesfully updated, false otherwise
     ///
     bool updateCollege(const int id, const College& college);
 
     ///
-    /// @brief Adds a new College to the database
-    /// @param college the new college
+    /// @brief  Adds a new College to the database
+    /// @param  college the new college
     /// @return true if college was successfully added, false otherwise
     ///
     bool addCollege(const College &college);
 
     ///
-    /// @brief Deletes the college with the given id from the database
-    /// @param id the college's id
+    /// @brief  Deletes the college with the given id from the database
+    /// @param  id the college's id
     /// @return true if deleted, false if college didn't exist
     ///
     bool deleteCollegeById(const int id);
@@ -67,21 +72,28 @@ public:
     void deleteAllColleges();
 
     ///
-    /// @brief Returns a CollegeHashMap of all colleges in the database
+    /// @brief Adds restaurants to db from file and deletes rest of db if reset
+    ///        is true
+    /// @param reset if the db should be reset or not
+    ///
+    void addFromTextFile(bool reset);
+
+    ///
+    /// @brief  Returns a CollegeHashMap of all colleges in the database
     /// @return CollegeHashMap of all colleges
     ///
     CollegeHashMap getAllColleges() const;
 
     ///
-    /// @brief Returns all ids in use in the databse for indexing into the hash
-    /// table
+    /// @brief  Returns all ids in use in the databse for indexing into the hash
+    ///         table
     /// @return a vector of all ids (int)
     ///
     std::vector<int> getAllIds() const;
 
     ///
-    /// @brief Checks if the specified id is already in use in the database
-    /// @param id
+    /// @brief  Checks if the specified id is already in use in the database
+    /// @param  id
     /// @return true if id is not use, false otherwise
     ///
     bool isUnusedId(const int id) const;

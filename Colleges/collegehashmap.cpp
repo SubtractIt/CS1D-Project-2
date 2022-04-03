@@ -1,3 +1,7 @@
+///
+/// @author Ethan Safai
+/// @file   collegehashmap.cpp
+///
 #include "collegehashmap.h"
 
 CollegeHashMap::CollegeHashMap()
