@@ -21,14 +21,16 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    parser.cpp
+    parser.cpp \
+    purchaser.cpp
 
 HEADERS += \
     college.h \
     collegehashmap.h \
     dbmanager.h \
     mainwindow.h \
-    parser.h
+    parser.h \
+    purchaser.h
 
 FORMS += \
     mainwindow.ui
