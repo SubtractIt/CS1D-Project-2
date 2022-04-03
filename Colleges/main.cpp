@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 
     DbManager *db = new DbManager("../Colleges/colleges.db");
     db->addFromTextFile(true);
+    db->addFromTextFile(false);
 
     auto colleges = db->getAllColleges();
     auto ids = db->getAllIds();

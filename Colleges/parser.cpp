@@ -91,7 +91,12 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
     }
 
     bool dbEmpty = existingIds.empty();
-    int id = 0;
+    int id;
+    if (dbEmpty) {
+        id = 0;
+    } else {
+        id = existingIds.size();
+    }
     // Loop through college and souvenir files
     while(!inCollege.atEnd()) {
 
@@ -99,27 +104,7 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
         // name, state, # undergrads, and initial dist
         newCollege.setName(lineContent[0]);
 
-        if (!dbEmpty) {
-            bool done = false;
-            bool found = false;
-            size_t i = 0;
-            while (!done && i < existingIds.size()) {
-                found = false;
-                for (size_t j = 0; j < existingIds.size(); ++j) {
-                    if (existingIds[j] == id) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    done = true;
-                } else {
-                    ++id;
-                }
-            }
-        } else {
-            ++id;
-        }
-        newIds.push_back(id);
+        newIds.push_back(++id);
         newCollege.setID(id);
         int index = 1; // This index is used for sequential distance
                        // id component
