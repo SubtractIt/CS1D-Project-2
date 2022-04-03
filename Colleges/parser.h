@@ -56,12 +56,14 @@ public:
 private:
     DbManager* db;
 
-    int getId() {
-        int i = 1;
-        while(!db->isUnusedId(i))
-            ++i;
-        return i;
-    }
+    ///
+    /// @brief   Gets the proper Id for the college
+    /// @details Starts at 1 over the size of the map passed passed in
+    ///          checks if it is unused, increments if used, returns if not
+    /// @param   CollegeHashMap to be added to
+    /// @return  an unused id
+    ///
+    int getId(CollegeHashMap& collegeTrain);
 };
 
 #endif // PARSER_H

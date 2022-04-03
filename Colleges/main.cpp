@@ -11,5 +11,7 @@ int main(int argc, char *argv[])
     CollegeHashMap data;
     Parser* parse;
     parse->read(data);
+
+    parse->read(data, "college2", "souvenir2");
     return a.exec();
 }

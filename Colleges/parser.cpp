@@ -14,7 +14,7 @@ Parser::Parser()
     #elif __linux__
           path = "../Colleges/colleges.db";
     #else
-          path = "..\\Colleges\\colleges.db";
+          path = "..\Colleges\colleges.db";
     #endif
 
     db = new DbManager(path);
@@ -106,14 +106,19 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
         // Assign line data to college object which includes
         // name, state, # undergrads, and initial dist
         newCollege.setName(lineContent[0]);
-        int id = getId();
+        int id = getId(collegeTrain);
         newCollege.setID(id);
-        int index = 1;
-
+        int index = 1; // This index is used for sequential distance
+                       // id component
+        // Doesn't read it's own index so need to skip over the
+        // index that corresponds with the id
         if(index == id)
             ++index;
+        // Set initial distance that is in the inital college row
+        // and increment the index now that the distance is set
         newCollege.setDistance(index, lineContent[2].toFloat());
         ++index;
+        // Set new colleges state and undergrad size
         newCollege.setState(lineContent[3]);
         newCollege.setSize(lineContent[4].toInt());
 
@@ -131,7 +136,8 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
         // reach a new college
         while(lineContent[0] == newCollege.getName()) {
 
-            // Assign distances to a map
+            // Set next distance and increment the index
+            // now that the distance is set
             if(index == id)
                 ++index;
             newCollege.setDistance(index, lineContent[2].toFloat());
@@ -185,6 +191,9 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
             break;
         }
 
+/*** The following is for testing and can be removed ***/
+//        newCollege.print();
+
         // Add the college object to the vector of
         // objects and reinitialize the college
         // object to reset the menu and distances
@@ -197,9 +206,37 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
     inSouvenir.close();
 
 
-/** The following loop is for testing and can be removed **/
-    collegeTrain.print();
+/*** The following is for testing and can be removed ***/
+//    collegeTrain.print();
 
     // Successfully read files so return true
     return true;
+}
+
+
+/*******************************************************************
+ * getId
+ * -----------------------------------------------------------------
+ * Takes in the college hash map to be added to and starts the id
+ * at one more than the size (since ids start at 1) and checks if
+ * it is unused. Continues to increment until found an unused id
+ * which is then returned
+ * -----------------------------------------------------------------
+ * pre conditions:
+ *  collegeTrain : college hash map to be added to
+ * post conditions:
+ *  Returns the next unused id
+ ******************************************************************/
+int Parser::getId(CollegeHashMap& collegeTrain) {
+
+    // Start at the value one greater than the
+    // hash map size which should be next id
+    int i = collegeTrain.size() + 1;
+    // Check to make sure unused, if so return
+    // if not increment
+    while(!(db->isUnusedId(i))) {
+        ++i;
+    }
+
+    return i;
 }
