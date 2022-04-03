@@ -16,15 +16,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    college.cpp \
     collegehashmap.cpp \
+    dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     parser.cpp
 
 HEADERS += \
+    college.h \
     collegehashmap.h \
+<<<<<<< HEAD
     mainwindow.h \
     parser.h
+=======
+    dbmanager.h \
+    mainwindow.h
+>>>>>>> main
 
 FORMS += \
     mainwindow.ui
