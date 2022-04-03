@@ -55,7 +55,7 @@ void CollegeHashMap::print() const {
   for (int i = 0; i < NUM_BUCKETS; ++i) {
     std::cout << "Bucket " << i << ": ";
     for (auto it = table[i].begin(); it != table[i].end(); ++it) {
-        std::cout << it->id << " " << it->college.name.toStdString() << " ";
+        std::cout << it->id << " " << it->college.getName().toStdString() << " ";
     }
     std::cout << '\n';
   }

@@ -49,6 +49,10 @@ void College::setDistance(int id, float distance){
     this->distances.insert(std::pair<int, float>(id, distance));
 }
 
+void College::setDistanceFromSaddleback(int distance) {
+    this->distanceFromSaddleback = distance;
+}
+
 void College::setSize(int numUndergraduates) {
     this->numUndergraduates = numUndergraduates;
 }

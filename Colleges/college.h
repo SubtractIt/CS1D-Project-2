@@ -62,6 +62,8 @@ public:
     ///
     int size() const { return numUndergraduates; }
 
+    float getDistanceFromSaddleback() const { return distanceFromSaddleback; }
+
     //Mutators
     ///
     /// @brief Reinitializes the restaurant to an empty state
@@ -100,6 +102,12 @@ public:
     void setDistance(int id, float distance);
 
     ///
+    /// @brief Sets the distance from this college to Saddleback
+    /// @param this college's distance from Saddleback
+    ///
+    void setDistanceFromSaddleback(int distance);
+
+    ///
     /// @brief Sets the number of undergraduates at the college
     /// @param number of undergrads
     ///
@@ -111,6 +119,7 @@ private:
     int id;
     QString state;
     int numUndergraduates;
+    float distanceFromSaddleback;
     std::map<int, float> distances;
     std::vector<Souvenir> souvenirs;
 };

@@ -6,44 +6,9 @@
 #include <QString>
 #include <vector>
 #include <unordered_map>
+#include "college.h"
 
 #define NUM_BUCKETS 20
-
-// example souvenir item
-struct SouvenirItem {
-    QString name;
-    float price;
-};
-
-// example of college object properties
-struct College {
-    int id;
-    QString name;
-    QString state;
-    std::vector<SouvenirItem> souvenirs;
-    std::unordered_map<int, float> distances;
-    float distanceFromSaddleback;
-    int numStudents;
-
-    void print() const {
-        std::cout << "id " << id << '\n';
-        std::cout << "name " << name.toStdString() << '\n';
-        std::cout << "state " << state.toStdString() << '\n';
-        std::cout << "souvenirs:\n";
-        for (const auto& s : souvenirs) {
-            std::cout << s.name.toStdString() << ", $" << s.price << ' ';
-        }
-        std::cout << '\n';
-        std::cout << "distances:\n";
-        for (const auto& d : distances) {
-            std::cout << "distance from restaurant " << d.first << ": "
-                      << d.second << '\n';
-        }
-        std::cout << "distance from Saddleback: " << distanceFromSaddleback
-                  << '\n';
-        std::cout << "number of students: " << numStudents << '\n';
-    }
-};
 
 struct CollegeWrapper {
     int id;
@@ -92,7 +57,7 @@ public:
     /// @param key college's unique identifier
     /// @return an iterator pointing to the College with the given key, the
     /// iterator will point to a College with a key of -1 if the key is not
-    /// found
+    /// found (to get the college, write it->college)
     ///
     std::list<CollegeWrapper>::iterator find(const int key) const;
 
