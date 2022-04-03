@@ -33,6 +33,12 @@ public:
     std::map<int, float> getDistances() const { return distances; }
 
     ///
+    /// @brief Returns vector of college's souvenirs
+    /// @return college's souvenirs
+    ///
+    std::vector<Souvenir> getSouvenirs() const { return souvenirs; }
+
+    ///
     /// @brief getName()
     /// @return QString name of the college
     ///
@@ -92,6 +98,12 @@ public:
     /// @param distance of the current college to the new college
     ///
     void setDistance(int id, float distance);
+
+    ///
+    /// @brief Sets the number of undergraduates at the college
+    /// @param number of undergrads
+    ///
+    void setSize(int numUndergraduates);
 
 
 private:

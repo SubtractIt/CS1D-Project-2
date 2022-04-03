@@ -48,3 +48,7 @@ void College::setState(const QString &state){
 void College::setDistance(int id, float distance){
     this->distances.insert(std::pair<int, float>(id, distance));
 }
+
+void College::setSize(int numUndergraduates) {
+    this->numUndergraduates = numUndergraduates;
+}
