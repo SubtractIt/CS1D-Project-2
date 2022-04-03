@@ -16,7 +16,6 @@
 #include <QDebug>
 #include "collegehashmap.h"
 #include "college.h"
-#include "dbmanager.h"
 
 ///
 /// @brief   The Parser class, parses csv to college objects
@@ -51,19 +50,7 @@ public:
     /// @param   colleges file name to parse for college info, default = "college"
     /// @param   souvs    file name to parse for souvenir info, default = "souvenir"
     ///
-    bool read(CollegeHashMap& collegeTrain, std::string colleges = "college", std::string souvs = "souvenir");
-
-private:
-    DbManager* db;
-
-    ///
-    /// @brief   Gets the proper Id for the college
-    /// @details Starts at 1 over the size of the map passed passed in
-    ///          checks if it is unused, increments if used, returns if not
-    /// @param   CollegeHashMap to be added to
-    /// @return  an unused id
-    ///
-    int getId(CollegeHashMap& collegeTrain);
+    bool read(CollegeHashMap& collegeTrain, const std::vector<int>& existingIds, std::vector<int>& newIds, std::string colleges = "college", std::string souvs = "souvenir");
 };
 
 #endif // PARSER_H

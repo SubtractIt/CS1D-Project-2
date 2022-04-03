@@ -4,20 +4,10 @@
 ///
 #include "parser.h"
 
+
 // Constrcutor
 Parser::Parser()
 {
-    QString path;
-
-    #if __APPLE__ && TARGET_OS_MAC
-          path = "../../../../Colleges/colleges.db";
-    #elif __linux__
-          path = "../Colleges/colleges.db";
-    #else
-          path = "..\Colleges\colleges.db";
-    #endif
-
-    db = new DbManager(path);
 }
 
 // Destructor
@@ -42,7 +32,7 @@ Parser::~Parser() {}
  *  Returns true or false depending on the success of opening and
  *  looping through file. Puts file contents into objects
  ******************************************************************/
-bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::string souvs) {
+bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existingIds, std::vector<int>& newIds, std::string colleges, std::string souvs) {
 
     College newCollege; // Object to place new college in
     Souvenir newSouv;   // Object to place new souvenir in
@@ -100,13 +90,37 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
         qDebug() << "End of souvenir";
     }
 
+    bool dbEmpty = existingIds.empty();
+//    bool dbEmpty = true;
+    int id = 1;
     // Loop through college and souvenir files
     while(!inCollege.atEnd()) {
 
         // Assign line data to college object which includes
         // name, state, # undergrads, and initial dist
         newCollege.setName(lineContent[0]);
-        int id = getId(collegeTrain);
+
+        if (!dbEmpty) {
+            bool done = false;
+            bool found = false;
+            size_t i = 0;
+            while (!done && i < existingIds.size()) {
+                found = false;
+                for (size_t j = 0; j < existingIds.size(); ++j) {
+                    if (existingIds[j] == id) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    done = true;
+                } else {
+                    ++id;
+                }
+            }
+        } else {
+            ++id;
+        }
+        newIds.push_back(id);
         newCollege.setID(id);
         int index = 1; // This index is used for sequential distance
                        // id component
@@ -211,32 +225,4 @@ bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::strin
 
     // Successfully read files so return true
     return true;
-}
-
-
-/*******************************************************************
- * getId
- * -----------------------------------------------------------------
- * Takes in the college hash map to be added to and starts the id
- * at one more than the size (since ids start at 1) and checks if
- * it is unused. Continues to increment until found an unused id
- * which is then returned
- * -----------------------------------------------------------------
- * pre conditions:
- *  collegeTrain : college hash map to be added to
- * post conditions:
- *  Returns the next unused id
- ******************************************************************/
-int Parser::getId(CollegeHashMap& collegeTrain) {
-
-    // Start at the value one greater than the
-    // hash map size which should be next id
-    int i = collegeTrain.size() + 1;
-    // Check to make sure unused, if so return
-    // if not increment
-    while(!(db->isUnusedId(i))) {
-        ++i;
-    }
-
-    return i;
 }

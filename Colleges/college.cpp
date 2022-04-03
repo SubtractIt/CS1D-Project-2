@@ -49,10 +49,6 @@ void College::removeDistance(int id) {
     distances.erase(id);
 }
 
-void College::setDistanceFromSaddleback(int distance) {
-    this->distanceFromSaddleback = distance;
-}
-
 void College::setSize(int numUndergraduates) {
     this->numUndergraduates = numUndergraduates;
 }
@@ -66,7 +62,6 @@ void College::print() const {
         std::cout << souvenirs[i].name.toStdString() << ": $" << souvenirs[i].price << ' ';
     }
     std::cout << '\n';
-    std::cout << "Distance from Saddleback: " << this->distanceFromSaddleback << '\n';
     for (const auto& d : distances) {
         std::cout << "Distance from college " << d.first << ": " << d.second << '\n';
     }

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QtSql>
 #include "collegehashmap.h"
+#include "parser.h"
 
 // colleges table schema
 //  id INTEGER NOT NULL
@@ -18,12 +19,12 @@
 
 class DbManager {
 private:
+    Parser *parser;
     QSqlDatabase dataBase;
 
     College getCollegeFromRecord(const QSqlRecord &rec) const;
     QString getSouvenirsString(const std::vector<Souvenir>& souvenirs) const;
-    QString getDistancesString(const float distanceFromSaddleback,
-                               const std::unordered_map<int, float>&
+    QString getDistancesString(const std::unordered_map<int, float>&
                                distances) const;
 
 public:
@@ -65,6 +66,13 @@ public:
     /// @brief Deletes all colleges from the database
     ///
     void deleteAllColleges();
+
+    ///
+    /// @brief Adds restaurants to db from file and deletes rest of db if reset
+    /// is true
+    /// @param reset if the db should be reset or not
+    ///
+    void addFromTextFile(bool reset);
 
     ///
     /// @brief Returns a CollegeHashMap of all colleges in the database
