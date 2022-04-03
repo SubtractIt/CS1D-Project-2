@@ -54,10 +54,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Colleges/college.cpp \
 		../Colleges/collegehashmap.cpp \
+		../Colleges/dbmanager.cpp \
 		../Colleges/main.cpp \
 		../Colleges/mainwindow.cpp moc_mainwindow.cpp
 OBJECTS       = college.o \
 		collegehashmap.o \
+		dbmanager.o \
 		main.o \
 		mainwindow.o \
 		moc_mainwindow.o
@@ -172,6 +174,7 @@ DIST          = ../../../Qt/6.2.2/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/qt_config.prf \
 		../../../Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf \
 		../../../Qt/6.2.2/macos/mkspecs/features/spec_post.prf \
+		../Colleges/.qmake.stash \
 		../../../Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/toolchain.prf \
@@ -202,8 +205,10 @@ DIST          = ../../../Qt/6.2.2/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/lex.prf \
 		../Colleges/Colleges.pro ../Colleges/college.h \
 		../Colleges/collegehashmap.h \
+		../Colleges/dbmanager.h \
 		../Colleges/mainwindow.h ../Colleges/college.cpp \
 		../Colleges/collegehashmap.cpp \
+		../Colleges/dbmanager.cpp \
 		../Colleges/main.cpp \
 		../Colleges/mainwindow.cpp
 QMAKE_TARGET  = Colleges
@@ -214,7 +219,7 @@ TARGET        = Colleges.app/Contents/MacOS/Colleges
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 10.15.4
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/christopherschrader/Desktop/CollegeTour/build-Colleges-Qt_6_2_2_for_macOS-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -341,6 +346,7 @@ Makefile: ../Colleges/Colleges.pro ../../../Qt/6.2.2/macos/mkspecs/macx-clang/qm
 		../../../Qt/6.2.2/macos/mkspecs/features/qt_config.prf \
 		../../../Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf \
 		../../../Qt/6.2.2/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/toolchain.prf \
@@ -486,6 +492,7 @@ Makefile: ../Colleges/Colleges.pro ../../../Qt/6.2.2/macos/mkspecs/macx-clang/qm
 ../../../Qt/6.2.2/macos/mkspecs/features/qt_config.prf:
 ../../../Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf:
 ../../../Qt/6.2.2/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf:
 ../../../Qt/6.2.2/macos/mkspecs/features/toolchain.prf:
@@ -548,8 +555,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/dbmanager.h ../Colleges/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/dbmanager.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Colleges/mainwindow.ui $(DISTDIR)/
 
 
@@ -560,6 +567,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Colleges.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -615,8 +623,33 @@ college.o: ../Colleges/college.cpp ../Colleges/college.h \
 		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o college.o ../Colleges/college.cpp
 
-collegehashmap.o: ../Colleges/collegehashmap.cpp ../Colleges/collegehashmap.h
+collegehashmap.o: ../Colleges/collegehashmap.cpp ../Colleges/collegehashmap.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collegehashmap.o ../Colleges/collegehashmap.cpp
+
+dbmanager.o: ../Colleges/dbmanager.cpp ../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dbmanager.o ../Colleges/dbmanager.cpp
 
 main.o: ../Colleges/main.cpp ../Colleges/mainwindow.h \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \

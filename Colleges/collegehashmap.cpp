@@ -9,12 +9,12 @@ CollegeHashMap::~CollegeHashMap() {
     delete[] table;
 }
 
-void CollegeHashMap::insert(const int key, const CollegeWrapper &college) {
+void CollegeHashMap::insert(const int key, const College &college) {
   int index = hash(key);
 
   // no duplicates in a map, make sure key was not found
   if (find(key) == table[index].end()) {
-    table[index].push_back(college);
+    table[index].push_back(CollegeWrapper(key, college));
     ++count;
   }
 }
@@ -35,7 +35,7 @@ std::list<CollegeWrapper>::iterator CollegeHashMap::find(const int key) const {
     std::list<CollegeWrapper>::iterator it;
 
     for (it = table[index].begin(); it != table[index].end(); ++it) {
-        if (it->key == key) {
+        if (it->id == key) {
             break;
         }
     }
@@ -55,7 +55,7 @@ void CollegeHashMap::print() const {
   for (int i = 0; i < NUM_BUCKETS; ++i) {
     std::cout << "Bucket " << i << ": ";
     for (auto it = table[i].begin(); it != table[i].end(); ++it) {
-        std::cout << it->key << " " << it->name  << " ";
+        std::cout << it->id << " " << it->college.name.toStdString() << " ";
     }
     std::cout << '\n';
   }
