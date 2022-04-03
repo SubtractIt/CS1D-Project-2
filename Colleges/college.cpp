@@ -46,7 +46,7 @@ void College::setState(const QString &state){
 }
 
 void College::setDistance(int id, float distance){
-    this->distances.insert(std::pair<int, float>(id, distance));
+   this->distances[id] = distance;
 }
 
 void College::setDistanceFromSaddleback(int distance) {
