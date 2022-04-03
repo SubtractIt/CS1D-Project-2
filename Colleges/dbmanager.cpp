@@ -113,13 +113,15 @@ bool DbManager::deleteCollegeById(const int id)
     // Now have to update all other colleges to remove their distance from
     // the deleted college since it no longer exits
     if (query.exec()) {
-//        auto restaurants = getRestaurants();
-//        deleteAllRestaurants();
+        auto colleges = getAllColleges();
+        auto ids = getAllIds();
+        deleteAllColleges();
 
-//        for (auto& r : restaurants) {
-//            r.removeDistance(id);
-//            addRestaurant(r.getId(), r);
-//        }
+        for (int i : ids) {
+            College c = colleges.find(i)->college;
+            c.removeDistance(id);
+            addCollege(c);
+        }
         return true;
     }
     std::cerr << "Could not delete college.\n";

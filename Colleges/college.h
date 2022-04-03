@@ -67,6 +67,10 @@ public:
     ///
     int size() const { return numUndergraduates; }
 
+    ///
+    /// @brief Returns this college's distance from Saddleback
+    /// @return distance from Saddleback
+    ///
     float getDistanceFromSaddleback() const { return distanceFromSaddleback; }
 
     //Mutators
@@ -105,6 +109,12 @@ public:
     /// @param distance of the current college to the new college
     ///
     void setDistance(int id, float distance);
+
+    ///
+    /// @brief Removes distance from college with given id
+    /// @param other college's id
+    ///
+    void removeDistance(int id);
 
     ///
     /// @brief Sets the distance from this college to Saddleback
