@@ -5,7 +5,20 @@
 #include "parser.h"
 
 // Constrcutor
-Parser::Parser(){}
+Parser::Parser()
+{
+    QString path;
+
+    #if __APPLE__ && TARGET_OS_MAC
+          path = "../../../../Colleges/colleges.db";
+    #elif __linux__
+          path = "../Colleges/colleges.db";
+    #else
+          path = "..\\Colleges\\colleges.db";
+    #endif
+
+    db = new DbManager(path);
+}
 
 // Destructor
 Parser::~Parser() {}
@@ -29,12 +42,10 @@ Parser::~Parser() {}
  *  Returns true or false depending on the success of opening and
  *  looping through file. Puts file contents into objects
  ******************************************************************/
-bool Parser::read(std::string colleges, std::string souvs) {
+bool Parser::read(CollegeHashMap& collegeTrain, std::string colleges, std::string souvs) {
 
-    // Temporary variables for testing
-    std::vector<placeHold> temps;
-    placeHold temp;
-    souvenir tempSouv;
+    College newCollege; // Object to place new college in
+    Souvenir newSouv;   // Object to place new souvenir in
 
 #if __APPLE__ && TARGET_OS_MAC
         colleges = "../../../../Colleges/" + colleges + ".csv";
@@ -94,12 +105,17 @@ bool Parser::read(std::string colleges, std::string souvs) {
 
         // Assign line data to college object which includes
         // name, state, # undergrads, and initial dist
-        temp.name = lineContent[0];
+        newCollege.setName(lineContent[0]);
+        int id = getId();
+        newCollege.setID(id);
         int index = 1;
-        temp.distances[lineContent[1].toStdString()] = lineContent[2].toFloat();
+
+        if(index == id)
+            ++index;
+        newCollege.setDistance(index, lineContent[2].toFloat());
         ++index;
-        temp.state = lineContent[3];
-        temp.underGrads = lineContent[4].toInt();
+        newCollege.setState(lineContent[3]);
+        newCollege.setSize(lineContent[4].toInt());
 
         // Read next line of college file which
         // should be distances
@@ -113,10 +129,12 @@ bool Parser::read(std::string colleges, std::string souvs) {
 
         // Continue loping to handle distances until
         // reach a new college
-        while(lineContent[0] == temp.name) {
+        while(lineContent[0] == newCollege.getName()) {
 
             // Assign distances to a map
-            temp.distances[lineContent[1].toStdString()] = lineContent[2].toFloat();
+            if(index == id)
+                ++index;
+            newCollege.setDistance(index, lineContent[2].toFloat());
             ++index;
 
             // Get next line which may be a distance or may
@@ -131,7 +149,7 @@ bool Parser::read(std::string colleges, std::string souvs) {
         }
 
         // Make sure the souvenir corresponds to correct school
-        if(sLineContent[0] == temp.name) {
+        if(sLineContent[0] == newCollege.getName()) {
 
             // If so then ready to move to next line with souvenir
             // and continue looping
@@ -142,12 +160,12 @@ bool Parser::read(std::string colleges, std::string souvs) {
                 // Loop until reach souvenirs of next college
                 // and store the name & price of each souvenir
                 while(sLineContent[0] == "") {
-                    tempSouv.name = sLineContent[1];
+                    newSouv.name = sLineContent[1];
                     // Removing the $ from the price prior to assigning
                     priceSlice = sLineContent[2].split('$');
-                    tempSouv.price = priceSlice[1].toFloat();
+                    newSouv.price = priceSlice[1].toFloat();
                     // Add souvenir object to the college's souvenir
-                    temp.souvenirs.push_back(tempSouv);
+                    newCollege.addSouvenir(newSouv);
 
                     // As long as not at end of file then read
                     // the next line of souvenirs which may be a
@@ -170,17 +188,17 @@ bool Parser::read(std::string colleges, std::string souvs) {
         // Add the college object to the vector of
         // objects and reinitialize the college
         // object to reset the menu and distances
-        temps.push_back(temp);
-        temp.reinitialize();
+        collegeTrain.insert(id, newCollege);
+        newCollege.reInitialize();
     }
 
     // Close both files
     inCollege.close();
     inSouvenir.close();
 
+
 /** The following loop is for testing and can be removed **/
-    for(size_t i = 0; i < temps.size(); ++i)
-       temps[i].print();
+    collegeTrain.print();
 
     // Successfully read files so return true
     return true;

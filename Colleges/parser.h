@@ -14,47 +14,9 @@
 #include <QFile>
 #include <QStringList>
 #include <QDebug>
-
-// Dummy structs
-struct souvenir {
-    QString name;
-    float price;
-};
-struct placeHold {
-    placeHold() {reinitialize();}
-    QString name;
-    QString state;
-    int underGrads;
-    std::unordered_map<std::string, float> distances;
-    std::vector<souvenir> souvenirs;
-
-    void print() {
-        qDebug() << "College Info: \n";
-        qDebug() << "Name: " << name  << "\n";
-        qDebug() << "State: " << state << "\n";
-        qDebug() << "Undergrads: " << underGrads << "\n";
-
-//        for(int i = 1; i <= distances.size(); ++i) {
-//            qDebug() << distances[i] << "miles \n";
-//        }
-        for (auto i : distances)
-              qDebug() << QString::fromStdString(i.first) << ": " << i.second << "miles \n";
-
-        for(size_t i = 0; i < souvenirs.size(); ++i) {
-            qDebug() << souvenirs[i].name << ": $" << souvenirs[i].price << "\n";
-        }
-
-    }
-    void reinitialize () {
-        name = "";
-        state = "";
-        underGrads = 0;
-        distances.clear();
-        souvenirs.clear();
-    }
-};
-
-
+#include "collegehashmap.h"
+#include "college.h"
+#include "dbmanager.h"
 
 ///
 /// @brief   The Parser class, parses csv to college objects
@@ -66,7 +28,7 @@ class Parser
 public:
 
     ///
-    /// @brief  Empty parser constructor
+    /// @brief  Parser constructor initializes db pointer
     ///
     Parser();
 
@@ -89,8 +51,17 @@ public:
     /// @param   colleges file name to parse for college info, default = "college"
     /// @param   souvs    file name to parse for souvenir info, default = "souvenir"
     ///
-    bool read(std::string colleges = "college", std::string souvs = "souvenir");
+    bool read(CollegeHashMap& collegeTrain, std::string colleges = "college", std::string souvs = "souvenir");
 
+private:
+    DbManager* db;
+
+    int getId() {
+        int i = 1;
+        while(!db->isUnusedId(i))
+            ++i;
+        return i;
+    }
 };
 
 #endif // PARSER_H

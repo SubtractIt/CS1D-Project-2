@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    CollegeHashMap data;
     Parser* parse;
-    parse->read();
+    parse->read(data);
     return a.exec();
 }
