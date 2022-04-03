@@ -67,6 +67,10 @@ public:
     ///
     int size() const { return numUndergraduates; }
 
+    ///
+    /// @brief Returns this college's distance from Saddleback
+    /// @return distance from Saddleback
+    ///
     float getDistanceFromSaddleback() const { return distanceFromSaddleback; }
 
     //Mutators
