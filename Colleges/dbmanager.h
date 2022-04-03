@@ -21,7 +21,7 @@ private:
     QSqlDatabase dataBase;
 
     College getCollegeFromRecord(const QSqlRecord &rec) const;
-    QString getSouvenirsString(const std::vector<SouvenirItem>& souvenirs) const;
+    QString getSouvenirsString(const std::vector<Souvenir>& souvenirs) const;
     QString getDistancesString(const float distanceFromSaddleback,
                                const std::unordered_map<int, float>&
                                distances) const;

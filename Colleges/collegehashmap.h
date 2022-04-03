@@ -1,11 +1,7 @@
 #ifndef COLLEGEMAP_H
 #define COLLEGEMAP_H
 
-#include <iostream>
 #include <list>
-#include <QString>
-#include <vector>
-#include <unordered_map>
 #include "college.h"
 
 #define NUM_BUCKETS 20

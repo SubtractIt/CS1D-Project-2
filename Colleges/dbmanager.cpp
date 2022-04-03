@@ -25,12 +25,12 @@ bool DbManager::updateCollege(const int id, const College& college) {
         return false;
     }
 
-    QString name = college.name;
-    QString state = college.state;
-    QString souvenirs = getSouvenirsString(college.souvenirs);
-    QString distances = getDistancesString(college.distanceFromSaddleback,
-                                           college.distances);
-    int numStudents = college.numStudents;
+    QString name = college.getName();
+    QString state = college.getState();
+    QString souvenirs = getSouvenirsString(college.getSouvenirs());
+    QString distances = getDistancesString(college.getDistanceFromSaddleback(),
+                                           college.getDistances());
+    int numStudents = college.size();
 
     // Construct the UPDATE query with the appropriate parameters
     QSqlQuery query;
@@ -53,19 +53,19 @@ bool DbManager::updateCollege(const int id, const College& college) {
 }
 
 bool DbManager::addCollege(const College &college) {
-    int id = college.id;
+    int id = college.getID();
 
     if (!isUnusedId(id)) {
         std::cerr << "Can't add college, id " << id << " already in use.\n";
         return false;
     }
 
-    QString name = college.name;
-    QString state = college.state;
-    QString souvenirs = getSouvenirsString(college.souvenirs);
-    QString distances = getDistancesString(college.distanceFromSaddleback,
-                                           college.distances);
-    int numStudents = college.numStudents;
+    QString name = college.getName();
+    QString state = college.getState();
+    QString souvenirs = getSouvenirsString(college.getSouvenirs());
+    QString distances = getDistancesString(college.getDistanceFromSaddleback(),
+                                           college.getDistances());
+    int numStudents = college.size();
 
     // Construct the INSERT query with the appropriate parameters
     QSqlQuery query;
@@ -82,14 +82,14 @@ bool DbManager::addCollege(const College &college) {
     // Check that the query was successful
     if (query.exec()) {
        // NEED TO UPDATE OTHER COLLEGES WITH THE NEW COLLEGES'S DISTANCE
-       auto distances = college.distances;
+       auto distances = college.getDistances();
        auto colleges = getAllColleges();
        auto ids = getAllIds();
        for (const int i : ids) {
            // find existing college
            auto c = colleges.find(i);
            // update existing college with its distance to this new college
-           c->college.distances[id] = distances[i];
+           c->college.setDistance(id, distances[i]);
            // update the existing college's record in the database
            updateCollege(c->id, c->college);
        }
@@ -138,7 +138,7 @@ CollegeHashMap DbManager::getAllColleges() const {
 
     while (query.next()) {
         currentCollege = getCollegeFromRecord(query.record());
-        colleges.insert(currentCollege.id, currentCollege);
+        colleges.insert(currentCollege.getID(), currentCollege);
     }
 
     return colleges;
@@ -188,10 +188,10 @@ College DbManager::getCollegeFromRecord(const QSqlRecord &rec) const {
     College college;
 
     // set id, name, state, and numStudents
-    college.id = rec.value("id").toInt();
-    college.name = rec.value("name").toString();
-    college.state = rec.value("state").toString();
-    college.numStudents = rec.value("num_students").toInt();
+    college.setID(rec.value("id").toInt());
+    college.setName(rec.value("name").toString());
+    college.setState(rec.value("state").toString());
+    college.setSize(rec.value("num_students").toInt());
 
     QString souvenirs = rec.value("souvenirs").toString();
     // (split db's souvenirs string by comma and space into an array)
@@ -204,7 +204,7 @@ College DbManager::getCollegeFromRecord(const QSqlRecord &rec) const {
         // Get item's price (text after '$' and convert to float
         float itemPrice = i.mid(index + 1).toFloat();
         // Add the souvenir item using the name and price
-        college.souvenirs.push_back({itemName, itemPrice});
+        college.addSouvenir({itemName, itemPrice});
     }
 
     // Set distances
@@ -212,7 +212,7 @@ College DbManager::getCollegeFromRecord(const QSqlRecord &rec) const {
     //  convert type)
     auto distancesStrings = rec.value("DISTANCES").toString().split(", ");
     // Distance from Saddleback is first distance (convert to float)
-    college.distanceFromSaddleback = distancesStrings[0].toFloat();
+    college.setDistanceFromSaddleback(distancesStrings[0].toFloat());
     // Setting the rest of the distances
     // Format: "IntId FloatDistance" (separated by commas)
     for (unsigned i = 1, n = distancesStrings.size(); i < n; ++i) {
@@ -223,13 +223,13 @@ College DbManager::getCollegeFromRecord(const QSqlRecord &rec) const {
         // Extract distance after space char
         float distance = pair.mid(spaceIndex + 1).toFloat();
         // Add distance using id as key and distance as value
-        college.distances[key] = distance;
+        college.setDistance(key, distance);
     }
 
     return college;
 }
 
-QString DbManager::getSouvenirsString(const std::vector<SouvenirItem>& souvenirs) const {
+QString DbManager::getSouvenirsString(const std::vector<Souvenir>& souvenirs) const {
     // Database wants to see the souvenirs as text
     // Fromat: "Item1 $priceFloat, Item2 $priceFloat, .., ItemN $priceFloat"
     QString souvenirsString = "";

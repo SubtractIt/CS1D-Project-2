@@ -1,9 +1,5 @@
 #include "college.h"
 
-College::College() {
-    souvenirs.reserve(MAX_SOUVENIR_ITEMS);
-}
-
 void College::reInitialize() {
     this->id = -1;
     this->name = "";
@@ -46,7 +42,7 @@ void College::setState(const QString &state){
 }
 
 void College::setDistance(int id, float distance){
-   this->distances[id] = distance;
+   distances[id] = distance;
 }
 
 void College::setDistanceFromSaddleback(int distance) {
@@ -55,4 +51,20 @@ void College::setDistanceFromSaddleback(int distance) {
 
 void College::setSize(int numUndergraduates) {
     this->numUndergraduates = numUndergraduates;
+}
+
+void College::print() const {
+    // id, name, state, souvenirs, distances, numUndergrads
+    std::cout << "ID: " << this->id << '\n';
+    std::cout << "Name: " << this->name.toStdString() << '\n';
+    std::cout << "Souvenirs:\n";
+    for (size_t i = 0; i < souvenirs.size(); ++i) {
+        std::cout << souvenirs[i].name.toStdString() << ": $" << souvenirs[i].price << ' ';
+    }
+    std::cout << '\n';
+    std::cout << "Distance from Saddleback: " << this->distanceFromSaddleback << '\n';
+    for (const auto& d : distances) {
+        std::cout << "Distance from college " << d.first << ": " << d.second << '\n';
+    }
+    std::cout << "Number of undergrads: " << this->numUndergraduates << '\n';
 }
