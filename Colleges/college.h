@@ -1,3 +1,7 @@
+///
+/// @author Christopher Schrader, Ethan Safai
+/// @file   college.h
+///
 #ifndef COLLEGE_H
 #define COLLEGE_H
 
@@ -8,16 +12,17 @@
 
 #define MAX_SOUVENIR_ITEMS 7
 
+// Represents a souvenir from the college with a name and price
 struct Souvenir {
     QString name;
     float price;
 };
 
 ///
-/// @brief The College class -- Encapsulates all the data of a college, with various helper methods.
+/// @brief The College class -- Encapsulates all the data of a college, with
+///        various helper methods.
 ///
-class College
-{
+class College {
 public:
     ///
     /// @brief empty constructor
@@ -31,43 +36,45 @@ public:
     //Accesors
 
     ///
-    /// @brief Finds the distance to a college specified
-    /// @param id of College we are trying to find the distance to
-    /// @return a double representing the distance from the calling college to the college passed in
-    /// ///
+    /// @brief  Finds the distance to a college specified
+    /// @param  id of College we are trying to find the distance to
+    /// @return a double representing the distance from the calling college to
+    ///         the college passed in
+    ///
     std::unordered_map<int, float> getDistances() const { return distances; }
 
     ///
-    /// @brief Returns vector of college's souvenirs
+    /// @brief  Returns vector of college's souvenirs
     /// @return college's souvenirs
     ///
     std::vector<Souvenir> getSouvenirs() const { return souvenirs; }
 
     ///
-    /// @brief getName()
+    /// @brief  Returns the college's name
     /// @return QString name of the college
     ///
     QString getName() const { return name; }
 
     ///
-    /// @brief getState()
+    /// @brief  Returns the college's state
     /// @return QString name of the state the college is in
     ///
     QString getState() const { return state; }
 
     ///
-    /// @brief getID()
+    /// @brief  Returns the college's id
     /// @return int of the college ID
     ///
     int getID() const { return id; }
 
     ///
-    /// @brief size()
+    /// @brief  size()
     /// @return int of the number of undergraduates in the college
     ///
     int size() const { return numUndergraduates; }
 
-    //Mutators
+    // Mutators
+
     ///
     /// @brief Reinitializes the restaurant to an empty state
     ///

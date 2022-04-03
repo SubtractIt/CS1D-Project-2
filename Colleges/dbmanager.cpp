@@ -1,3 +1,7 @@
+///
+/// @author Ethan Safai
+/// @file   dbmanager.cpp
+///
 #include "dbmanager.h"
 
 DbManager::DbManager(const QString &path) {

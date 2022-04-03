@@ -1,3 +1,6 @@
+///
+/// @author Ethan Safai
+/// @file   collegehashmap.h
 #ifndef COLLEGEMAP_H
 #define COLLEGEMAP_H
 
@@ -6,6 +9,8 @@
 
 #define NUM_BUCKETS 20
 
+// Wraps the College class so we can store the insert key along with the object
+// in the hash table
 struct CollegeWrapper {
     int id;
     College college;
@@ -25,13 +30,11 @@ private:
 
 public:
     ///
-    /// @brief Constructor
-    /// Initializes the table array
+    /// @brief Constructor - initializes the table array
     ///
     CollegeHashMap();
     ///
-    /// @brief Destructor
-    /// Deallocates space used by the table array
+    /// @brief Destructor - deallocates space used by the table array
     ///
     ~CollegeHashMap();
 
@@ -49,22 +52,22 @@ public:
     void erase(const int key);
 
     ///
-    /// @brief Finds a College in the hash table given its key
-    /// @param key college's unique identifier
+    /// @brief  Finds a College in the hash table given its key
+    /// @param  key college's unique identifier
     /// @return an iterator pointing to the College with the given key, the
-    /// iterator will point to a College with a key of -1 if the key is not
-    /// found (to get the college, write it->college)
+    ///         iterator will point to a College with a key of -1 if the key is
+    ///         not found (to get the college, write it->college)
     ///
     std::list<CollegeWrapper>::iterator find(const int key) const;
 
     ///
-    /// @brief Returns the number of Colleges in the hash table
+    /// @brief  Returns the number of Colleges in the hash table
     /// @return hash table's size
     ///
     int size() const;
 
     ///
-    /// @brief Returns whether or not the hash table contains any Colleges
+    /// @brief  Returns whether or not the hash table contains any Colleges
     /// @return true if empty
     ///
     bool isEmpty() const;

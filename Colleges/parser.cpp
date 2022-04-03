@@ -4,11 +4,8 @@
 ///
 #include "parser.h"
 
-
 // Constrcutor
-Parser::Parser()
-{
-}
+Parser::Parser() {}
 
 // Destructor
 Parser::~Parser() {}
@@ -32,7 +29,9 @@ Parser::~Parser() {}
  *  Returns true or false depending on the success of opening and
  *  looping through file. Puts file contents into objects
  ******************************************************************/
-bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existingIds, std::vector<int>& newIds, std::string colleges, std::string souvs) {
+bool Parser::read(CollegeHashMap& collegeTrain,
+                  const std::vector<int>& existingIds, std::vector<int>& newIds,
+                  std::string colleges, std::string souvs) {
 
     College newCollege; // Object to place new college in
     Souvenir newSouv;   // Object to place new souvenir in
@@ -79,7 +78,7 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
         line = inCollege.readLine();
         lineContent = line.split(',');
     } else {
-        qDebug() << "End of college";
+//        qDebug() << "End of college";
     }
 
     // As long as not at end of file read 1st line of data
@@ -87,9 +86,12 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
         sLine = inSouvenir.readLine();
         sLineContent = sLine.split(',');
     } else {
-        qDebug() << "End of souvenir";
+//        qDebug() << "End of souvenir";
     }
 
+    // If database is empty, we will start the ids at 1. Otherwise, we will
+    // start the ids at the number of colleges in the database plus one as they
+    // start from one and increment by one each time
     bool dbEmpty = existingIds.empty();
     int id;
     if (dbEmpty) {
@@ -147,7 +149,7 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
                 line = inCollege.readLine();
                 lineContent = line.split(',');
             } else {
-                qDebug() << "End of college";
+//                qDebug() << "End of college";
                 break;
             }
         }
@@ -178,7 +180,7 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
                         sLine = inSouvenir.readLine();
                         sLineContent = sLine.split(',');
                     } else {
-                        qDebug() << "End of souvenir";
+//                        qDebug() << "End of souvenir";
                         break;
                     }
                 }
