@@ -1,36 +1,39 @@
 #include "college.h"
 
 College::College() {
-    //Not sure if we need this default constructor, we might be able to remove it
-
+    souvenirs.reserve(MAX_SOUVENIR_ITEMS);
 }
 
-College::College(QString name, int id, QString state, int numUndergraduates, std::map<int, double> distances, std::vector<Souvenir> souvenirs) :
-    name{name}, id{id}, state{state}, numUndergraduates{numUndergraduates}, distances{distances}, souvenirs{souvenirs} {
-
-};
-
-double College::distanceTo(College otherCollege){
-    return this->distances[otherCollege.getID()];
+void College::reInitialize() {
+    this->id = -1;
+    this->name = "";
+    this->state = "";
+    souvenirs.clear();
+    distances.clear();
+    this->numUndergraduates = -1;
 }
-
 
 //Mutators
-void College::addSouvenir(Souvenir souvenir){
+void College::addSouvenir(const Souvenir &souvenir){
     bool found = false;
     for (auto i = souvenirs.begin(); i != souvenirs.end(); i++){
         if (i->name == souvenir.name){
+            std::cout << "Souvenir already exists.\n";
             found = true;
         }
     }
 
     //Inserts new souvenir into the souvenirs vector if the name is not already found
     if (found == false){
-      this->souvenirs.push_back(souvenir);
+        if (souvenirs.size() < MAX_SOUVENIR_ITEMS) {
+            this->souvenirs.push_back(souvenir);
+        } else {
+            std::cout << "Max number of souvenirs already reached.\n";
+        }
     }
 }
 
-void College::setName(QString name){
+void College::setName(const QString &name){
     this->name = name;
 }
 
@@ -38,14 +41,10 @@ void College::setID(int id){
     this->id = id;
 }
 
-void College::setState(QString state){
+void College::setState(const QString &state){
     this->state = state;
 }
 
-void College::addDistance(College college, double distance){
-    int id = college.getID();
-    if (this->distances.find(id) == this->distances.end()){
-        //College isn't already in the map, we can add it
-        this->distances.insert(std::pair<int, double>(id, distance));
-    }
+void College::setDistance(int id, float distance){
+    this->distances.insert(std::pair<int, float>(id, distance));
 }
