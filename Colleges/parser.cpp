@@ -92,7 +92,7 @@ bool Parser::read(CollegeHashMap& collegeTrain, const std::vector<int>& existing
 
     bool dbEmpty = existingIds.empty();
 //    bool dbEmpty = true;
-    int id = 1;
+    int id = 0;
     // Loop through college and souvenir files
     while(!inCollege.atEnd()) {
 
