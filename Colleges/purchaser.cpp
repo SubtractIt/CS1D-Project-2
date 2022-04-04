@@ -16,7 +16,7 @@ Purchaser::~Purchaser() {}
 
 void Purchaser::purchaseItem(const int index) {
     // Validate index
-    if (index >= wrappedSouvenirs.size()) {
+    if (index >= (int)wrappedSouvenirs.size()) {
         std::cout << "Invalid index for purchasing souvenir.\n";
         return;
     }

@@ -24,9 +24,11 @@ struct CollegeWrapper {
 class CollegeHashMap {
 private:
     int count;
-    std::list<CollegeWrapper> *table;
+    std::list<CollegeWrapper> table[NUM_BUCKETS];
 
     int hash(const int key) const;
+
+    std::list<CollegeWrapper>::iterator findIter(int id);
 
 public:
     ///
@@ -58,7 +60,7 @@ public:
     ///         iterator will point to a College with a key of -1 if the key is
     ///         not found (to get the college, write it->college)
     ///
-    std::list<CollegeWrapper>::iterator find(const int key) const;
+    College find(const int key) const;
 
     ///
     /// @brief  Returns the number of Colleges in the hash table

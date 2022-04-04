@@ -4,20 +4,15 @@
 ///
 #include "collegehashmap.h"
 
-CollegeHashMap::CollegeHashMap()
-    : count(0)
-    , table(new std::list<CollegeWrapper>[NUM_BUCKETS]) {
-}
+CollegeHashMap::CollegeHashMap() : count(0) {}
 
-CollegeHashMap::~CollegeHashMap() {
-    delete[] table;
-}
+CollegeHashMap::~CollegeHashMap() {}
 
 void CollegeHashMap::insert(const int key, const College &college) {
   int index = hash(key);
 
   // no duplicates in a map, make sure key was not found
-  if (find(key) == table[index].end()) {
+  if (find(key).getID() == -1) {
     table[index].push_back(CollegeWrapper(key, college));
     ++count;
   }
@@ -25,24 +20,51 @@ void CollegeHashMap::insert(const int key, const College &college) {
 
 void CollegeHashMap::erase(const int key) {
   int index = hash(key);
-  std::list<CollegeWrapper>::iterator it = find(key);
+  auto it = findIter(key);
 
-  if (it != table[index].end()) {
+  if (it->college.getID() != -1) {
       table[index].erase(it);
       --count;
   }
 }
 
-std::list<CollegeWrapper>::iterator CollegeHashMap::find(const int key) const {
+College CollegeHashMap::find(const int key) const {
     int index = hash(key);
-    std::list<CollegeWrapper>::iterator it;
+    auto iter = table[index].begin();
 
-    for (it = table[index].begin(); it != table[index].end(); ++it) {
-        if (it->id == key) {
+    for (; iter != table[index].end(); ++iter) {
+        if (iter->id == key) {
             break;
         }
     } 
-    return it;
+
+    if (iter != table[index].end()) {
+        return iter->college;
+    }
+    College empty;
+    empty.setID(-1);
+    return empty;
+}
+
+// private method
+std::list<CollegeWrapper>::iterator CollegeHashMap::findIter(int id) {
+    int index = hash(id);
+    std::list<CollegeWrapper>::iterator iter = table[index].begin();
+
+    for (; iter != table[index].end(); ++iter) {
+        if (iter->id == id) {
+            break;
+        }
+    }
+
+    if (iter != table[index].end()) {
+        return iter;
+    }
+
+    College empty;
+    empty.setID(-1);
+    table[index].push_back(CollegeWrapper(-1, empty));
+    return iter;
 }
 
 int CollegeHashMap::size() const {
