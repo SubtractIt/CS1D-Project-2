@@ -56,9 +56,7 @@ public:
     ///
     /// @brief  Finds a College in the hash table given its key
     /// @param  key college's unique identifier
-    /// @return an iterator pointing to the College with the given key, the
-    ///         iterator will point to a College with a key of -1 if the key is
-    ///         not found (to get the college, write it->college)
+    /// @return the college found, will have id -1 if not found
     ///
     College find(const int key) const;
 
