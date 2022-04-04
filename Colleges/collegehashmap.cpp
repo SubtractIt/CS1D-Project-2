@@ -35,15 +35,13 @@ void CollegeHashMap::erase(const int key) {
 
 std::list<CollegeWrapper>::iterator CollegeHashMap::find(const int key) const {
     int index = hash(key);
-
     std::list<CollegeWrapper>::iterator it;
 
     for (it = table[index].begin(); it != table[index].end(); ++it) {
         if (it->id == key) {
             break;
         }
-    }
-
+    } 
     return it;
 }
 

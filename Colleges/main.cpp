@@ -16,17 +16,19 @@ int main(int argc, char *argv[])
     path = "..\\Colleges\\colleges.db";
 #endif
 
-    DbManager db(path);
+//    DbManager db(path);
 
-    db.addFromTextFile(true);
+//    db.addFromTextFile(true);
 
-    auto colleges = db.getAllColleges();
-    auto ids = db.getAllIds();
+//    auto colleges = db.getAllColleges();
+//    auto ids = db.getAllIds();
 
-    for (int id : ids) {
-        colleges.find(id)->college.print();
-        std::cout << '\n';
-    }
+//    for (int id : ids) {
+//        colleges.find(id)->college.print();
+//        std::cout << '\n';
+//    }
+
+
 
     QApplication a(argc, argv);
     MainWindow w;
