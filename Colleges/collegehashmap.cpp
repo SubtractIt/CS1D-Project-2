@@ -29,6 +29,11 @@ void CollegeHashMap::erase(const int key) {
 }
 
 College CollegeHashMap::find(const int key) const {
+    College empty;
+    empty.setID(-1);
+
+    if (key < 1) return empty;
+
     int index = hash(key);
     auto iter = table[index].begin();
 
@@ -41,8 +46,7 @@ College CollegeHashMap::find(const int key) const {
     if (iter != table[index].end()) {
         return iter->college;
     }
-    College empty;
-    empty.setID(-1);
+
     return empty;
 }
 
