@@ -52,16 +52,26 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Colleges/college.cpp \
+SOURCES       = ../Colleges/admin.cpp \
+		../Colleges/college.cpp \
 		../Colleges/collegehashmap.cpp \
 		../Colleges/dbmanager.cpp \
 		../Colleges/main.cpp \
-		../Colleges/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = college.o \
+		../Colleges/mainwindow.cpp \
+		../Colleges/parser.cpp \
+		../Colleges/purchaser.cpp \
+		../Colleges/trip.cpp moc_admin.cpp \
+		moc_mainwindow.cpp
+OBJECTS       = admin.o \
+		college.o \
 		collegehashmap.o \
 		dbmanager.o \
 		main.o \
 		mainwindow.o \
+		parser.o \
+		purchaser.o \
+		trip.o \
+		moc_admin.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt/6.2.2/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/device_config.prf \
@@ -203,14 +213,22 @@ DIST          = ../../../Qt/6.2.2/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/exceptions.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/yacc.prf \
 		../../../Qt/6.2.2/macos/mkspecs/features/lex.prf \
-		../Colleges/Colleges.pro ../Colleges/college.h \
+		../Colleges/Colleges.pro ../Colleges/admin.h \
+		../Colleges/college.h \
 		../Colleges/collegehashmap.h \
 		../Colleges/dbmanager.h \
-		../Colleges/mainwindow.h ../Colleges/college.cpp \
+		../Colleges/mainwindow.h \
+		../Colleges/parser.h \
+		../Colleges/purchaser.h \
+		../Colleges/trip.h ../Colleges/admin.cpp \
+		../Colleges/college.cpp \
 		../Colleges/collegehashmap.cpp \
 		../Colleges/dbmanager.cpp \
 		../Colleges/main.cpp \
-		../Colleges/mainwindow.cpp
+		../Colleges/mainwindow.cpp \
+		../Colleges/parser.cpp \
+		../Colleges/purchaser.cpp \
+		../Colleges/trip.cpp
 QMAKE_TARGET  = Colleges
 DESTDIR       = 
 TARGET        = Colleges.app/Contents/MacOS/Colleges
@@ -231,7 +249,7 @@ include /Users/christopherschrader/Qt/6.2.2/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-Colleges.app/Contents/MacOS/Colleges: ui_mainwindow.h $(OBJECTS)  
+Colleges.app/Contents/MacOS/Colleges: ui_admin.h ui_mainwindow.h $(OBJECTS)  
 	@test -d Colleges.app/Contents/MacOS/ || mkdir -p Colleges.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -555,9 +573,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/dbmanager.h ../Colleges/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/dbmanager.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.h ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/dbmanager.h ../Colleges/mainwindow.h ../Colleges/parser.h ../Colleges/purchaser.h ../Colleges/trip.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.cpp ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/dbmanager.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp ../Colleges/parser.cpp ../Colleges/purchaser.cpp ../Colleges/trip.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.ui ../Colleges/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -586,12 +604,92 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_admin.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_admin.cpp moc_mainwindow.cpp
+moc_admin.cpp: ../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../Colleges/mainwindow.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../Qt/6.2.2/macos/libexec/moc
+	/Users/christopherschrader/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=11 -D__clang_minor__=0 -D__clang_patchlevel__=3 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/christopherschrader/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/christopherschrader/Desktop/CollegeTour/Colleges -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtSql.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/christopherschrader/Qt/6.2.2/macos/lib ../Colleges/admin.h -o moc_admin.cpp
+
 moc_mainwindow.cpp: ../Colleges/mainwindow.h \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../Colleges/mainwindow.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../../../Qt/6.2.2/macos/libexec/moc
 	/Users/christopherschrader/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=11 -D__clang_minor__=0 -D__clang_patchlevel__=3 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/christopherschrader/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/christopherschrader/Desktop/CollegeTour/Colleges -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtSql.framework/Headers -I/Users/christopherschrader/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/christopherschrader/Qt/6.2.2/macos/lib ../Colleges/mainwindow.h -o moc_mainwindow.cpp
 
@@ -599,9 +697,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_admin.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_admin.h ui_mainwindow.h
+ui_admin.h: ../Colleges/admin.ui \
+		../../../Qt/6.2.2/macos/libexec/uic
+	/Users/christopherschrader/Qt/6.2.2/macos/libexec/uic ../Colleges/admin.ui -o ui_admin.h
+
 ui_mainwindow.h: ../Colleges/mainwindow.ui \
 		../../../Qt/6.2.2/macos/libexec/uic
 	/Users/christopherschrader/Qt/6.2.2/macos/libexec/uic ../Colleges/mainwindow.ui -o ui_mainwindow.h
@@ -618,12 +720,55 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+admin.o: ../Colleges/admin.cpp ../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../Colleges/mainwindow.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		ui_admin.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admin.o ../Colleges/admin.cpp
+
 college.o: ../Colleges/college.cpp ../Colleges/college.h \
-		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QObject \
-		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qobject.h
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o college.o ../Colleges/college.cpp
 
 collegehashmap.o: ../Colleges/collegehashmap.cpp ../Colleges/collegehashmap.h \
+		../Colleges/college.h \
 		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
 		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collegehashmap.o ../Colleges/collegehashmap.cpp
@@ -648,21 +793,135 @@ dbmanager.o: ../Colleges/dbmanager.cpp ../Colleges/dbmanager.h \
 		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
 		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
 		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
-		../Colleges/collegehashmap.h
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dbmanager.o ../Colleges/dbmanager.cpp
 
 main.o: ../Colleges/main.cpp ../Colleges/mainwindow.h \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QApplication \
-		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qapplication.h
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qapplication.h \
+		../Colleges/purchaser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Colleges/main.cpp
 
 mainwindow.o: ../Colleges/mainwindow.cpp ../Colleges/mainwindow.h \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../Colleges/admin.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Colleges/dbmanager.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QSqlQuery \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/QtSql \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../../Qt/6.2.2/macos/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h \
+		../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QTextStream \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Colleges/mainwindow.cpp
+
+parser.o: ../Colleges/parser.cpp ../Colleges/parser.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qfile.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QStringList \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/college.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parser.o ../Colleges/parser.cpp
+
+purchaser.o: ../Colleges/purchaser.cpp ../Colleges/purchaser.h \
+		../Colleges/college.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o purchaser.o ../Colleges/purchaser.cpp
+
+trip.o: ../Colleges/trip.cpp ../Colleges/trip.h \
+		../Colleges/college.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QString \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Colleges/collegehashmap.h \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/QObject \
+		../../../Qt/6.2.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trip.o ../Colleges/trip.cpp
+
+moc_admin.o: moc_admin.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_admin.o moc_admin.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

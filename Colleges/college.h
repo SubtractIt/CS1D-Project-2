@@ -81,6 +81,19 @@ public:
     void reInitialize();
 
     ///
+    /// \brief Renitilizes the souvenirs vector to the vector passed in
+    /// \param Updated vector of souvenirs
+    ///
+    void setSouvenirs(std::vector<Souvenir> updatedSouvenirs);
+
+    ///
+    /// \brief Sets a new souvenir price for the souvenir at the passed in index
+    /// \param Index of the souvenir in our souvenirs vector
+    /// \param The new price of the souvenir we're updating
+    ///
+    void setSouvenirPrice(const int index, int newPrice);
+
+    ///
     /// @brief Adds a new souvenir to the college
     /// @param New souvenir object to add
     ///

@@ -47,9 +47,9 @@ void Admin::setCollegeEditOptions() {
    College current;
 
    for(int i : currentIds) {
-
+    qDebug() << "test";
        current = currentColleges.find(i)->college;
-qDebug() << current.getID();
+        qDebug() << current.getID();
        qDebug() << "here";
        name = current.getName();
        qDebug() << "here2";
@@ -57,10 +57,10 @@ qDebug() << current.getID();
        qDebug() << "here3";
        id = current.getID();
        qDebug() << id;
-qDebug() << "here4";
+       qDebug() << "here4";
        collegeInfo = QString::number(id) + " - " + name;
        qDebug() << collegeInfo;
-qDebug() << "here5";
+       qDebug() << "here5";
        ui->collegeEdit->addItem(collegeInfo);
 
 

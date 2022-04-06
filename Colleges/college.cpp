@@ -13,6 +13,17 @@ void College::reInitialize() {
     this->numUndergraduates = -1;
 }
 
+void College::setSouvenirs(std::vector<Souvenir> updatedSouvenirs){
+    this->souvenirs = updatedSouvenirs;
+}
+
+void College::setSouvenirPrice(const int index, int newPrice){
+    if (index > 0 && index >= this->souvenirs.size() - 1){
+        //Index is valid, update it now
+        this->souvenirs[index].price = newPrice;
+    }
+}
+
 void College::addSouvenir(const Souvenir &souvenir) {
     bool found = false;
     for (auto i = souvenirs.begin(); i != souvenirs.end(); i++){

@@ -23,7 +23,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     parser.cpp \
-    purchaser.cpp
+    purchaser.cpp \
+    trip.cpp
 
 HEADERS += \
     admin.h \
@@ -32,7 +33,8 @@ HEADERS += \
     dbmanager.h \
     mainwindow.h \
     parser.h \
-    purchaser.h
+    purchaser.h \
+    trip.h
 
 FORMS += \
     admin.ui \
