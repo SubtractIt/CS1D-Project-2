@@ -46,24 +46,32 @@ void Admin::setCollegeEditOptions() {
    QString collegeInfo;
    College current;
 
+<<<<<<< HEAD
    for(int i : currentIds) {
     qDebug() << "test";
        current = currentColleges.find(i)->college;
         qDebug() << current.getID();
        qDebug() << "here";
+=======
+   std::vector<int> ids;
+   for (int id : currentIds) ids.push_back(id);
+
+
+    for (int i : ids) {
+       current = currentColleges.find(i);
+>>>>>>> 09b70419fa151580b534b4f0a413f43bd93bb7a2
        name = current.getName();
-       qDebug() << "here2";
-       qDebug() << current.getName();
-       qDebug() << "here3";
        id = current.getID();
+<<<<<<< HEAD
        qDebug() << id;
        qDebug() << "here4";
        collegeInfo = QString::number(id) + " - " + name;
        qDebug() << collegeInfo;
        qDebug() << "here5";
+=======
+       collegeInfo = QString::number(id) + " - " + name;
+>>>>>>> 09b70419fa151580b534b4f0a413f43bd93bb7a2
        ui->collegeEdit->addItem(collegeInfo);
-
-
    }
 }
 
@@ -74,8 +82,8 @@ void Admin::setSouvEditFields(int id) {
     College current;
 
     for(int i : currentIds) {
-        if(id == currentColleges.find(i)->college.getID()) {
-            current = currentColleges.find(i)->college;
+        if(id == currentColleges.find(i).getID()) {
+            current = currentColleges.find(i);
         }
     }
 

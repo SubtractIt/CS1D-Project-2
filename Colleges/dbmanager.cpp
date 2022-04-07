@@ -94,9 +94,9 @@ bool DbManager::addCollege(const College &college) {
            // find existing college
            auto c = colleges.find(i);
            // update existing college with its distance to this new college
-           c->college.setDistance(id, distances[i]);
+           c.setDistance(id, distances[i]);
            // update the existing college's record in the database
-           updateCollege(c->id, c->college);
+           updateCollege(c.getID(), c);
        }
        return true;
     }
@@ -104,8 +104,7 @@ bool DbManager::addCollege(const College &college) {
     return false;
 }
 
-bool DbManager::deleteCollegeById(const int id)
-{
+bool DbManager::deleteCollegeById(const int id) {
     if (isUnusedId(id)) {
         std::cerr << "Can't delete, id " << id << " doesn't exist.\n";
         return false;
@@ -123,7 +122,7 @@ bool DbManager::deleteCollegeById(const int id)
         deleteAllColleges();
 
         for (int i : ids) {
-            College c = colleges.find(i)->college;
+            College c = colleges.find(i);
             c.removeDistance(id);
             addCollege(c);
         }
@@ -150,7 +149,7 @@ void DbManager::addFromTextFile(bool reset) {
     parser->read(data, existingIds, ids);
 
     for (int id : ids) {
-        College c = data.find(id)->college;
+        College c = data.find(id);
         if (!addCollege(c)) {
             std::cout << "Error occurred when resetting db with CSV file.\n";
         }

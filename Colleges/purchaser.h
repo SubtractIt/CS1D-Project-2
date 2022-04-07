@@ -20,11 +20,7 @@ struct SouvenirWrapper {
     /// @brief Set the item to the passed item and initialize saleCount to 0
     /// @param item the menu item
     ///
-    SouvenirWrapper(const Souvenir& item)
-        : item(item)
-        , saleCount(0)
-    {
-    }
+    SouvenirWrapper(const Souvenir& item) : item(item), saleCount(0) {}
 };
 
 ///

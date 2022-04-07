@@ -28,7 +28,6 @@ public:
 
 private slots:
 
-
     void on_collegeEdit_currentIndexChanged(const QString &arg1);
 
     void on_addSouv_clicked();
@@ -37,10 +36,11 @@ private slots:
 
     void on_modifySouv_clicked();
 
-private:
     void setCollegeEditOptions();
 
     void setSouvEditFields(int id);
+
+private:
 
     Ui::Admin *ui;
 

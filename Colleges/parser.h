@@ -5,17 +5,12 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <iostream>
-#include <unordered_map>
 #include <string>
-#include <vector>
 #include <exception>
-#include <QString>
 #include <QFile>
 #include <QStringList>
 #include <QDebug>
 #include "collegehashmap.h"
-#include "college.h"
 
 ///
 /// @brief   The Parser class, parses csv to college objects
