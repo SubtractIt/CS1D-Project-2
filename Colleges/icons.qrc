@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.png</file>
+        <file>cancel.png</file>
+        <file>confirm.png</file>
+        <file>delete.png</file>
+        <file>edit.png</file>
+        <file>login.png</file>
+        <file>upload.png</file>
+        <file>warning.png</file>
+    </qresource>
+</RCC>

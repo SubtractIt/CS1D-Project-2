@@ -16,6 +16,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_adminLogin_clicked()
 {
-    Admin* adminFeatures = new Admin;
-    adminFeatures -> show();
+    Login* adminLogin = new Login;
+    adminLogin -> setWindowTitle("Administrative Login");
+    adminLogin -> show();
 }

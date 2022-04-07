@@ -26,7 +26,7 @@ public:
     Parser();
 
     ///
-    /// @brief Empty parser destructor
+    /// @brief Parser destructor
     ///
     ~Parser();
 
@@ -50,9 +50,11 @@ public:
     /// @param   souvs        file name to parse for souvenir info, default =
     ///                        "souvenir"
     ///
-    bool read(CollegeHashMap& collegeTrain, const std::vector<int>& existingIds,
-              std::vector<int>& newIds, std::string colleges = "college",
-              std::string souvs = "souvenir");
+    bool read(CollegeHashMap& collegeTrain,
+              const std::vector<int>& existingIds,
+              std::vector<int>& newIds,
+              std::string colleges = "college",
+              std::string souvs    = "souvenir");
 };
 
 #endif // PARSER_H

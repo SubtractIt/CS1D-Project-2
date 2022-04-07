@@ -91,7 +91,7 @@ public:
     /// \param Index of the souvenir in our souvenirs vector
     /// \param The new price of the souvenir we're updating
     ///
-    void setSouvenirPrice(const int index, int newPrice);
+    void setSouvenirPrice(const int index, float newPrice);
 
     ///
     /// @brief Adds a new souvenir to the college

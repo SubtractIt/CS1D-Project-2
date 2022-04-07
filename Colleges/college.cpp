@@ -17,8 +17,8 @@ void College::setSouvenirs(std::vector<Souvenir> updatedSouvenirs){
     this->souvenirs = updatedSouvenirs;
 }
 
-void College::setSouvenirPrice(const int index, int newPrice){
-    if (index > 0 && index >= this->souvenirs.size() - 1){
+void College::setSouvenirPrice(const int index, float newPrice){
+    if (index >= 0 && index <= this->souvenirs.size() - 1){
         //Index is valid, update it now
         this->souvenirs[index].price = newPrice;
     }

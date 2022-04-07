@@ -22,10 +22,19 @@
      <height>401</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="currentIndex">
     <number>0</number>
    </property>
    <widget class="QWidget" name="modify">
+    <attribute name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/edit.png</normaloff>:/edit.png</iconset>
+    </attribute>
     <attribute name="title">
      <string>Modify</string>
     </attribute>
@@ -43,6 +52,11 @@
        <pointsize>12</pointsize>
       </font>
      </property>
+     <column>
+      <property name="text">
+       <string>Prices</string>
+      </property>
+     </column>
     </widget>
     <widget class="QPushButton" name="modifySouv">
      <property name="geometry">
@@ -257,12 +271,102 @@
     <zorder>addLabel</zorder>
    </widget>
    <widget class="QWidget" name="add">
-    <attribute name="title">
-     <string>Add</string>
+    <attribute name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/upload.png</normaloff>:/upload.png</iconset>
     </attribute>
+    <attribute name="title">
+     <string>Upload</string>
+    </attribute>
+    <widget class="QLineEdit" name="collegeUpload">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>50</y>
+       <width>221</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="souvUpload">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>90</y>
+       <width>221</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QLabel" name="collegeUploadLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>131</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>College File:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="souvUploadLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Souvenir File: </string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upload">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>681</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Upload Colleges</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -23,10 +23,10 @@ int main(int argc, char *argv[])
     auto colleges = db.getAllColleges();
     auto ids = db.getAllIds();
 
-    for (int id : ids) {
-        colleges.find(id)->college.print();
-        std::cout << '\n';
-    }
+//    for (int id : ids) {
+//        colleges.find(id)->college.print();
+//        std::cout << '\n';
+//    }
 
     QApplication a(argc, argv);
     MainWindow w;
