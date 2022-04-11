@@ -87,6 +87,8 @@ private slots:
    ///
    void on_upload_clicked();
 
+   void on_collegeEdit_currentTextChanged(const QString &arg1);
+
 private:
 
    ///

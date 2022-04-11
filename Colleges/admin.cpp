@@ -202,6 +202,7 @@ void Admin::setSouvEditFields(int id) {
  ******************************************************************/
 void Admin::on_collegeEdit_currentIndexChanged(const QString &arg1)
 {
+    qInfo() << "test";
    // Get the id section from the dropdown selection
    QString selected = ui->collegeEdit->currentText();
    int id = selected.section(' ',0,0).toInt();
@@ -526,3 +527,19 @@ void Admin::on_upload_clicked()
         QMessageBox::critical(this, "Error", "Could not open the file");
     }
 }
+
+void Admin::on_collegeEdit_currentTextChanged(const QString &arg1)
+{
+   qInfo() << "test";
+   // Get the id section from the dropdown selection
+   QString selected = ui->collegeEdit->currentText();
+   int id = selected.section(' ',0,0).toInt();
+
+   // Set editing fields to that id
+   setSouvEditFields(id);
+
+   // Clear name and price fields now onto new college
+   ui->addName->clear();
+   ui->addPrice->clear();
+}
+

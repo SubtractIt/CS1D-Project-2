@@ -1,29 +1,29 @@
 #ifndef TRIP_H
 #define TRIP_H
 
+#include "dbmanager.h"
 #include "college.h"
 #include "collegehashmap.h"
 
-#include <QObject>
-#include <QWidget>
+#include <QDialog>
 
-class Trip
+namespace Ui {
+class Trip;
+}
+
+class Trip : public QDialog
 {
+    Q_OBJECT
+
 public:
-    Trip(CollegeHashMap colleges);
-
-    void startTrip(const int typeOfTrip);
-
-    void fromSaddleback();
-
-    void customTrip();
+    explicit Trip(QWidget *parent = nullptr);
+    ~Trip();
 
 private:
+    Ui::Trip *ui;
 
-
-
-
-
+    DbManager*       db;              /// connection to database
+    CollegeHashMap   currentColleges; /// Hashmap to hold all current college objects
 };
 
 #endif // TRIP_H

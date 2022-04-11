@@ -1,17 +1,14 @@
 #include "trip.h"
+#include "ui_trip.h"
 
-Trip::Trip(CollegeHashMap colleges){
-
+Trip::Trip(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Trip)
+{
+    ui->setupUi(this);
 }
 
-void Trip::startTrip(const int typeOfTrip){
-
-}
-
-void Trip::fromSaddleback(){
-
-}
-
-void Trip::customTrip(){
-
+Trip::~Trip()
+{
+    delete ui;
 }
