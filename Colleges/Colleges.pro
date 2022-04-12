@@ -20,6 +20,7 @@ SOURCES += \
     college.cpp \
     collegehashmap.cpp \
     dbmanager.cpp \
+    graph.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     college.h \
     collegehashmap.h \
     dbmanager.h \
+    graph.h \
     login.h \
     mainwindow.h \
     parser.h \
