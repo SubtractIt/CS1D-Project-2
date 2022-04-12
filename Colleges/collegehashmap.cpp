@@ -15,6 +15,15 @@ void CollegeHashMap::insert(const int key, const College &college) {
   if (find(key).getID() == -1) {
     table[index].push_back(CollegeWrapper(key, college));
     ++count;
+  } else {
+    int index = hash(key);
+    auto iter = table[index].begin();
+
+    for (; iter != table[index].end(); ++iter) {
+      if (iter->id == key) {
+          iter->college = college;
+      }
+    }
   }
 }
 
