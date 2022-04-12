@@ -24,6 +24,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *adminLogin;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -40,6 +41,9 @@ public:
         adminLogin = new QPushButton(centralwidget);
         adminLogin->setObjectName(QString::fromUtf8("adminLogin"));
         adminLogin->setGeometry(QRect(680, 10, 111, 31));
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(520, 10, 100, 32));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -58,6 +62,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         adminLogin->setText(QCoreApplication::translate("MainWindow", "Admin", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "Plan a Trip", nullptr));
     } // retranslateUi
 
 };

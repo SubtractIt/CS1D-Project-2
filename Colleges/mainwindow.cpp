@@ -20,3 +20,12 @@ void MainWindow::on_adminLogin_clicked()
     adminLogin -> setWindowTitle("Administrative Login");
     adminLogin -> show();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    Trip* tripPlanning = new Trip;
+    tripPlanning->setWindowTitle("Trip Planning");
+    tripPlanning->show();
+    qInfo() << "test trip";
+}
+
