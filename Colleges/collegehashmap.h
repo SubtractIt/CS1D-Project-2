@@ -28,8 +28,6 @@ private:
 
     int hash(const int key) const;
 
-    std::list<CollegeWrapper>::iterator findIter(int id);
-
 public:
     ///
     /// @brief Constructor - initializes the table array

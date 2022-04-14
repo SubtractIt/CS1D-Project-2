@@ -28,13 +28,16 @@ void CollegeHashMap::insert(const int key, const College &college) {
 }
 
 void CollegeHashMap::erase(const int key) {
-  int index = hash(key);
-  auto it = findIter(key);
+    int index = hash(key);
+    std::list<CollegeWrapper>::iterator iter = table[index].begin();
 
-  if (it->college.getID() != -1) {
-      table[index].erase(it);
-      --count;
-  }
+    for (; iter != table[index].end(); ++iter) {
+        if (iter->id == key) {
+            table[index].erase(iter);
+            --count;
+            break;
+        }
+    }
 }
 
 College CollegeHashMap::find(const int key) const {
@@ -57,27 +60,6 @@ College CollegeHashMap::find(const int key) const {
     }
 
     return empty;
-}
-
-// private method
-std::list<CollegeWrapper>::iterator CollegeHashMap::findIter(int id) {
-    int index = hash(id);
-    std::list<CollegeWrapper>::iterator iter = table[index].begin();
-
-    for (; iter != table[index].end(); ++iter) {
-        if (iter->id == id) {
-            break;
-        }
-    }
-
-    if (iter != table[index].end()) {
-        return iter;
-    }
-
-    College empty;
-    empty.setID(-1);
-    table[index].push_back(CollegeWrapper(-1, empty));
-    return iter;
 }
 
 int CollegeHashMap::size() const {
