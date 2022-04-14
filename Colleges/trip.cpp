@@ -31,10 +31,6 @@ Trip::Trip(QWidget *parent) :
     this->currentColleges = db->getAllColleges();
     this->currentIDs = db->getAllIds();
 
-    if (currentColleges.size() > 0){
-        this->populateTable(currentIDs[0]);
-    }
-
     //populate colleges table
 
     QStringList     tableRows;       // Row headers ro hold souv name
@@ -181,6 +177,8 @@ void Trip::onAddCollegeClicked(){
             break;
 
         }
+
+        ui->collegesList->addItem(QString::number(selected.getID()) + " - " + selected.getName());
     } else {
         QMessageBox popup;
         popup.critical(0, "Error", "Cannot add colleges before choosing type of trip.");
@@ -191,6 +189,7 @@ void Trip::onAddCollegeClicked(){
 
 void Trip::on_chooseStartTrip_clicked() {
     this->mode = 1;
+    this->planning = 1;
 
     QStringList listOfColleges;
 
@@ -286,18 +285,11 @@ void Trip::on_executeTrip_clicked() {
         popup.critical(0, "Error", "Cannot execute trip before planning.");
     }
 
-    //Loop through each selected college
-    /*
-    //i dont think this will work - call some function for the first one, then on next button click call it again until selectedIDs is zero i guess?
-    for (auto i = selectedIDs.begin(); i != selectedIDs.end(); i++){
-        //call populateList and create a new Purchaser to push inside of purchaser vector
-
-    }
-    */
 }
 
 void Trip::buyNext(){
-    if (!this->route.empty()){
+    qInfo() << buying;
+    if (!this->route.empty() && buying == true){
         int id = this->route.front().getID();
         College current = this->route.front();
         this->populateTable(id);
@@ -305,19 +297,33 @@ void Trip::buyNext(){
         Purchaser *purchaser = new Purchaser(current.getSouvenirs(), current.getID());
 
         this->purchasers.push_back(purchaser);
-    } else {
+    } else if (buying == true) {
         //were done buying now
         College current;
         for (std::vector<Purchaser*>::iterator itr = this->purchasers.begin(); itr != this->purchasers.end(); itr++){
             current = this->currentColleges.find((*itr)->getCollegeID());
             qInfo() << "Total spent at " << current.getName() << ": " << (*itr)->getTotalSpent();
         }
+
+        this->buying = false;
+        this->planning = false;
+
+
+        //Clear trip stuff here, maybe a function?
+        this->purchasers.clear();
+        for (int i : selectedIDs){
+            //this->selectedColleges.erase(i);
+        }
+        this->selectedIDs.clear();
+
+
     }
 }
 
 void Trip::on_nextCollegeButton_clicked()
 {
-    this->route.pop();
+    if (!this->route.empty())
+        this->route.pop();
     this->buyNext();
 }
 

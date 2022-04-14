@@ -33,8 +33,7 @@ public:
     QPushButton *chooseStartTrip;
     QPushButton *specificOrderTrip;
     QPushButton *executeTrip;
-    QListWidget *listWidget;
-    QListWidget *listWidget_2;
+    QListWidget *collegesList;
     QPushButton *fromSaddlebackTrip;
     QTableWidget *collegesTable;
     QLabel *purchaserLabel;
@@ -80,12 +79,9 @@ public:
         executeTrip = new QPushButton(michiganStart);
         executeTrip->setObjectName(QString::fromUtf8("executeTrip"));
         executeTrip->setGeometry(QRect(10, 590, 100, 32));
-        listWidget = new QListWidget(michiganStart);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(570, 480, 221, 151));
-        listWidget_2 = new QListWidget(michiganStart);
-        listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
-        listWidget_2->setGeometry(QRect(820, 480, 221, 151));
+        collegesList = new QListWidget(michiganStart);
+        collegesList->setObjectName(QString::fromUtf8("collegesList"));
+        collegesList->setGeometry(QRect(570, 480, 471, 151));
         fromSaddlebackTrip = new QPushButton(michiganStart);
         fromSaddlebackTrip->setObjectName(QString::fromUtf8("fromSaddlebackTrip"));
         fromSaddlebackTrip->setGeometry(QRect(210, 590, 141, 31));
