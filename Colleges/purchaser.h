@@ -29,6 +29,7 @@ struct SouvenirWrapper {
 class Purchaser {
 private:
     float totalSpent; // how much has been spent at this restaurant
+    int collegeID;
     std::vector<SouvenirWrapper> wrappedSouvenirs; // this restaurant's menu
 
 public:
@@ -37,7 +38,7 @@ public:
     ///        converting each Souvenir to a SouvenirWrapper struct
     /// @param souvenir this college's souvenirs
     ///
-    Purchaser(const std::vector<Souvenir>& souvenirs);
+    Purchaser(const std::vector<Souvenir>& souvenirs, const int id);
     ///
     /// @brief Empty
     ///
@@ -65,6 +66,12 @@ public:
     /// @return returns how much has been spent at a college
     ///
     float getTotalSpent() const { return totalSpent; }
+
+    ///
+    /// @brief  Returns the college ID associated with the purchaser
+    /// @return returns a college ID
+    ///
+    int getCollegeID() const { return collegeID; }
 };
 
 #endif // PURCHASER_H

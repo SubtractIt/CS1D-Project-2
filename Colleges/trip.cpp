@@ -3,6 +3,8 @@
 
 #include <QSpinBox>
 #include <QPushButton>
+#include <QInputDialog>
+#include <QMessageBox>
 
 Trip::Trip(QWidget *parent) :
     QDialog(parent),
@@ -10,6 +12,8 @@ Trip::Trip(QWidget *parent) :
 {
     ui->setupUi(this);
     qInfo() << "ran1";
+
+    this->buying = false;
 
     QString path;
 
@@ -31,9 +35,33 @@ Trip::Trip(QWidget *parent) :
         this->populateTable(currentIDs[0]);
     }
 
-    qInfo() << "ran";
+    //populate colleges table
 
-    //populate combobox now
+    QStringList     tableRows;       // Row headers ro hold souv name
+    QPushButton* buyButton; // Button to add item to trip
+
+    QTableWidget* table = this->ui->collegesTable;
+
+    table->setRowCount(currentIDs.size());
+    for (int i = 0; i < currentIDs.size(); i++){
+        College current = this->currentColleges.find(i + 1);
+
+        buyButton = new QPushButton(table);
+        buyButton->setText("Add College To Trip");
+        buyButton->setMinimumWidth(200);
+        //Store row of button in object name
+        buyButton->setObjectName(QString::number(i));
+        table->setCellWidget(i, 0, buyButton);
+
+        //Connect add item button to slot
+        connect(buyButton, SIGNAL(clicked()), this, SLOT(onAddCollegeClicked()));
+
+        // Add souvenir name to row labels
+        tableRows << QString::number(current.getID()) + " - " + current.getName();
+
+    }
+
+    table->setVerticalHeaderLabels(tableRows);
 
 }
 
@@ -50,6 +78,8 @@ void Trip::populateTable(int id){
             break;
         }
     }
+
+    this->ui->purchaserCollegeLabel->setText("Current College: " + current.getName());
 
     // Now that college is found, get the souvenirs to load the buying table
     std::vector<Souvenir> currentSouvs = current.getSouvenirs();
@@ -72,6 +102,8 @@ void Trip::populateTable(int id){
 
         buyButton = new QPushButton(table);
         buyButton->setText("Add Item(s)");
+        //Store row of button in object name
+        buyButton->setObjectName(QString::number(i));
         table->setCellWidget(i, 1, buyButton);
 
         //Connect add item button to slot
@@ -93,11 +125,16 @@ void Trip::populateTable(int id){
 void Trip::onAddItemClicked(){
     qInfo() << "clicked";
 
-    QWidget *w = qobject_cast<QWidget *>(sender()->parent());
-        if(w){
-            int row = ui->buyingTable->indexAt(w->pos()).row();
-            qInfo() << "row: " << row;
-        }
+    QPushButton *pb = qobject_cast<QPushButton *>(QObject::sender());
+    int row = pb->objectName().toInt();
+    Souvenir selected = this->route.front().getSouvenirs()[row];
+
+
+    qInfo() << "Clicked item: " << selected.name;
+
+    Purchaser* currentPurchaser = this->purchasers.back();
+
+    currentPurchaser->purchaseItem(row);
 
 }
 
@@ -105,4 +142,182 @@ Trip::~Trip()
 {
     delete ui;
     delete db;
+
 }
+
+void Trip::onAddCollegeClicked(){
+    if (planning){
+        QPushButton *pb = qobject_cast<QPushButton *>(QObject::sender());
+        int row = pb->objectName().toInt();
+        College selected = this->currentColleges.find(row + 1);
+
+        qInfo() << "College name added: " << selected.getName();
+
+        //type of college trip being done
+        /*
+         * 1 - Custom trip (choose initial)
+         * 2 - Custom trip (specific order)
+         * 3 - From Saddleback
+         * 4 - From Michigan
+         * 5 - BFS
+         * 6 - DFS
+         */
+
+        switch(this->mode){
+        case 1:
+            break;
+        case 2:
+            this->route.push(selected);
+            this->selectedColleges.insert(selected.getID(), selected);
+            this->selectedIDs.push_back(selected.getID());
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+
+        }
+    } else {
+        QMessageBox popup;
+        popup.critical(0, "Error", "Cannot add colleges before choosing type of trip.");
+    }
+
+    this->selectedIDs.push_back(selected.getID());
+}
+
+void Trip::on_chooseStartTrip_clicked() {
+    this->mode = 1;
+
+    QStringList listOfColleges;
+
+    College current;
+    for (int i : this->currentIDs){
+        current = this->currentColleges.find(i);
+        listOfColleges.push_back(QString::number(current.getID()) + " - " + current.getName());
+    }
+
+    bool ok;
+    QString item = QInputDialog::getItem(this, "Initial College Location",
+                                             tr("Choose a starting college:"), listOfColleges, 0, false, &ok);
+        if (ok && !item.isEmpty()){
+            int id = item.section(' ', 0, 0).toInt();
+
+            //Add starting college to route as first item + add id to currentIDs
+            College initial = this->currentColleges.find(id);
+            this->currentIDs.push_back(id);
+            this->route.push(initial);
+            qInfo() << "Top of route: " << this->route.front().getName();
+        }
+
+}
+
+void Trip::on_specificOrderTrip_clicked()
+{
+    this->mode = 2;
+    this->planning = true;
+}
+
+
+void Trip::on_fromSaddlebackTrip_clicked()
+{
+    this->mode = 3;
+    this->buying = true;
+    College saddleback = this->currentColleges.find(5);
+
+    //We're starting from saddleback, so push Saddleback to be the first entry in our route queue
+    this->route.push(saddleback);
+    this->selectedIDs.push_back(5);
+
+    //Add every college but Saddleback to selected colleges
+    for (int i = 1; i <= this->currentIDs.size(); i++){
+        if (i == 5){
+            //Ignore, we already added Saddleback
+        } else {
+            this->selectedColleges.insert(i, currentColleges.find(i));
+            this->selectedIDs.push_back(i);
+        }
+
+    }
+
+    //Use Dijkstras here i think
+
+    this->buyNext();
+}
+
+
+void Trip::on_michiganTrip_clicked()
+{
+    College michigan = this->currentColleges.find(6);
+
+    this->route.push(michigan);
+    this->selectedIDs.push_back(6);
+
+    this->mode = 4;
+}
+
+void Trip::on_executeTrip_clicked() {
+    int numColleges = this->selectedColleges.size();
+
+    if (planning){
+        this->buying = true;
+
+        switch(this->mode){
+        case 1:
+            break;
+        case 2:
+            //Use Dijkstra's now
+            this->buyNext();
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        }
+    } else {
+        QMessageBox popup;
+        popup.critical(0, "Error", "Cannot execute trip before planning.");
+    }
+
+    //Loop through each selected college
+    /*
+    //i dont think this will work - call some function for the first one, then on next button click call it again until selectedIDs is zero i guess?
+    for (auto i = selectedIDs.begin(); i != selectedIDs.end(); i++){
+        //call populateList and create a new Purchaser to push inside of purchaser vector
+
+    }
+    */
+}
+
+void Trip::buyNext(){
+    if (!this->route.empty()){
+        int id = this->route.front().getID();
+        College current = this->route.front();
+        this->populateTable(id);
+
+        Purchaser *purchaser = new Purchaser(current.getSouvenirs(), current.getID());
+
+        this->purchasers.push_back(purchaser);
+    } else {
+        //were done buying now
+        College current;
+        for (std::vector<Purchaser*>::iterator itr = this->purchasers.begin(); itr != this->purchasers.end(); itr++){
+            current = this->currentColleges.find((*itr)->getCollegeID());
+            qInfo() << "Total spent at " << current.getName() << ": " << (*itr)->getTotalSpent();
+        }
+    }
+}
+
+void Trip::on_nextCollegeButton_clicked()
+{
+    this->route.pop();
+    this->buyNext();
+}
+

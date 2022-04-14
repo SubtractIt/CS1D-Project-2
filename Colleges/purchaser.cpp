@@ -4,12 +4,14 @@
 ///
 #include "purchaser.h"
 
-Purchaser::Purchaser(const std::vector<Souvenir>& souvenirs)
+Purchaser::Purchaser(const std::vector<Souvenir>& souvenirs, const int id)
     : totalSpent(0)
 {
     // Wrap each Souvenir and add to vector
     for (const auto& s : souvenirs)
         wrappedSouvenirs.push_back(SouvenirWrapper(s));
+
+    this->collegeID = id;
 }
 
 Purchaser::~Purchaser() {}
