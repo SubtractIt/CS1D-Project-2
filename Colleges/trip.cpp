@@ -23,7 +23,7 @@ Trip::Trip(QWidget *parent) :
     #elif __linux__
           path = "../Colleges/colleges.db";
     #else
-          path = "..\Colleges\colleges.db";
+          path = "D:/Qt/PROJECT 2 CS1D/CS1D-Project-2/Colleges/colleges.db";
     #endif
 
     db = new DbManager(path);

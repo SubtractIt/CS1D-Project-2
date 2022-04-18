@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "login.h"
 #include "trip.h"
+#include "display.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,6 +22,8 @@ private slots:
     void on_adminLogin_clicked();
 
     void on_pushButton_clicked();
+
+    void on_infoButton_clicked();
 
 private:
     Ui::MainWindow *ui;

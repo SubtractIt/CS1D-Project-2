@@ -19,7 +19,9 @@ SOURCES += \
     admin.cpp \
     college.cpp \
     collegehashmap.cpp \
+    collegelist.cpp \
     dbmanager.cpp \
+    display.cpp \
     graph.cpp \
     login.cpp \
     main.cpp \
@@ -32,7 +34,9 @@ HEADERS += \
     admin.h \
     college.h \
     collegehashmap.h \
+    collegelist.h \
     dbmanager.h \
+    display.h \
     graph.h \
     login.h \
     mainwindow.h \
@@ -42,6 +46,8 @@ HEADERS += \
 
 FORMS += \
     admin.ui \
+    collegelist.ui \
+    display.ui \
     login.ui \
     mainwindow.ui \
     trip.ui
