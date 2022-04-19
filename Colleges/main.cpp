@@ -75,6 +75,33 @@ int main(int argc, char *argv[])
     std::cout << "Total mileage: " << sum << " miles\n";
     std::cout << "\n";
 
+    std::unordered_map<int, float> costs;
+    std::unordered_map<int, std::vector<int>> shortestPaths;
+    g.dijkstra(6, shortestPaths, costs);
+
+    std::cout << "Shortest paths from University of Michigan:\n"
+              << "----------\n";
+    for (int id : ids) {
+        if (id == 6) {
+            continue;
+        }
+
+        std::cout << colleges.find(id).getName().toStdString() << " (" << id << "):\n\t";
+        if (costs[id] == INF) {
+            std::cout << "no path\n";
+            continue;
+        }
+
+        for (auto it = shortestPaths[id].begin(); it != shortestPaths[id].end();
+             ++it) {
+            std::cout << colleges.find(*it).getName().toStdString() << " (" << *it << ")";
+
+            if (it != shortestPaths[id].end() - 1) {
+                std::cout << " -> ";
+            }
+        }
+        std::cout << "\n\t" << costs[id] << " miles\n\n";
+    }
 
     QApplication a(argc, argv);
     MainWindow w;

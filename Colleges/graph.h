@@ -9,6 +9,8 @@
 #include <algorithm>
 #include "collegehashmap.h"
 
+#define INF std::numeric_limits<float>::max()
+
 ///
 /// @brief   Represents a weighted graph using adjacency list representation
 /// @details vertices are college ids, and edges are disances in miles
@@ -123,6 +125,16 @@ public:
     void bfs(int v,
              std::vector<int> &path,
              std::vector<float> &distances);
+
+    ///
+    /// @brief Calclates the shortest paths from a vertex to all other vertices
+    /// @param v     the vertex to calculate the shortest paths from
+    /// @param paths the shortest paths from v to all other vertices
+    /// @param costs the costs of the shortest paths starting from v
+    ///
+    void dijkstra(int v,
+                  std::unordered_map<int, std::vector<int>>& shortestPaths,
+                  std::unordered_map<int, float>& costs);
 };
 
 #endif // GRAPH_H_

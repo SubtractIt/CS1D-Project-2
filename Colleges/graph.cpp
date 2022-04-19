@@ -242,3 +242,80 @@ void WeightedGraph::bfs(int v,
         }
     }
 }
+
+void WeightedGraph::dijkstra(int v,
+                     std::unordered_map<int, std::vector<int>>& shortestPaths,
+                     std::unordered_map<int, float>& costs) {
+    // priority queue to keep track of vertices
+    std::priority_queue<std::pair<float, int>,
+                        std::vector<std::pair<float, int>>,
+                        std::greater<std::pair<float, int>>> pq;
+    // distance from the source vertex to a vertex using shortest path
+    std::unordered_map<int, float> distances;
+    // a vertex's previous vertex in the shortest path
+    std::unordered_map<int, int> previous;
+
+    // clear costs and shortest paths
+    costs.clear();
+    shortestPaths.clear();
+
+    // initialize distances
+    for (auto it = adjList.begin(); it != adjList.end(); ++it) {
+        distances[it->first] = INF;
+    }
+    distances[v] = 0;
+
+    // initialize pq
+    pq.push(std::make_pair(0, v));
+
+    // initialize shortest_paths
+    shortestPaths.clear();
+    for (auto it = adjList.begin(); it != adjList.end(); ++it) {
+        shortestPaths[it->first] = std::vector<int>();
+    }
+    shortestPaths[v].push_back(v);
+
+    // loop through vertices
+    while (!pq.empty()) {
+        std::pair<float, int> curr = pq.top();
+        pq.pop();
+
+        // loop through neighbors
+        for (auto it = adjList[curr.second].begin();
+             it != adjList[curr.second].end();
+             ++it) {
+            // if the distance is less than the current distance, update the
+            // distance
+            if (distances[it->first] > distances[curr.second] + it->second) {
+                // update the distance
+                distances[it->first] = distances[curr.second] + it->second;
+                // update the previous
+                previous[it->first] = curr.second;
+                // add the vertex to the priority queue
+                pq.push(std::make_pair(distances[it->first], it->first));
+            }
+        }
+    }
+
+    // loop through vertices and display their edges and those edges' weights
+    for (auto it = adjList.begin(); it != adjList.end(); ++it) {
+        if (it->first == v) {
+            continue;
+        }
+        if (distances[it->first] == INF) {
+            shortestPaths[it->first].push_back(it->first);
+        } else {
+            shortestPaths[it->first].push_back(it->first);
+            int curr = it->first;
+            while (curr != v) {
+                shortestPaths[it->first].push_back(previous[curr]);
+                curr = previous[curr];
+            }
+            // add cost of path
+            costs[it->first] = distances[it->first];
+            // reverse path
+            std::reverse(shortestPaths[it->first].begin(),
+                         shortestPaths[it->first].end());
+        }
+    }
+}
