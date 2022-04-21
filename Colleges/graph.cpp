@@ -254,6 +254,7 @@ void WeightedGraph::dijkstra(int v,
     std::unordered_map<int, float> distances;
     // a vertex's previous vertex in the shortest path
     std::unordered_map<int, int> previous;
+    std::unordered_map<int, bool> visited;
 
     // clear costs and shortest paths
     costs.clear();
@@ -280,6 +281,13 @@ void WeightedGraph::dijkstra(int v,
         std::pair<float, int> curr = pq.top();
         pq.pop();
 
+        // if the vertex has been visited, skip it
+        if (visited[curr.second]) {
+            continue;
+        }
+        // mark the vertex as visited
+        visited[curr.second] = true;
+
         // loop through neighbors
         for (auto it = adjList[curr.second].begin();
              it != adjList[curr.second].end();
@@ -305,17 +313,18 @@ void WeightedGraph::dijkstra(int v,
         if (distances[it->first] == INF) {
             shortestPaths[it->first].push_back(it->first);
         } else {
+            // loop through the shortest path by backtracking through ancestors
             shortestPaths[it->first].push_back(it->first);
             int curr = it->first;
             while (curr != v) {
-                shortestPaths[it->first].push_back(previous[curr]);
+                // add the previous vertex to the shortest path (adding to front
+                // to preserve order)
+                shortestPaths[it->first].insert(shortestPaths[it->first].begin(),
+                                                previous[curr]);
                 curr = previous[curr];
             }
             // add cost of path
             costs[it->first] = distances[it->first];
-            // reverse path
-            std::reverse(shortestPaths[it->first].begin(),
-                         shortestPaths[it->first].end());
         }
     }
 }
