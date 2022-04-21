@@ -5,6 +5,7 @@
 #include "college.h"
 #include "collegehashmap.h"
 #include "purchaser.h"
+#include "graph.h"
 
 #include <QDialog>
 #include <queue>
@@ -71,6 +72,8 @@ private:
     int mode;
 
     College selected;
+
+    double totalDistance;
 
 };
 
