@@ -310,22 +310,18 @@ void WeightedGraph::dijkstra(int v,
         if (it->first == v) {
             continue;
         }
-        if (distances[it->first] == INF) {
-            shortestPaths[it->first].push_back(it->first);
-        } else {
-            // loop through the shortest path by backtracking through ancestors
-            shortestPaths[it->first].push_back(it->first);
-            int curr = it->first;
-            while (curr != v) {
-                // add the previous vertex to the shortest path (adding to front
-                // to preserve order)
-                shortestPaths[it->first].insert(shortestPaths[it->first].begin(),
-                                                previous[curr]);
-                curr = previous[curr];
-            }
-            // add cost of path
-            costs[it->first] = distances[it->first];
+        // loop through the shortest path by backtracking through ancestors
+        shortestPaths[it->first].push_back(it->first);
+        int curr = it->first;
+        while (curr != v) {
+            // add the previous vertex to the shortest path (adding to front
+            // to preserve order)
+            shortestPaths[it->first].insert(shortestPaths[it->first].begin(),
+                                            previous[curr]);
+            curr = previous[curr];
         }
+        // add cost of path
+        costs[it->first] = distances[it->first];
     }
 }
 
