@@ -5,6 +5,8 @@
 #include "college.h"
 #include "collegehashmap.h"
 #include "purchaser.h"
+#include "graph.h"
+#include "trippopup.h"
 
 #include <QDialog>
 #include <queue>
@@ -55,6 +57,7 @@ private:
     std::vector<int> selectedIDs;
 
     std::queue<College> route;
+    std::queue<College> routeToPass;
 
     bool planning;
     bool buying;
@@ -65,12 +68,13 @@ private:
      * 2 - Custom trip (specific order)
      * 3 - From Saddleback
      * 4 - From Michigan
-     * 5 - BFS
-     * 6 - DFS
      */
     int mode;
 
     College selected;
+
+    double totalDistance;
+    double totalSpent;
 
 };
 
