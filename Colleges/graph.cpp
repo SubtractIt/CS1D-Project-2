@@ -254,6 +254,7 @@ void WeightedGraph::dijkstra(int v,
     std::unordered_map<int, float> distances;
     // a vertex's previous vertex in the shortest path
     std::unordered_map<int, int> previous;
+    std::unordered_map<int, bool> visited;
 
     // clear costs and shortest paths
     costs.clear();
@@ -280,6 +281,13 @@ void WeightedGraph::dijkstra(int v,
         std::pair<float, int> curr = pq.top();
         pq.pop();
 
+        // if the vertex has been visited, skip it
+        if (visited[curr.second]) {
+            continue;
+        }
+        // mark the vertex as visited
+        visited[curr.second] = true;
+
         // loop through neighbors
         for (auto it = adjList[curr.second].begin();
              it != adjList[curr.second].end();
@@ -302,20 +310,108 @@ void WeightedGraph::dijkstra(int v,
         if (it->first == v) {
             continue;
         }
-        if (distances[it->first] == INF) {
-            shortestPaths[it->first].push_back(it->first);
-        } else {
-            shortestPaths[it->first].push_back(it->first);
-            int curr = it->first;
-            while (curr != v) {
-                shortestPaths[it->first].push_back(previous[curr]);
-                curr = previous[curr];
-            }
-            // add cost of path
-            costs[it->first] = distances[it->first];
-            // reverse path
-            std::reverse(shortestPaths[it->first].begin(),
-                         shortestPaths[it->first].end());
+        // loop through the shortest path by backtracking through ancestors
+        shortestPaths[it->first].push_back(it->first);
+        int curr = it->first;
+        while (curr != v) {
+            // add the previous vertex to the shortest path (adding to front
+            // to preserve order)
+            shortestPaths[it->first].insert(shortestPaths[it->first].begin(),
+                                            previous[curr]);
+            curr = previous[curr];
         }
+        // add cost of path
+        costs[it->first] = distances[it->first];
     }
 }
+
+// Create an MST for the graph, store in a map that holds
+// the edges which is passed by reference
+void WeightedGraph::mst(std::unordered_map<int, int>& mstVertices, float& totalDist) {
+
+  // Create a priority queue to make sure that all nodes
+  // are added to the MST in the proper order
+    std::priority_queue<std::pair<float, int>,
+                        std::vector<std::pair<float, int>>,
+                        std::greater<std::pair<float, int>>> pq;
+
+  // Clear the structure used to hold the MST and
+  // clear it to make sure it's empty
+  mstVertices.clear();
+
+  // dist is a map modeling the weigts which in this case
+  // is distances and used is a map determining
+  // if a vertex has been used in the MST yet
+  std::unordered_map<int, float> dist(numVertices);
+  std::unordered_map<int, bool> used(numVertices);
+
+  // Initialize the maps to unused and nonsense values
+  for (auto it = adjList.begin(); it != adjList.end(); ++it) {
+    used[it->first] = false;
+    dist[it->first] = INF;
+  }
+
+  // Getting the id of the first college in map to add to MST
+  int v = adjList.begin()->first;
+
+  // Add that first city with a distance of 0 to
+  // the priority queue facilitating MST additions
+  pq.push(std::make_pair(0, v));
+  dist[v] = 0;
+
+  // Continue looping until the priority queue facilititaing addition
+  // is empty meaning done
+  while(!pq.empty()) {
+
+    // Get the value of the first vertex to be added
+    // which is the top of the pq. Now that it is being used
+    // remove it and make sure it is unused, if it is used do
+    // not want duplicates so move on and if unused then
+    // set to used since it now will be and keep iterating
+    int u = pq.top().second;
+    pq.pop();
+
+    // Do not work on a vertex if it is already used
+    if(used[u] == true)
+      continue;
+
+    used[u] = true;
+
+    // Looping through all of the neighbors to find which
+    // neighbor is closest in which that edge should be added
+    for (auto it = adjList[u].begin(); it != adjList[u].end(); ++it) {
+
+      // Get the name and distance for the city
+      int vert = it->first;
+      float weight = it->second;
+
+      // Make sure it is not used and that the distance of this
+      // neighbor is the shortest, if so then update the distance
+      // and the next vertex in the map and add this new vertex
+      // to the pq to be processed
+      if(!used[vert] && dist[vert] > weight) {
+        dist[vert] = weight;
+        mstVertices[vert] = u;
+        pq.push(std::make_pair(dist[vert], vert));
+      }
+    }
+  }
+
+  // Get total distance by looping and saccumulating
+  totalDist = 0;
+  for (const auto& i : mstVertices)
+    totalDist += dist[i.first];
+
+  // Outputting the edges and weights
+  // ****Comment or uncomment following if want to test output*****
+  qInfo() << "\n\nMST\n";
+  qInfo() << "Edge : Weight\n";
+  qInfo() << "-----------------\n";
+  qInfo() << "Total Dist: " << totalDist << "\n";
+  for (const auto& i : mstVertices) {
+     qInfo() << i.first << " - " << i.second << ": "
+             << dist[i.first] << "\n";
+  }
+
+}
+

@@ -103,6 +103,12 @@ int main(int argc, char *argv[])
         std::cout << "\n\t" << costs[id] << " miles\n\n";
     }
 
+    // MST Testing
+    float dist;
+    std::unordered_map<int, int> mstEdges;
+    g.mst(mstEdges, dist);
+
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

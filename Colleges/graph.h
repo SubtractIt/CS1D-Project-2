@@ -7,6 +7,7 @@
 #include <vector>
 #include <limits>
 #include <algorithm>
+#include <QDebug>
 #include "collegehashmap.h"
 
 #define INF std::numeric_limits<float>::max()
@@ -135,6 +136,14 @@ public:
     void dijkstra(int v,
                   std::unordered_map<int, std::vector<int>>& shortestPaths,
                   std::unordered_map<int, float>& costs);
+
+    ///
+    /// @brief Create the MST for the graph
+    /// @param mstVertices map holding the edges with which vertices
+    ///                    (holds the ids of the colleges)
+    /// @param totalDist   total distance traversed in MST
+    ///
+    void mst(std::unordered_map<int, int>& mstVertices, float& totalDist);
 };
 
 #endif // GRAPH_H_
