@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsDropShadowEffect>
+#include <QMovie>
 #include "login.h"
 #include "trip.h"
 
