@@ -26,7 +26,8 @@ SOURCES += \
     mainwindow.cpp \
     parser.cpp \
     purchaser.cpp \
-    trip.cpp
+    trip.cpp \
+    trippopup.cpp
 
 HEADERS += \
     admin.h \
@@ -38,13 +39,15 @@ HEADERS += \
     mainwindow.h \
     parser.h \
     purchaser.h \
-    trip.h
+    trip.h \
+    trippopup.h
 
 FORMS += \
     admin.ui \
     login.ui \
     mainwindow.ui \
-    trip.ui
+    trip.ui \
+    trippopup.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

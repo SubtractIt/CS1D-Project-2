@@ -61,6 +61,8 @@ Trip::Trip(QWidget *parent) :
 
     table->setVerticalHeaderLabels(tableRows);
 
+    totalSpent = 0;
+
 }
 
 void Trip::populateTable(int id){
@@ -164,16 +166,31 @@ void Trip::onAddCollegeClicked(){
 
         switch(this->mode){
         case 1:
+            this->selectedColleges.insert(selected.getID(), selected);
+            this->selectedIDs.push_back(selected.getID());
 
+            qInfo() << "were adding id " << selected.getID();
             break;
         case 2:
+        {
+            if (!route.empty()){
+                int previousID = route.front().getID();
+                College previous = currentColleges.find(previousID);
+                totalDistance += previous.getDistances()[selected.getID()];
+            }
+
             this->route.push(selected);
             this->selectedColleges.insert(selected.getID(), selected);
             this->selectedIDs.push_back(selected.getID());
             break;
+        }
         case 3:
+            this->selectedColleges.insert(selected.getID(), selected);
+            this->selectedIDs.push_back(selected.getID());
             break;
         case 4:
+            this->selectedColleges.insert(selected.getID(), selected);
+            this->selectedIDs.push_back(selected.getID());
             break;
 
         }
@@ -184,12 +201,13 @@ void Trip::onAddCollegeClicked(){
         popup.critical(0, "Error", "Cannot add colleges before choosing type of trip.");
     }
 
-    this->selectedIDs.push_back(selected.getID());
+    //this->selectedIDs.push_back(selected.getID());
 }
 
 void Trip::on_chooseStartTrip_clicked() {
     this->mode = 1;
     this->planning = 1;
+    this->selectedIDs.clear();
 
     QStringList listOfColleges;
 
@@ -210,6 +228,7 @@ void Trip::on_chooseStartTrip_clicked() {
             this->currentIDs.push_back(id);
             this->route.push(initial);
             qInfo() << "Top of route: " << this->route.front().getName();
+
         }
 
 }
@@ -218,6 +237,9 @@ void Trip::on_specificOrderTrip_clicked()
 {
     this->mode = 2;
     this->planning = true;
+
+    QMessageBox popup;
+    popup.information(0, "Trip Planner", "Custom specific order trip started! Choose colleges and visit them in the order you choose, then execute trip.");
 }
 
 
@@ -265,6 +287,11 @@ void Trip::on_michiganTrip_clicked()
     this->selectedIDs.push_back(6);
 
     this->mode = 4;
+    this->planning = true;
+
+    QMessageBox popup;
+    popup.information(0, "Trip Planner", "Trip from Michigan started! Choose additional colleges to add, then execute trip.");
+
 }
 
 //type of college trip being done
@@ -282,6 +309,62 @@ void Trip::on_executeTrip_clicked() {
         this->buying = true;
         switch(this->mode){
         case 1:
+        {
+            //initial restaurant is already at the top of the route at this point
+            qInfo() << "initial pick";
+
+            qInfo() << "selected ids size: " << selectedIDs.size();
+            for (int i : selectedIDs){
+                qInfo() << "a selected id: " << i;
+            }
+
+            WeightedGraph graph;
+            graph.addColleges(this->selectedColleges, this->selectedIDs);
+            int v = 5;
+            std::unordered_map<int, std::vector<int>> routes;
+            std::unordered_map<int, float> costs;
+            graph.dijkstra(v, routes, costs);
+
+            int currentID = this->route.front().getID();
+            int selectedID = 0;
+            College currentCollege = this->currentColleges.find(currentID);
+            double shortestDistance = 1000000.0;
+
+            std::vector<int> visited;
+            visited.push_back(currentID);
+            this->selectedIDs.push_back(currentID);
+            qInfo() << "first id : " << currentID;
+            while (selectedColleges.size() != 1){
+                qInfo() << "Current college: " << currentCollege.getName();
+                shortestDistance = 10000000.0;
+                std::vector<int>::iterator found;
+                for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
+                    if (currentCollege.getDistances()[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
+                        qInfo() << "found: " << *itr;
+                        shortestDistance = currentCollege.getDistances()[*itr];
+                        qInfo() << "shortest distance: " << currentCollege.getDistances()[*itr];
+                        selectedID = *itr;
+                        found = itr;
+                    }
+                }
+                College selected = selectedColleges.find(selectedID);
+                this->route.push(selected);
+                selectedIDs.erase(found);
+                qInfo() << "Shortest distance: " << QString::number(shortestDistance);
+
+                //Find the distance now between currentCollege and selectedCollege using Dijkstra's now
+                graph.dijkstra(currentID, routes, costs);
+                totalDistance += costs[selectedID];
+                qInfo() << "cost: " << QString::number(costs[selectedID]);
+
+                visited.push_back(selectedID);
+                selectedColleges.erase(currentID);
+                currentID = selectedID;
+                currentCollege = selected;
+            }
+
+            this->buyNext();
+        }
 
             break;
         case 2:
@@ -365,11 +448,56 @@ void Trip::on_executeTrip_clicked() {
             break;
         }
         case 4:
+        {
+            //Saddleback is already at the top of the route at this point
+            qInfo() << "top of route: " << route.front().getName();
+
+            WeightedGraph graph;
+            graph.addColleges(this->selectedColleges, this->selectedIDs);
+            int v = 6;
+            std::unordered_map<int, std::vector<int>> routes;
+            std::unordered_map<int, float> costs;
+            graph.dijkstra(6, routes, costs);
+
+            int currentID = 6;
+            int selectedID = 0;
+            College currentCollege = this->currentColleges.find(currentID);
+            double shortestDistance = 1000000.0;
+
+            std::vector<int> visited;
+            visited.push_back(6);
+            while (selectedColleges.size() != 1){
+                //qInfo() << "Current college: " << currentCollege.getName();
+                shortestDistance = 10000000.0;
+                std::vector<int>::iterator found;
+                for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
+                    if (currentCollege.getDistances()[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
+                        //qInfo() << "found: " << *itr;
+                        shortestDistance = currentCollege.getDistances()[*itr];
+                        selectedID = *itr;
+                        found = itr;
+                    }
+                }
+                College selected = selectedColleges.find(selectedID);
+                this->route.push(selected);
+                selectedIDs.erase(found);
+                qInfo() << "Shortest distance: " << QString::number(shortestDistance);
+
+                //Find the distance now between currentCollege and selectedCollege using Dijkstra's now
+                graph.dijkstra(currentID, routes, costs);
+                totalDistance += costs[selectedID];
+                qInfo() << "cost: " << QString::number(costs[selectedID]);
+
+                visited.push_back(selectedID);
+                selectedColleges.erase(currentID);
+                currentID = selectedID;
+                currentCollege = selected;
+            }
+
+            this->buyNext();
             break;
-        case 5:
-            break;
-        case 6:
-            break;
+
+        }
         }
     } else {
         QMessageBox popup;
@@ -394,12 +522,17 @@ void Trip::buyNext(){
         for (std::vector<Purchaser*>::iterator itr = this->purchasers.begin(); itr != this->purchasers.end(); itr++){
             current = this->currentColleges.find((*itr)->getCollegeID());
             qInfo() << "Total spent at " << current.getName() << ": " << (*itr)->getTotalSpent();
+            this->totalSpent += (*itr)->getTotalSpent();
         }
 
         qInfo() << "Total distance: " << QString::number(this->totalDistance);
 
+        trippopup* popup = new trippopup(this->purchasers, this->totalDistance, this->totalSpent, currentColleges, routeToPass);
         this->buying = false;
         this->planning = false;
+
+        totalSpent = 0;
+        totalDistance = 0;
 
         //Clear trip stuff here, maybe a function?
         this->purchasers.clear();
@@ -408,14 +541,19 @@ void Trip::buyNext(){
         }
         this->selectedIDs.clear();
 
+        popup->setWindowTitle("Trip Final Information");
+        popup->show();
 
     }
 }
 
 void Trip::on_nextCollegeButton_clicked()
 {
-    if (!this->route.empty())
-        this->route.pop();
+    if (!this->route.empty()){
+        routeToPass.push(route.front());
+        route.pop();
+    }
+
     this->buyNext();
 }
 
