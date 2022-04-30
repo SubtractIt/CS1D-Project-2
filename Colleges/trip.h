@@ -45,6 +45,8 @@ private slots:
 
     void on_nextCollegeButton_clicked();
 
+    void on_addAllButton_clicked();
+
 private:
     Ui::Trip *ui;
 

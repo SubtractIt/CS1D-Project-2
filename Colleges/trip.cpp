@@ -68,16 +68,7 @@ Trip::Trip(QWidget *parent) :
 void Trip::populateTable(int id){
     QTableWidget* table = this->ui->buyingTable;
 
-    College current; // Object for corresponding id, yet to be set
-
-    // Loop through colleges to find the corresponding college
-    // for the passed in id
-    for(int i : currentIDs) {
-        if(id == currentColleges.find(i).getID()) {
-            current = currentColleges.find(i);
-            break;
-        }
-    }
+    College current = currentColleges.find(id); // Object for corresponding id, yet to be set
 
     this->ui->purchaserCollegeLabel->setText("Current College: " + current.getName());
 
@@ -173,15 +164,34 @@ void Trip::onAddCollegeClicked(){
             break;
         case 2:
         {
+            qInfo() << "case 2";
             if (!route.empty()){
-                int previousID = route.front().getID();
+                int previousID = route.back().getID();
                 College previous = currentColleges.find(previousID);
-                totalDistance += previous.getDistances()[selected.getID()];
+
+                this->route.push(selected);
+                this->selectedColleges.insert(selected.getID(), selected);
+                this->selectedIDs.push_back(selected.getID());
+
+                WeightedGraph graph;
+                std::unordered_map<int, std::vector<int>> routes;
+                std::unordered_map<int, float> costs;
+                graph.addColleges(selectedColleges, selectedIDs);
+
+
+                graph.dijkstra(previous.getID(), routes, costs);
+
+                qInfo() << "called dijkstra's going from " << previous.getName();
+
+                totalDistance += costs[selected.getID()];
+
+                qInfo() << "cost from " << previous.getName() << "to " << selected.getName() << " is: " << costs[selected.getID()];
+            } else {
+                this->route.push(selected);
+                this->selectedColleges.insert(selected.getID(), selected);
+                this->selectedIDs.push_back(selected.getID());
             }
 
-            this->route.push(selected);
-            this->selectedColleges.insert(selected.getID(), selected);
-            this->selectedIDs.push_back(selected.getID());
             break;
         }
         case 3:
@@ -225,9 +235,11 @@ void Trip::on_chooseStartTrip_clicked() {
 
             //Add starting college to route as first item + add id to currentIDs
             College initial = this->currentColleges.find(id);
-            this->currentIDs.push_back(id);
+            //this->selectedIDs.push_back(id);
             this->route.push(initial);
             qInfo() << "Top of route: " << this->route.front().getName();
+
+            ui->collegesList->addItem(QString::number(initial.getID()) + " - " + initial.getName());
 
         }
 
@@ -250,6 +262,7 @@ void Trip::on_fromSaddlebackTrip_clicked()
     this->buying = true;
     College saddleback = this->currentColleges.find(5);
 
+
     //We're starting from saddleback, so push Saddleback to be the first entry in our route queue
     this->route.push(saddleback);
     this->selectedIDs.push_back(5);
@@ -266,15 +279,18 @@ void Trip::on_fromSaddlebackTrip_clicked()
 
     }
 
+
     //Use Dijkstras here i think
     WeightedGraph graph;
     graph.addColleges(selectedColleges, selectedIDs);
     //graph.dijkstras();
 
+
     //push from whatever dijkstra's returns to the route queue now
 
     this->buyNext();
-    this->ui->executeTrip->click();
+    this->ui->executeTrip->click(); //this is the problem child line
+
 
 }
 
@@ -285,6 +301,8 @@ void Trip::on_michiganTrip_clicked()
 
     this->route.push(michigan);
     this->selectedIDs.push_back(6);
+
+    ui->collegesList->addItem(QString::number(michigan.getID()) + " - " + michigan.getName());
 
     this->mode = 4;
     this->planning = true;
@@ -303,6 +321,7 @@ void Trip::on_michiganTrip_clicked()
  */
 
 void Trip::on_executeTrip_clicked() {
+
     int numColleges = this->selectedColleges.size();
 
     if (planning){
@@ -323,7 +342,6 @@ void Trip::on_executeTrip_clicked() {
             int v = 5;
             std::unordered_map<int, std::vector<int>> routes;
             std::unordered_map<int, float> costs;
-            graph.dijkstra(v, routes, costs);
 
             int currentID = this->route.front().getID();
             int selectedID = 0;
@@ -356,6 +374,11 @@ void Trip::on_executeTrip_clicked() {
                 graph.dijkstra(currentID, routes, costs);
                 totalDistance += costs[selectedID];
                 qInfo() << "cost: " << QString::number(costs[selectedID]);
+                qInfo() << "route for cost: ";
+                std::vector<int> route = routes[selectedID];
+                for (int j : route){
+                    qInfo() << currentColleges.find(route[j]).getName();
+                }
 
                 visited.push_back(selectedID);
                 selectedColleges.erase(currentID);
@@ -375,13 +398,18 @@ void Trip::on_executeTrip_clicked() {
         case 3:
         {
             //Saddleback is already at the top of the route at this point
-
             WeightedGraph graph;
+            qInfo() << "selected colleges size: " << selectedColleges.size();
+
+            //test
+            College saddlebackobj = this->currentColleges.find(5);
+            selectedColleges.insert(5, saddlebackobj);
             graph.addColleges(this->selectedColleges, this->selectedIDs);
             int v = 5;
             std::unordered_map<int, std::vector<int>> routes;
             std::unordered_map<int, float> costs;
-            graph.dijkstra(v, routes, costs);
+            //graph.dijkstra(v, routes, costs);
+
 
             int currentID = 5;
             int selectedID = 0;
@@ -453,6 +481,10 @@ void Trip::on_executeTrip_clicked() {
             qInfo() << "top of route: " << route.front().getName();
 
             WeightedGraph graph;
+
+            College michigan = this->currentColleges.find(6);
+            selectedColleges.insert(6, michigan);
+
             graph.addColleges(this->selectedColleges, this->selectedIDs);
             int v = 6;
             std::unordered_map<int, std::vector<int>> routes;
@@ -507,6 +539,7 @@ void Trip::on_executeTrip_clicked() {
 }
 
 void Trip::buyNext(){
+
     qInfo() << buying;
     if (!this->route.empty() && buying == true){
         int id = this->route.front().getID();
@@ -555,5 +588,19 @@ void Trip::on_nextCollegeButton_clicked()
     }
 
     this->buyNext();
+}
+
+
+void Trip::on_addAllButton_clicked(){
+    qInfo() << "selected size: " << selectedIDs.size();
+    for (int i : currentIDs){
+        if (std::find(selectedIDs.begin(), selectedIDs.end(), i) == selectedIDs.end()){
+            selectedIDs.push_back(i);
+            College college = currentColleges.find(i);
+            selectedColleges.insert(i, college);
+            ui->collegesList->addItem(QString::number(college.getID()) + " - " + college.getName());
+
+        }
+    }
 }
 

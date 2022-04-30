@@ -256,6 +256,7 @@ void WeightedGraph::dijkstra(int v,
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
 
+
     // clear costs and shortest paths
     costs.clear();
     shortestPaths.clear();
@@ -269,6 +270,7 @@ void WeightedGraph::dijkstra(int v,
     // initialize pq
     pq.push(std::make_pair(0, v));
 
+
     // initialize shortest_paths
     shortestPaths.clear();
     for (auto it = adjList.begin(); it != adjList.end(); ++it) {
@@ -277,6 +279,7 @@ void WeightedGraph::dijkstra(int v,
     shortestPaths[v].push_back(v);
 
     // loop through vertices
+
     while (!pq.empty()) {
         std::pair<float, int> curr = pq.top();
         pq.pop();
@@ -305,11 +308,13 @@ void WeightedGraph::dijkstra(int v,
         }
     }
 
+
     // loop through vertices and display their edges and those edges' weights
     for (auto it = adjList.begin(); it != adjList.end(); ++it) {
         if (it->first == v) {
             continue;
         }
+
         // loop through the shortest path by backtracking through ancestors
         shortestPaths[it->first].push_back(it->first);
         int curr = it->first;
@@ -322,6 +327,7 @@ void WeightedGraph::dijkstra(int v,
         }
         // add cost of path
         costs[it->first] = distances[it->first];
+        qInfo() << "c";
     }
 }
 
