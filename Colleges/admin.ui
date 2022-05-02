@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="modify">
     <attribute name="icon">
@@ -51,6 +51,9 @@
       <font>
        <pointsize>12</pointsize>
       </font>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
      </property>
      <column>
       <property name="text">

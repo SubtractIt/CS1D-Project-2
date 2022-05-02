@@ -27,7 +27,6 @@ public:
     void fillUndergradList();
     void fillListStateName(); // just lovely naming conventions here
     void fillSaddlebackDistanceList();
-    bool compareHelper(std::string a, std::string b);
     ~CollegeList();
 
 private:

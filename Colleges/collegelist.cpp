@@ -28,15 +28,10 @@ CollegeList::CollegeList(QWidget *parent) :
     fillListView();
     fillCaliforniaList();
     fillUndergradList();
-
-
+    fillListStateName();
 
 }
 
-bool compareHelper(std::string a, std::string b)
-{
-    return a < b;
-}
 
 //fills list of colleges (displays all colleges)
 void CollegeList::fillListView()
@@ -55,7 +50,7 @@ void CollegeList::fillListView()
 
         //receives name from college and combines it with ID to populate QComboBox with college name and ID
         QString collegeName = curr.getName();
-        QString collegeInfo = collegeName + " ID: " + collegeID;
+        QString collegeInfo = collegeName;
 
         //adds college name and ID into vector
         collegeListNormal.push_back(collegeInfo);
@@ -86,7 +81,7 @@ void CollegeList::fillCaliforniaList()
 
         //recieves name from colleges and combines with ID to populate QListWidget contexts with college name and ID
         QString collegeName = curr.getName();
-        QString collegeInfo = collegeName + " ID: " + collegeID;
+        QString collegeInfo = collegeName;
 
        // qInfo() << "TESTING STATE OF COLLEGE CUZ IDK THE NAMING CONVENTIONS" << curr.getState();
 
@@ -115,8 +110,18 @@ void CollegeList::fillCaliforniaList()
 
 void CollegeList::fillUndergradList()
 {
-    //vector of only California colleges
+    //vector of colleges
     std::vector<QString> undergradColleges;
+
+    ui->undergradTable->setRowCount(12);
+    ui->undergradTable->setColumnCount(2);
+    QStringList headers;
+    QStringList null;
+    null << " " << " " << " " << " " << " " << " ";
+    headers << "College Name" << "Undergraduate Population";
+    ui->undergradTable->setHorizontalHeaderLabels(headers);
+    ui->undergradTable->setVerticalHeaderLabels(null);
+    ui->undergradTable->horizontalHeader()->setStretchLastSection(true);
 
     for (int i : currentIDs)
     {
@@ -131,38 +136,60 @@ void CollegeList::fillUndergradList()
 
         //recieves name from colleges and combines with ID to populate QListWidget contexts with college name and ID
         QString collegeName = curr.getName();
-        QString collegeInfo = collegeName + " ID: " + collegeID + " Undergraduate Population: " + undergradNum_s;
+        QString collegeInfo = collegeName + " ID: " + collegeID + "\t\tUndergraduate Population: " + undergradNum_s;
+
+        //populates QTable with college names and undergraduate populations
+        QTableWidgetItem* collegeNameTable = new QTableWidgetItem;
+        QTableWidgetItem* undergradPopulation = new QTableWidgetItem;
+
+        collegeNameTable->setText(collegeName);
+        undergradPopulation->setText(undergradNum_s);
+
+        ui->undergradTable->setItem(i, 0, collegeNameTable);
+        ui->undergradTable->setItem(i, 1, undergradPopulation);
 
 
         undergradColleges.push_back(collegeInfo);
 
     }
-
-    std::sort(undergradColleges.begin(), undergradColleges.end());
-
-    //adds every element of the vector into the QListWidget
-    for (int i = 0; i < undergradColleges.size(); i++)
-    {
-        qInfo() << undergradColleges.at(i);
-        ui->undergradList->addItem(undergradColleges.at(i));
-    }
 }
 
+//fills college list sorted by state and then college name
+void CollegeList::fillListStateName()
+{
+    std::unordered_map<QString, std::vector<QString>> collegesByState;
+    std::vector<QString> allStates;
 
+    for (int id : currentIDs)
+    {
+        College curr = currentColleges.find(id);
 
+        if(std::find(allStates.begin(), allStates.end(), curr.getName()) != allStates.end())
+        {
+            allStates.push_back(curr.getState());
 
+            std::vector<QString> states;
 
+            collegesByState.insert(std::pair<QString, std::vector<QString>>(curr.getState(), states));
+        }
 
+        collegesByState[curr.getState()].push_back(curr.getName());
 
+    }
 
+    for (QString state : allStates)
+    {
+        qInfo() << "STATE : " << state;
 
+        std::vector<QString> names = collegesByState[state];
+        std::sort(names.begin(), names.end());
 
-
-
-
-
-
-
+        for (QString college : names)
+        {
+            ui->statesWidget->addItem(college);
+        }
+    }
+}
 
 
 

@@ -61,8 +61,6 @@ void Display::fillComboBox()
         ui->collegeListComboBox->addItem(collegeInfo);
     }
 
-
-
 }
 
 /*Displays undergraduate population and souvenirs for the respective college through
@@ -136,9 +134,6 @@ void Display::on_collegeListComboBox_currentTextChanged(QString selectedSchool)
 
         //updates table with souvenir prices
         ui->souvenirTable->setItem(i, 1, souvPrice);
-
-
-
 
 
 
