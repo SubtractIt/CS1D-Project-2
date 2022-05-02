@@ -33,7 +33,16 @@
   <property name="windowTitle">
    <string>College Tour</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
    <widget class="QPushButton" name="adminLogin">
     <property name="geometry">
      <rect>
@@ -286,7 +295,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>90</x>
       <y>450</y>
-      <width>151</width>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
@@ -324,7 +333,7 @@ color: rgb(255, 122, 225)
      <string>Delta Theta Lamda</string>
     </property>
    </widget>
-   <widget class="QLabel" name="sororityValues">
+   <widget class="QLabel" name="petty">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -366,9 +375,9 @@ background-color: rgb(0, 0, 0)
      <property name="geometry">
       <rect>
        <x>-10</x>
-       <y>-10</y>
+       <y>0</y>
        <width>631</width>
-       <height>331</height>
+       <height>351</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -398,9 +407,9 @@ color: rgb(255, 255, 255)
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>80</y>
-        <width>241</width>
-        <height>51</height>
+        <y>60</y>
+        <width>261</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -418,10 +427,15 @@ any school or institution included.</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>160</y>
+        <y>150</y>
         <width>231</width>
-        <height>16</height>
+        <height>21</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <underline>true</underline>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
@@ -470,14 +484,14 @@ color: rgb(255, 255, 255)
 }</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Careers&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Contact Us &lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Cancellation Policy&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Careers&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Contact Us &lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="ourstory">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>170</y>
+        <x>240</x>
+        <y>150</y>
         <width>101</width>
         <height>21</height>
        </rect>
@@ -499,10 +513,10 @@ color: rgb(255, 255, 255)
      <widget class="QLabel" name="story">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>190</y>
-        <width>211</width>
-        <height>31</height>
+        <x>240</x>
+        <y>180</y>
+        <width>371</width>
+        <height>90</height>
        </rect>
       </property>
       <property name="font">
@@ -516,7 +530,10 @@ color: rgb(255, 255, 255)
 }</string>
       </property>
       <property name="text">
-       <string>talk about our startup here</string>
+       <string>The OR 1=1 team met in community college where
+we then decided to drop out to pursue our startup
+called Theranos. Upon the scandal, we renamed our
+business to the College Tour Inc. you know today.</string>
       </property>
      </widget>
      <widget class="QLabel" name="fb">
@@ -604,7 +621,7 @@ color: rgb(255, 255, 255)
      <x>0</x>
      <y>0</y>
      <width>611</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

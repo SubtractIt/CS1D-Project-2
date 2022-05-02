@@ -8,18 +8,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
     shadow->setColor(QColor(Qt::black));
-    shadow->setOffset(1,1);
-    shadow->setBlurRadius(5);
+    shadow->setOffset(2,2);
+    shadow->setBlurRadius(10);
 
     QGraphicsDropShadowEffect *shadow2 = new QGraphicsDropShadowEffect(this);
     shadow2->setColor(QColor(Qt::black));
-    shadow2->setOffset(1,1);
-    shadow2->setBlurRadius(5);
+    shadow2->setOffset(2,2);
+    shadow2->setBlurRadius(10);
 
     QGraphicsDropShadowEffect *shadow3 = new QGraphicsDropShadowEffect(this);
     shadow3->setColor(QColor(Qt::black));
-    shadow3->setOffset(1,1);
-    shadow3->setBlurRadius(5);
+    shadow3->setOffset(2,2);
+    shadow3->setBlurRadius(10);
 
     ui->find->setGraphicsEffect(shadow);
     ui->your->setGraphicsEffect(shadow2);

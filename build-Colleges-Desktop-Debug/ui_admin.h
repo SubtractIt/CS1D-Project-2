@@ -54,10 +54,10 @@ public:
     {
         if (Admin->objectName().isEmpty())
             Admin->setObjectName(QString::fromUtf8("Admin"));
-        Admin->resize(717, 418);
+        Admin->resize(717, 442);
         AdminFunctions = new QTabWidget(Admin);
         AdminFunctions->setObjectName(QString::fromUtf8("AdminFunctions"));
-        AdminFunctions->setGeometry(QRect(10, 10, 701, 401));
+        AdminFunctions->setGeometry(QRect(10, 10, 701, 421));
         QFont font;
         font.setPointSize(12);
         AdminFunctions->setFont(font);

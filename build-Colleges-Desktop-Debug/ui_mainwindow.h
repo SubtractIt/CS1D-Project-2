@@ -37,7 +37,7 @@ public:
     QLabel *sponsor;
     QLabel *sorority;
     QLabel *deltathetalambda;
-    QLabel *sororityValues;
+    QLabel *petty;
     QFrame *frame;
     QWidget *widget;
     QLabel *copyright;
@@ -65,8 +65,10 @@ public:
         QFont font;
         font.setPointSize(12);
         MainWindow->setFont(font);
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setMaximumSize(QSize(16777215, 16777215));
         adminLogin = new QPushButton(centralwidget);
         adminLogin->setObjectName(QString::fromUtf8("adminLogin"));
         adminLogin->setGeometry(QRect(320, 430, 261, 121));
@@ -157,7 +159,7 @@ public:
         sponsor->setFont(font5);
         sorority = new QLabel(centralwidget);
         sorority->setObjectName(QString::fromUtf8("sorority"));
-        sorority->setGeometry(QRect(90, 450, 151, 51));
+        sorority->setGeometry(QRect(90, 450, 161, 51));
         QFont font6;
         font6.setPointSize(35);
         font6.setBold(true);
@@ -172,10 +174,10 @@ public:
         deltathetalambda->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 122, 225)\n"
 "};"));
-        sororityValues = new QLabel(centralwidget);
-        sororityValues->setObjectName(QString::fromUtf8("sororityValues"));
-        sororityValues->setGeometry(QRect(70, 520, 161, 17));
-        sororityValues->setStyleSheet(QString::fromUtf8("QLabel {\n"
+        petty = new QLabel(centralwidget);
+        petty->setObjectName(QString::fromUtf8("petty"));
+        petty->setGeometry(QRect(70, 520, 161, 17));
+        petty->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 122, 225)\n"
 "};"));
         frame = new QFrame(centralwidget);
@@ -188,7 +190,7 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         widget = new QWidget(frame);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(-10, -10, 631, 331));
+        widget->setGeometry(QRect(-10, 0, 631, 351));
         widget->setStyleSheet(QString::fromUtf8("QWidget {\n"
 "background-color: rgb(85, 87, 83)\n"
 "}"));
@@ -200,21 +202,22 @@ public:
 "}"));
         legals = new QLabel(widget);
         legals->setObjectName(QString::fromUtf8("legals"));
-        legals->setGeometry(QRect(30, 80, 241, 51));
+        legals->setGeometry(QRect(30, 60, 261, 91));
         legals->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 255, 255)\n"
 "}"));
         socials = new QLabel(widget);
         socials->setObjectName(QString::fromUtf8("socials"));
-        socials->setGeometry(QRect(30, 160, 231, 16));
+        socials->setGeometry(QRect(30, 150, 231, 21));
+        QFont font7;
+        font7.setUnderline(true);
+        socials->setFont(font7);
         socials->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 255, 255)\n"
 "}"));
         links = new QLabel(widget);
         links->setObjectName(QString::fromUtf8("links"));
         links->setGeometry(QRect(410, 30, 101, 21));
-        QFont font7;
-        font7.setUnderline(true);
         links->setFont(font7);
         links->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 255, 255)\n"
@@ -227,14 +230,14 @@ public:
 "}"));
         ourstory = new QLabel(widget);
         ourstory->setObjectName(QString::fromUtf8("ourstory"));
-        ourstory->setGeometry(QRect(420, 170, 101, 21));
+        ourstory->setGeometry(QRect(240, 150, 101, 21));
         ourstory->setFont(font7);
         ourstory->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "color: rgb(255, 255, 255)\n"
 "}"));
         story = new QLabel(widget);
         story->setObjectName(QString::fromUtf8("story"));
-        story->setGeometry(QRect(360, 190, 211, 31));
+        story->setGeometry(QRect(240, 180, 371, 90));
         QFont font8;
         font8.setUnderline(false);
         story->setFont(font8);
@@ -264,7 +267,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 611, 24));
+        menubar->setGeometry(QRect(0, 0, 611, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -303,16 +306,19 @@ public:
         sponsor->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Proudly Sponsored by: </p></body></html>", nullptr));
         sorority->setText(QApplication::translate("MainWindow", "\342\210\206 \316\230 \316\273", nullptr));
         deltathetalambda->setText(QApplication::translate("MainWindow", "Delta Theta Lamda", nullptr));
-        sororityValues->setText(QApplication::translate("MainWindow", "Honor  Service  Grace", nullptr));
+        petty->setText(QApplication::translate("MainWindow", "Honor  Service  Grace", nullptr));
         copyright->setText(QApplication::translate("MainWindow", "\302\2512022 OR 1=1 College Tours Inc. ", nullptr));
         legals->setText(QApplication::translate("MainWindow", "Legal Statement: OR 1=1 College \n"
 "Tours Inc. is not affiliated with \n"
 "any school or institution included.", nullptr));
         socials->setText(QApplication::translate("MainWindow", "Find us on our socials: ", nullptr));
         links->setText(QApplication::translate("MainWindow", "Quick Links: ", nullptr));
-        topics->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Careers</p><p align=\"center\">Contact Us </p><p align=\"center\">Cancellation Policy</p></body></html>", nullptr));
+        topics->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Careers</p><p align=\"center\">Contact Us </p><p align=\"center\"><br/></p></body></html>", nullptr));
         ourstory->setText(QApplication::translate("MainWindow", "Our Story: ", nullptr));
-        story->setText(QApplication::translate("MainWindow", "talk about our startup here", nullptr));
+        story->setText(QApplication::translate("MainWindow", "The OR 1=1 team met in community college where\n"
+"we then decided to drop out to pursue our startup\n"
+"called Theranos. Upon the scandal, we renamed our\n"
+"business to the College Tour Inc. you know today.", nullptr));
         fb->setText(QString());
         insta->setText(QString());
         pinoodle->setText(QString());

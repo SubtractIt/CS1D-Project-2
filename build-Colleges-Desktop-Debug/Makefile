@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Colleges1.0.0
-DISTDIR = /home/juliette/CS1D/CS1D-Project-2/build-Colleges-Desktop-Debug/.tmp/Colleges1.0.0
+DISTDIR = /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/.tmp/Colleges1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Sql.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
@@ -62,11 +62,13 @@ SOURCES       = ../Colleges/admin.cpp \
 		../Colleges/mainwindow.cpp \
 		../Colleges/parser.cpp \
 		../Colleges/purchaser.cpp \
-		../Colleges/trip.cpp qrc_icons.cpp \
+		../Colleges/trip.cpp \
+		../Colleges/trippopup.cpp qrc_icons.cpp \
 		moc_admin.cpp \
 		moc_login.cpp \
 		moc_mainwindow.cpp \
-		moc_trip.cpp
+		moc_trip.cpp \
+		moc_trippopup.cpp
 OBJECTS       = admin.o \
 		college.o \
 		collegehashmap.o \
@@ -78,11 +80,13 @@ OBJECTS       = admin.o \
 		parser.o \
 		purchaser.o \
 		trip.o \
+		trippopup.o \
 		qrc_icons.o \
 		moc_admin.o \
 		moc_login.o \
 		moc_mainwindow.o \
-		moc_trip.o
+		moc_trip.o \
+		moc_trippopup.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -168,7 +172,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Colleges/mainwindow.h \
 		../Colleges/parser.h \
 		../Colleges/purchaser.h \
-		../Colleges/trip.h ../Colleges/admin.cpp \
+		../Colleges/trip.h \
+		../Colleges/trippopup.h ../Colleges/admin.cpp \
 		../Colleges/college.cpp \
 		../Colleges/collegehashmap.cpp \
 		../Colleges/dbmanager.cpp \
@@ -178,7 +183,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Colleges/mainwindow.cpp \
 		../Colleges/parser.cpp \
 		../Colleges/purchaser.cpp \
-		../Colleges/trip.cpp
+		../Colleges/trip.cpp \
+		../Colleges/trippopup.cpp
 QMAKE_TARGET  = Colleges
 DESTDIR       = 
 TARGET        = Colleges
@@ -187,7 +193,7 @@ TARGET        = Colleges
 first: all
 ####### Build rules
 
-Colleges: ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h $(OBJECTS)  
+Colleges: ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h ui_trippopup.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Colleges/Colleges.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -363,9 +369,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Colleges/icons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/admin.h ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/dbmanager.h ../Colleges/graph.h ../Colleges/login.h ../Colleges/mainwindow.h ../Colleges/parser.h ../Colleges/purchaser.h ../Colleges/trip.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/admin.cpp ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/dbmanager.cpp ../Colleges/graph.cpp ../Colleges/login.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp ../Colleges/parser.cpp ../Colleges/purchaser.cpp ../Colleges/trip.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Colleges/admin.ui ../Colleges/login.ui ../Colleges/mainwindow.ui ../Colleges/trip.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.h ../Colleges/college.h ../Colleges/collegehashmap.h ../Colleges/dbmanager.h ../Colleges/graph.h ../Colleges/login.h ../Colleges/mainwindow.h ../Colleges/parser.h ../Colleges/purchaser.h ../Colleges/trip.h ../Colleges/trippopup.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.cpp ../Colleges/college.cpp ../Colleges/collegehashmap.cpp ../Colleges/dbmanager.cpp ../Colleges/graph.cpp ../Colleges/login.cpp ../Colleges/main.cpp ../Colleges/mainwindow.cpp ../Colleges/parser.cpp ../Colleges/purchaser.cpp ../Colleges/trip.cpp ../Colleges/trippopup.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Colleges/admin.ui ../Colleges/login.ui ../Colleges/mainwindow.ui ../Colleges/trip.ui ../Colleges/trippopup.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -422,9 +428,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_admin.cpp moc_login.cpp moc_mainwindow.cpp moc_trip.cpp
+compiler_moc_header_make_all: moc_admin.cpp moc_login.cpp moc_mainwindow.cpp moc_trip.cpp moc_trippopup.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_admin.cpp moc_login.cpp moc_mainwindow.cpp moc_trip.cpp
+	-$(DEL_FILE) moc_admin.cpp moc_login.cpp moc_mainwindow.cpp moc_trip.cpp moc_trippopup.cpp
 moc_admin.cpp: ../Colleges/admin.h \
 		../Colleges/dbmanager.h \
 		../Colleges/collegehashmap.h \
@@ -435,9 +441,11 @@ moc_admin.cpp: ../Colleges/admin.h \
 		../Colleges/admin.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/juliette/CS1D/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/juliette/CS1D/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/admin.h -o moc_admin.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/ethansafai/school/cs1d/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/admin.h -o moc_admin.cpp
 
 moc_login.cpp: ../Colleges/login.h \
 		../Colleges/admin.h \
@@ -449,9 +457,11 @@ moc_login.cpp: ../Colleges/login.h \
 		../Colleges/login.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/juliette/CS1D/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/juliette/CS1D/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/login.h -o moc_login.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/ethansafai/school/cs1d/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/login.h -o moc_login.cpp
 
 moc_mainwindow.cpp: ../Colleges/mainwindow.h \
 		../Colleges/login.h \
@@ -463,9 +473,11 @@ moc_mainwindow.cpp: ../Colleges/mainwindow.h \
 		../Colleges/mainwindow.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/juliette/CS1D/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/juliette/CS1D/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/ethansafai/school/cs1d/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/mainwindow.h -o moc_mainwindow.cpp
 
 moc_trip.cpp: ../Colleges/trip.h \
 		../Colleges/dbmanager.h \
@@ -473,17 +485,33 @@ moc_trip.cpp: ../Colleges/trip.h \
 		../Colleges/college.h \
 		../Colleges/parser.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
+		../Colleges/trip.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/juliette/CS1D/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/juliette/CS1D/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/trip.h -o moc_trip.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/ethansafai/school/cs1d/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/trip.h -o moc_trip.cpp
+
+moc_trippopup.cpp: ../Colleges/trippopup.h \
+		../Colleges/purchaser.h \
+		../Colleges/college.h \
+		../Colleges/trip.h \
+		../Colleges/dbmanager.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/parser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/ethansafai/school/cs1d/CS1D-Project-2/build-Colleges-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/ethansafai/school/cs1d/CS1D-Project-2/Colleges -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Colleges/trippopup.h -o moc_trippopup.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h
+compiler_uic_make_all: ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h ui_trippopup.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h
+	-$(DEL_FILE) ui_admin.h ui_login.h ui_mainwindow.h ui_trip.h ui_trippopup.h
 ui_admin.h: ../Colleges/admin.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Colleges/admin.ui -o ui_admin.h
@@ -499,6 +527,10 @@ ui_mainwindow.h: ../Colleges/mainwindow.ui \
 ui_trip.h: ../Colleges/trip.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Colleges/trip.ui -o ui_trip.h
+
+ui_trippopup.h: ../Colleges/trippopup.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../Colleges/trippopup.ui -o ui_trippopup.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -519,6 +551,8 @@ admin.o: ../Colleges/admin.cpp ../Colleges/admin.h \
 		../Colleges/login.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		ui_admin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admin.o ../Colleges/admin.cpp
 
@@ -549,6 +583,8 @@ login.o: ../Colleges/login.cpp ../Colleges/login.h \
 		../Colleges/mainwindow.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		ui_login.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../Colleges/login.cpp
 
@@ -561,7 +597,8 @@ main.o: ../Colleges/main.cpp ../Colleges/mainwindow.h \
 		../Colleges/parser.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
-		../Colleges/graph.h
+		../Colleges/graph.h \
+		../Colleges/trippopup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Colleges/main.cpp
 
 mainwindow.o: ../Colleges/mainwindow.cpp ../Colleges/mainwindow.h \
@@ -573,6 +610,8 @@ mainwindow.o: ../Colleges/mainwindow.cpp ../Colleges/mainwindow.h \
 		../Colleges/parser.h \
 		../Colleges/trip.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Colleges/mainwindow.cpp
 
@@ -591,8 +630,21 @@ trip.o: ../Colleges/trip.cpp ../Colleges/trip.h \
 		../Colleges/college.h \
 		../Colleges/parser.h \
 		../Colleges/purchaser.h \
+		../Colleges/graph.h \
+		../Colleges/trippopup.h \
 		ui_trip.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trip.o ../Colleges/trip.cpp
+
+trippopup.o: ../Colleges/trippopup.cpp ../Colleges/trippopup.h \
+		../Colleges/purchaser.h \
+		../Colleges/college.h \
+		../Colleges/trip.h \
+		../Colleges/dbmanager.h \
+		../Colleges/collegehashmap.h \
+		../Colleges/parser.h \
+		../Colleges/graph.h \
+		ui_trippopup.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trippopup.o ../Colleges/trippopup.cpp
 
 qrc_icons.o: qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icons.o qrc_icons.cpp
@@ -608,6 +660,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_trip.o: moc_trip.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_trip.o moc_trip.cpp
+
+moc_trippopup.o: moc_trippopup.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_trippopup.o moc_trippopup.cpp
 
 ####### Install
 

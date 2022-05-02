@@ -39,9 +39,7 @@ public:
     QLabel *purchaserLabel;
     QPushButton *nextCollegeButton;
     QLabel *collegesLabel;
-    QWidget *tab_2;
-    QWidget *tab_3;
-    QWidget *tab_4;
+    QPushButton *addAllButton;
 
     void setupUi(QDialog *Trip)
     {
@@ -106,16 +104,10 @@ public:
         collegesLabel->setObjectName(QString::fromUtf8("collegesLabel"));
         collegesLabel->setGeometry(QRect(20, 70, 181, 41));
         collegesLabel->setFont(font);
+        addAllButton = new QPushButton(michiganStart);
+        addAllButton->setObjectName(QString::fromUtf8("addAllButton"));
+        addAllButton->setGeometry(QRect(410, 80, 100, 32));
         tabWidget->addTab(michiganStart, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        tabWidget->addTab(tab_2, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QString::fromUtf8("tab_3"));
-        tabWidget->addTab(tab_3, QString());
-        tab_4 = new QWidget();
-        tab_4->setObjectName(QString::fromUtf8("tab_4"));
-        tabWidget->addTab(tab_4, QString());
 
         retranslateUi(Trip);
 
@@ -153,10 +145,8 @@ public:
         purchaserLabel->setText(QApplication::translate("Trip", "Purchaser", nullptr));
         nextCollegeButton->setText(QApplication::translate("Trip", "Next College", nullptr));
         collegesLabel->setText(QApplication::translate("Trip", "College Adder", nullptr));
+        addAllButton->setText(QApplication::translate("Trip", "Add All", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(michiganStart), QApplication::translate("Trip", "Trip Planner", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Trip", "DFS", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("Trip", "BFS", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("Trip", "Page", nullptr));
     } // retranslateUi
 
 };
