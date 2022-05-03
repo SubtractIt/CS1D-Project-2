@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CollegeList</class>
+ <widget class="QDialog" name="CollegeList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>952</width>
+    <height>505</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>921</width>
+     <height>481</height>
+    </rect>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
+   </property>
+   <property name="currentIndex">
+    <number>7</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>All Colleges by Name</string>
+    </attribute>
+    <widget class="QListWidget" name="collegeList">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>871</width>
+       <height>431</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>California Colleges by Name</string>
+    </attribute>
+    <widget class="QListWidget" name="californiaList">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>891</width>
+       <height>431</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>All Colleges by State and Name</string>
+    </attribute>
+    <widget class="QListWidget" name="statesWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>901</width>
+       <height>441</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>Undergraduate Population</string>
+    </attribute>
+    <widget class="QTableWidget" name="undergradTable">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>901</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>901</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <column>
+      <property name="text">
+       <string>College Name</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Number of Undergraduates</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_5">
+    <attribute name="title">
+     <string>Distance from Saddleback College</string>
+    </attribute>
+    <widget class="QTableWidget" name="saddlebackTable">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>891</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>College Name</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Saddleback Distance</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_6">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="tab_7">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="tab_8">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

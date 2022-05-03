@@ -52,3 +52,11 @@ void MainWindow::on_pushButton_clicked()
     qInfo() << "test trip";
 }
 
+
+void MainWindow::on_display_clicked()
+{
+    Display display;
+    display.setModal(true);
+    display.exec();
+}
+

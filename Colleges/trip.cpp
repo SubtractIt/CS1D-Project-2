@@ -446,33 +446,6 @@ void Trip::on_executeTrip_clicked() {
                 currentCollege = selected;
             }
 
-            //There should be only one college left now, add it to our queue
-
-            /*
-            for (int id : this->selectedIDs){
-                qInfo() << 5;
-                if (id == 5){
-                    continue;
-                }
-
-                for (auto it = routes[id].begin(); it != routes[id].end();
-                     ++it) {
-                    std::cout << currentColleges.find(*it).getName().toStdString() << " (" << *it << ")";
-
-                    if (it != routes[id].end() - 1) {
-                        std::cout << " -> ";
-                    } else if (it == routes[id].end() - 1){
-                        //We are at the destination now, add it to the route
-                        College nextCollegeToVisit = currentColleges.find(*it);
-                        this->route.push(nextCollegeToVisit);
-
-                    }
-                }
-                this->totalDistance += costs[id];
-            }
-
-            */
-
             break;
         }
         case 4:
@@ -524,6 +497,8 @@ void Trip::on_executeTrip_clicked() {
                 selectedColleges.erase(currentID);
                 currentID = selectedID;
                 currentCollege = selected;
+
+
             }
 
             this->buyNext();
@@ -573,6 +548,12 @@ void Trip::buyNext(){
             this->selectedColleges.erase(i);
         }
         this->selectedIDs.clear();
+
+        ui->collegesList->clear();
+
+        ui->buyingTable->setRowCount(0);
+
+        ui->purchaserCollegeLabel->setText("Current College: ");
 
         popup->setWindowTitle("Trip Final Information");
         popup->show();
