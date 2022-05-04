@@ -38,17 +38,17 @@ public:
     QTableWidget *collegesTable;
     QLabel *purchaserLabel;
     QPushButton *nextCollegeButton;
-    QLabel *collegesLabel;
-    QPushButton *addAllButton;
+    QLabel *adderLabel;
 
     void setupUi(QDialog *Trip)
     {
         if (Trip->objectName().isEmpty())
             Trip->setObjectName(QString::fromUtf8("Trip"));
-        Trip->resize(1061, 666);
+        Trip->resize(1187, 740);
         tabWidget = new QTabWidget(Trip);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 0, 1061, 671));
+        tabWidget->setGeometry(QRect(0, 0, 1201, 741));
+        tabWidget->setMaximumSize(QSize(16777215, 16777215));
         michiganStart = new QWidget();
         michiganStart->setObjectName(QString::fromUtf8("michiganStart"));
         buyingTable = new QTableWidget(michiganStart);
@@ -61,52 +61,49 @@ public:
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         buyingTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         buyingTable->setObjectName(QString::fromUtf8("buyingTable"));
-        buyingTable->setGeometry(QRect(570, 120, 471, 341));
+        buyingTable->setGeometry(QRect(670, 120, 471, 341));
         purchaserCollegeLabel = new QLabel(michiganStart);
         purchaserCollegeLabel->setObjectName(QString::fromUtf8("purchaserCollegeLabel"));
-        purchaserCollegeLabel->setGeometry(QRect(570, 70, 351, 41));
+        purchaserCollegeLabel->setGeometry(QRect(670, 70, 351, 41));
         michiganTrip = new QPushButton(michiganStart);
         michiganTrip->setObjectName(QString::fromUtf8("michiganTrip"));
-        michiganTrip->setGeometry(QRect(380, 590, 131, 31));
+        michiganTrip->setGeometry(QRect(410, 590, 171, 31));
         chooseStartTrip = new QPushButton(michiganStart);
         chooseStartTrip->setObjectName(QString::fromUtf8("chooseStartTrip"));
-        chooseStartTrip->setGeometry(QRect(380, 530, 131, 51));
+        chooseStartTrip->setGeometry(QRect(410, 530, 171, 51));
         specificOrderTrip = new QPushButton(michiganStart);
         specificOrderTrip->setObjectName(QString::fromUtf8("specificOrderTrip"));
-        specificOrderTrip->setGeometry(QRect(210, 530, 141, 51));
+        specificOrderTrip->setGeometry(QRect(190, 530, 161, 51));
         executeTrip = new QPushButton(michiganStart);
         executeTrip->setObjectName(QString::fromUtf8("executeTrip"));
         executeTrip->setGeometry(QRect(10, 590, 100, 32));
         collegesList = new QListWidget(michiganStart);
         collegesList->setObjectName(QString::fromUtf8("collegesList"));
-        collegesList->setGeometry(QRect(570, 480, 471, 151));
+        collegesList->setGeometry(QRect(670, 480, 471, 201));
         fromSaddlebackTrip = new QPushButton(michiganStart);
         fromSaddlebackTrip->setObjectName(QString::fromUtf8("fromSaddlebackTrip"));
-        fromSaddlebackTrip->setGeometry(QRect(210, 590, 141, 31));
+        fromSaddlebackTrip->setGeometry(QRect(190, 590, 161, 31));
         collegesTable = new QTableWidget(michiganStart);
         if (collegesTable->columnCount() < 1)
             collegesTable->setColumnCount(1);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         collegesTable->setHorizontalHeaderItem(0, __qtablewidgetitem3);
         collegesTable->setObjectName(QString::fromUtf8("collegesTable"));
-        collegesTable->setGeometry(QRect(20, 120, 491, 341));
+        collegesTable->setGeometry(QRect(20, 120, 621, 391));
         collegesTable->horizontalHeader()->setStretchLastSection(true);
         purchaserLabel = new QLabel(michiganStart);
         purchaserLabel->setObjectName(QString::fromUtf8("purchaserLabel"));
-        purchaserLabel->setGeometry(QRect(570, 40, 141, 41));
+        purchaserLabel->setGeometry(QRect(670, 40, 221, 41));
         QFont font;
         font.setPointSize(24);
         purchaserLabel->setFont(font);
         nextCollegeButton = new QPushButton(michiganStart);
         nextCollegeButton->setObjectName(QString::fromUtf8("nextCollegeButton"));
-        nextCollegeButton->setGeometry(QRect(930, 80, 100, 32));
-        collegesLabel = new QLabel(michiganStart);
-        collegesLabel->setObjectName(QString::fromUtf8("collegesLabel"));
-        collegesLabel->setGeometry(QRect(20, 70, 181, 41));
-        collegesLabel->setFont(font);
-        addAllButton = new QPushButton(michiganStart);
-        addAllButton->setObjectName(QString::fromUtf8("addAllButton"));
-        addAllButton->setGeometry(QRect(410, 80, 100, 32));
+        nextCollegeButton->setGeometry(QRect(1030, 80, 100, 32));
+        adderLabel = new QLabel(michiganStart);
+        adderLabel->setObjectName(QString::fromUtf8("adderLabel"));
+        adderLabel->setGeometry(QRect(20, 50, 281, 41));
+        adderLabel->setFont(font);
         tabWidget->addTab(michiganStart, QString());
 
         retranslateUi(Trip);
@@ -144,8 +141,7 @@ public:
         ___qtablewidgetitem3->setText(QApplication::translate("Trip", "Add", nullptr));
         purchaserLabel->setText(QApplication::translate("Trip", "Purchaser", nullptr));
         nextCollegeButton->setText(QApplication::translate("Trip", "Next College", nullptr));
-        collegesLabel->setText(QApplication::translate("Trip", "College Adder", nullptr));
-        addAllButton->setText(QApplication::translate("Trip", "Add All", nullptr));
+        adderLabel->setText(QApplication::translate("Trip", "College Adder", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(michiganStart), QApplication::translate("Trip", "Trip Planner", nullptr));
     } // retranslateUi
 
