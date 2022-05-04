@@ -221,7 +221,7 @@ void CollegeList::fillSaddlebackDistanceList(){
     QStringList headers;
     QStringList null;
     null << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " ";
-    headers << "College Name" << "Saddleback Distance";
+    headers << "College Name" << "Undergraduate Population";
     ui->undergradTable->setHorizontalHeaderLabels(headers);
     ui->undergradTable->setVerticalHeaderLabels(null);
 
