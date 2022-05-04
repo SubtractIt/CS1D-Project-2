@@ -7,14 +7,13 @@ Display::Display(QWidget *parent) :
 {
     QString path;
 
-    // Creating database connection
-       #if __APPLE__ && TARGET_OS_MAC
-             path = "../../../../Colleges/colleges.db";
-       #elif __linux__
-             path = "../Colleges/colleges.db";
-       #else
-             path = "..\Colleges\colleges.db";
-       #endif
+#if __APPLE__ && TARGET_OS_MAC
+      path = "../../../../Colleges/colleges.db";
+#elif __linux__
+      path = "../Colleges/colleges.db";
+#else
+      path = "..\Colleges\colleges.db";
+#endif
 
     //initializes database
     db = new DbManager(path);
@@ -77,8 +76,6 @@ void Display::on_collegeListComboBox_currentTextChanged(QString selectedSchool)
     std::string currSchool = selectedSchool.toStdString();
     std::size_t pos = currSchool.rfind(":");
     std::string substr = std::string(currSchool.begin() + pos + 1, currSchool.end());
-
-    std::cout << "hello " << substr << std::endl;
 
     int currID = std::stoi(substr);
 

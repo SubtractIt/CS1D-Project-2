@@ -11,6 +11,7 @@
 #include "college.h"
 #include "dbmanager.h"
 #include "collegehashmap.h"
+#include "graph.h"
 
 namespace Ui {
 class CollegeList;
@@ -27,6 +28,9 @@ public:
     void fillUndergradList();
     void fillListStateName(); // just lovely naming conventions here
     void fillSaddlebackDistanceList();
+    void printDFS();
+    void printBFS();
+    void printMST();
     ~CollegeList();
 
 private:
@@ -34,6 +38,7 @@ private:
     DbManager* db;
     std::vector<int> currentIDs;
     CollegeHashMap currentColleges;
+    WeightedGraph graph;
 };
 
 #endif // COLLEGELIST_H

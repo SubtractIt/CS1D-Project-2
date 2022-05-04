@@ -8,14 +8,13 @@ CollegeList::CollegeList(QWidget *parent) :
 {
     QString path;
 
-    // Creating database connection
-       #if __APPLE__ && TARGET_OS_MAC
-             path = "../../../../Colleges/colleges.db";
-       #elif __linux__
-             path = "../Colleges/colleges.db";
-       #else
-             path = "..\Colleges\colleges.db";
-       #endif
+#if __APPLE__ && TARGET_OS_MAC
+      path = "../../../../Colleges/colleges.db";
+#elif __linux__
+      path = "../Colleges/colleges.db";
+#else
+      path = "..\Colleges\colleges.db";
+#endif
 
     //initializes database
     db = new DbManager(path);
@@ -25,12 +24,18 @@ CollegeList::CollegeList(QWidget *parent) :
     this->currentIDs = db->getAllIds();
     ui->setupUi(this);
 
+    //init graph
+    graph.addColleges(currentColleges, currentIDs);
+
     //calls functions
     fillListView();
     fillCaliforniaList();
     fillUndergradList();
     fillListStateName();
     fillSaddlebackDistanceList();
+    printBFS();
+    printDFS();
+    printMST();
 
 }
 
@@ -236,6 +241,84 @@ void CollegeList::fillSaddlebackDistanceList(){
         ui->saddlebackTable->setItem(i - 1, 1, saddlebackDist);
 
     }
+
+}
+
+void CollegeList::printBFS() {
+
+    std::vector<int> path;
+    std::vector<float> distances;
+
+    graph.bfs(1, path, distances);
+
+    float sum = 0;
+
+    for(int i = 0; i < distances.size(); i++){
+        sum += distances[i];
+    }
+
+    QString distance = QString::number(sum);
+    ui->milageLabel->setText(distance);
+
+    std::vector<QString> colleges;
+
+    for (int id : path)
+    {
+        College curr = currentColleges.find(id);
+        QString name = curr.getName();
+        ui->bfsList->addItem(name);
+    }
+}
+
+void CollegeList::printDFS() {
+
+    int id = 7;
+    float sum = 0;
+
+    std::vector<int> path;
+    std::vector<float> distances;
+
+    graph.dfs(id, path, distances);
+
+    for(int i = 0; i < distances.size(); i++){
+        sum += distances[i];
+    }
+
+    QString distance = QString::number(sum);
+    ui->milageLabel_2->setText(distance);
+
+    std::vector<QString> colleges;
+
+    for (int id : path)
+    {
+        College curr = currentColleges.find(id);
+        QString name = curr.getName();
+        ui->dfsList->addItem(name);
+    }
+}
+
+void CollegeList::printMST(){
+    std::unordered_map<int, int> map;
+    float totalDist;
+    graph.mst(map, totalDist);
+
+
+
+    for (const auto& i : map){
+        College start = currentColleges.find(i.first);
+        College end = currentColleges.find(i.second);
+
+
+        QString first = start.getName();
+        QString second = end.getName();
+
+        QString add = first + " - " + second;
+        ui->mstWidget->addItem(add);
+    }
+
+    QString totalDistance = QString::number(totalDist);
+    ui->milageLabel_3->setText(totalDistance);
+
 
 }
 
