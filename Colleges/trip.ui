@@ -223,6 +223,19 @@
       <string>College Adder</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="addAllButton">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>80</y>
+       <width>100</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add All</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

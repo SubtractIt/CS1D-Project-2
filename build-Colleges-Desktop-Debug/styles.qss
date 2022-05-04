@@ -1,0 +1,30 @@
+* {
+	font-family: "Waree", sans-serif;
+	font-size: 14px;
+}
+
+QLabel[objectName^="sorority"] {
+	font-size: 37px; 
+}
+
+QLabel[objectName^="adderLabel"], QLabel[objectName^="purchaserLabel"] {
+	font-size: 28px;
+}
+
+pixmap {
+	border-radius: 10px;
+}
+
+QMainWindow, QDialog {
+	background-color: white;
+}
+
+QPushButton {
+	border-radius: 10px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+QPushButton:hover {
+	background-color: pink; 
+}
