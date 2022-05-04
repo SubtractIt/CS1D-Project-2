@@ -167,7 +167,7 @@ void CollegeList::fillUndergradList()
 //fills college list sorted by state and then college name
 void CollegeList::fillListStateName()
 {
-    std::unordered_map<QString, std::vector<QString>> collegesByState;
+    std::unordered_map<std::string, std::vector<QString>> collegesByState;
     std::vector<QString> allStates;
 
     for (int id : currentIDs)
@@ -182,10 +182,10 @@ void CollegeList::fillListStateName()
 
             std::vector<QString> states;
 
-            collegesByState.insert(std::pair<QString, std::vector<QString>>(curr.getState(), states));
+            collegesByState.insert(std::pair<std::string, std::vector<QString>>(curr.getState().toStdString(), states));
         }
 
-        collegesByState[curr.getState()].push_back(curr.getName());
+        collegesByState[curr.getState().toStdString()].push_back(curr.getName());
 
     }
 
@@ -197,7 +197,7 @@ void CollegeList::fillListStateName()
     {
         qInfo() << "STATE : " << state;
 
-        std::vector<QString> names = collegesByState[state];
+        std::vector<QString> names = collegesByState[state.toStdString()];
         std::sort(names.begin(), names.end());
 
         ui->statesWidget->addItem(state + " Colleges:");

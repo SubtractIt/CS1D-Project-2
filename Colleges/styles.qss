@@ -4,7 +4,7 @@
 }
 
 QLabel[objectName^="sorority"] {
-	font-size: 37px;
+	font-size: 37px; 
 }
 
 QLabel[objectName^="adderLabel"], QLabel[objectName^="purchaserLabel"] {

@@ -111,7 +111,16 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    QFile qss("../Colleges/styles.qss");
+    QString stylePath;
+#if __APPLE__ && TARGET_OS_MAC
+    stylePath = "../../../../Colleges/styles.qss";
+#elif __linux__
+    stylePath = "../Colleges/styles.qss";
+#else
+    stylePath = "..\\Colleges\\styles.qss";
+#endif
+
+    QFile qss(stylePath);
     qss.open(QFile::ReadOnly);
     a.setStyleSheet(qss.readAll());
     qss.close();
