@@ -240,6 +240,7 @@ void Trip::on_chooseStartTrip_clicked() {
             qInfo() << "Top of route: " << this->route.front().getName();
 
             ui->collegesList->addItem(QString::number(initial.getID()) + " - " + initial.getName());
+            this->selectedColleges.insert(id, initial);
 
         }
 
@@ -351,6 +352,7 @@ void Trip::on_executeTrip_clicked() {
             std::vector<int> visited;
             visited.push_back(currentID);
             this->selectedIDs.push_back(currentID);
+
             qInfo() << "first id : " << currentID;
             while (selectedColleges.size() != 1){
                 qInfo() << "Current college: " << currentCollege.getName();
@@ -385,6 +387,13 @@ void Trip::on_executeTrip_clicked() {
                 currentID = selectedID;
                 currentCollege = selected;
             }
+
+            //There should be only one college left now
+            qInfo() << "COLLEGES LEFT: " << selectedColleges.size();
+            qInfo() << "SELECTED IDS SIZE: " << selectedIDs.size();
+
+
+            //College last = selectedColleges.find(selectedIDs[0]);
 
             this->buyNext();
         }
@@ -447,6 +456,7 @@ void Trip::on_executeTrip_clicked() {
             }
 
             //There should be only one college left now, add it to our queue
+            qInfo() << "COLLEGES LEFT: " << selectedColleges.size();
 
             /*
             for (int id : this->selectedIDs){
@@ -573,6 +583,11 @@ void Trip::buyNext(){
             this->selectedColleges.erase(i);
         }
         this->selectedIDs.clear();
+        while(!routeToPass.empty()) routeToPass.pop();
+        this->ui->collegesList->clear();
+
+        this->ui->purchaserCollegeLabel->setText("Current College: ");
+        this->ui->buyingTable->setRowCount(0);
 
         popup->setWindowTitle("Trip Final Information");
         popup->show();

@@ -327,7 +327,6 @@ void WeightedGraph::dijkstra(int v,
         }
         // add cost of path
         costs[it->first] = distances[it->first];
-        qInfo() << "c";
     }
 }
 
