@@ -120,7 +120,7 @@ void CollegeList::fillUndergradList()
     //vector of colleges
     std::vector<QString> undergradColleges;
 
-    ui->undergradTable->setRowCount(12);
+    ui->undergradTable->setRowCount(currentColleges.size() + 2);
     ui->undergradTable->setColumnCount(2);
     QStringList headers;
     QStringList null;
@@ -133,11 +133,12 @@ void CollegeList::fillUndergradList()
     ui->undergradTable->setColumnWidth(0, 400);
     ui->undergradTable->setColumnWidth(1, 400);
 
+    int sum = 0;
     for (int i : currentIDs)
     {
         //finds current iteration of ID and sets that to the current college
         College curr = currentColleges.find(i);
-
+        sum += curr.size();
         //converts ID to a string and then QString so it can be modified
         std::string s_collegeID = std::to_string(curr.getID());
         QString collegeID = QString::fromStdString(s_collegeID);
@@ -162,6 +163,12 @@ void CollegeList::fillUndergradList()
         undergradColleges.push_back(collegeInfo);
 
     }
+    QTableWidgetItem* totalLabel = new QTableWidgetItem;
+    QTableWidgetItem* total = new QTableWidgetItem;
+    totalLabel->setText("Total");
+    total->setText(QString::number(sum));
+    ui->undergradTable->setItem(currentColleges.size() + 1, 0, totalLabel);
+    ui->undergradTable->setItem(currentColleges.size() + 1, 1, total);
 }
 
 //fills college list sorted by state and then college name

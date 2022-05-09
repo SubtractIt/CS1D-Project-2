@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     DbManager db(path);
 
-    db.addFromTextFile(true);
+//    db.addFromTextFile(true);
 
     auto colleges = db.getAllColleges();
     auto ids = db.getAllIds();

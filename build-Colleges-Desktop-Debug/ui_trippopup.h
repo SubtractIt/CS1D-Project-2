@@ -40,10 +40,10 @@ public:
         routeList->setGeometry(QRect(340, 70, 311, 192));
         totalDistanceLabel = new QLabel(trippopup);
         totalDistanceLabel->setObjectName(QString::fromUtf8("totalDistanceLabel"));
-        totalDistanceLabel->setGeometry(QRect(20, 320, 181, 16));
+        totalDistanceLabel->setGeometry(QRect(20, 320, 651, 16));
         totalSpentLabel = new QLabel(trippopup);
         totalSpentLabel->setObjectName(QString::fromUtf8("totalSpentLabel"));
-        totalSpentLabel->setGeometry(QRect(20, 290, 131, 16));
+        totalSpentLabel->setGeometry(QRect(20, 290, 641, 16));
         label = new QLabel(trippopup);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(20, 50, 211, 16));
