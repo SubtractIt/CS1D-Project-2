@@ -356,6 +356,7 @@ void Trip::on_executeTrip_clicked() {
             qInfo() << "first id : " << currentID;
             while (selectedColleges.size() != 1){
                 qInfo() << "Current college: " << currentCollege.getName();
+                qInfo() << "selected colleges size: " << selectedColleges.size();
                 shortestDistance = 10000000.0;
                 std::vector<int>::iterator found;
                 for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
@@ -582,8 +583,14 @@ void Trip::buyNext(){
         for (int i : selectedIDs){
             this->selectedColleges.erase(i);
         }
+
+        CollegeHashMap empty;
+        this->selectedColleges = empty;
+
         this->selectedIDs.clear();
         while(!routeToPass.empty()) routeToPass.pop();
+        while (!route.empty()) route.pop();
+
         this->ui->collegesList->clear();
 
         this->ui->purchaserCollegeLabel->setText("Current College: ");
