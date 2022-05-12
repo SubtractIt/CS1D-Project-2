@@ -135,7 +135,8 @@ void Display::on_collegeListComboBox_currentTextChanged(QString selectedSchool)
         //updates table with souvenir prices
         ui->souvenirTable->setItem(i, 1, souvPrice);
 
-
+        // adjust column widths to fit new text
+        ui->souvenirTable->resizeColumnsToContents();
 
         //for testing
         QString souvPrice_s = "";

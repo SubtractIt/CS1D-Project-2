@@ -82,7 +82,6 @@ public:
             undergradTable->setColumnCount(2);
         QFont font;
         font.setBold(true);
-        font.setWeight(75);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         __qtablewidgetitem->setFont(font);
         undergradTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
@@ -147,7 +146,7 @@ public:
 
         retranslateUi(CollegeList);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(CollegeList);
