@@ -1,3 +1,8 @@
+///
+/// @author Adit Mohindra
+/// @file display.cpp
+
+
 #include "display.h"
 #include "ui_display.h"
 
