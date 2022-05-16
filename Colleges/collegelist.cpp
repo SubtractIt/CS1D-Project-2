@@ -1,3 +1,7 @@
+///
+/// @author Adit Mohindra
+/// @file collegelist.cpp
+
 #include "collegelist.h"
 #include "ui_collegelist.h"
 
