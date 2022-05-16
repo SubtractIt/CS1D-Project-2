@@ -1,0 +1,184 @@
+\hypertarget{class_db_manager}{}\doxysection{Db\+Manager Class Reference}
+\label{class_db_manager}\index{DbManager@{DbManager}}
+
+
+The \mbox{\hyperlink{class_db_manager}{Db\+Manager}} class -\/ manages the database.  
+
+
+
+
+{\ttfamily \#include $<$dbmanager.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_db_manager_a449b4cc451c4ec493345d799891e7eaa}{Db\+Manager}} (const QString \&path)
+\begin{DoxyCompactList}\small\item\em constructor -\/ opens a connection to the database specified by the path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}\label{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}} 
+{\bfseries $\sim$\+Db\+Manager} ()
+\begin{DoxyCompactList}\small\item\em destructor -\/ closes the connection to the database \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_db_manager_ac543053968c95b35adf674ac9bedaceb}{update\+College}} (const int id, const \mbox{\hyperlink{class_college}{College}} \&college)
+\begin{DoxyCompactList}\small\item\em Updates the college with the specified id in the database with the passed college. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_db_manager_a318b77721d65aa497993f02cbf8f2a19}{add\+College}} (const \mbox{\hyperlink{class_college}{College}} \&college)
+\begin{DoxyCompactList}\small\item\em Adds a new \mbox{\hyperlink{class_college}{College}} to the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_db_manager_a2519c88b728ae4faecd0d55734ee940d}{delete\+College\+By\+Id}} (const int id)
+\begin{DoxyCompactList}\small\item\em Deletes the college with the given id from the database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_db_manager_a045661b97064387fd38b06b7997e4d11}\label{class_db_manager_a045661b97064387fd38b06b7997e4d11}} 
+void {\bfseries delete\+All\+Colleges} ()
+\begin{DoxyCompactList}\small\item\em Deletes all colleges from the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_db_manager_a0947a20e7aec371d045afa1484c31871}{add\+From\+Text\+File}} (bool reset)
+\begin{DoxyCompactList}\small\item\em Adds restaurants to db from file and deletes rest of db if reset is true. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} \mbox{\hyperlink{class_db_manager_a2bbfb879b811e646ad26fb2780f9baa4}{get\+All\+Colleges}} () const
+\begin{DoxyCompactList}\small\item\em Returns a \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} of all colleges in the database. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_db_manager_ae3c781d3203ad7eadd4776ceddf9eedc}{get\+All\+Ids}} () const
+\begin{DoxyCompactList}\small\item\em Returns all ids in use in the databse for indexing into the hash table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_db_manager_aec2e4e46e225c64f2804b0490c217489}{is\+Unused\+Id}} (const int id) const
+\begin{DoxyCompactList}\small\item\em Checks if the specified id is already in use in the database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_db_manager_a6db40963c2cd18369d03513b3494b86e}\label{class_db_manager_a6db40963c2cd18369d03513b3494b86e}} 
+void {\bfseries print} () const
+\begin{DoxyCompactList}\small\item\em Prints all Colleges in the database (as database stores info) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_db_manager}{Db\+Manager}} class -\/ manages the database. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_db_manager_a449b4cc451c4ec493345d799891e7eaa}\label{class_db_manager_a449b4cc451c4ec493345d799891e7eaa}} 
+\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{DbManager()}{DbManager()}}
+{\footnotesize\ttfamily Db\+Manager\+::\+Db\+Manager (\begin{DoxyParamCaption}\item[{const QString \&}]{path }\end{DoxyParamCaption})}
+
+
+
+constructor -\/ opens a connection to the database specified by the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & path to the database file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_db_manager_a318b77721d65aa497993f02cbf8f2a19}\label{class_db_manager_a318b77721d65aa497993f02cbf8f2a19}} 
+\index{DbManager@{DbManager}!addCollege@{addCollege}}
+\index{addCollege@{addCollege}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{addCollege()}{addCollege()}}
+{\footnotesize\ttfamily bool Db\+Manager\+::add\+College (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_college}{College}} \&}]{college }\end{DoxyParamCaption})}
+
+
+
+Adds a new \mbox{\hyperlink{class_college}{College}} to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em college} & the new college \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if college was successfully added, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_db_manager_a0947a20e7aec371d045afa1484c31871}\label{class_db_manager_a0947a20e7aec371d045afa1484c31871}} 
+\index{DbManager@{DbManager}!addFromTextFile@{addFromTextFile}}
+\index{addFromTextFile@{addFromTextFile}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{addFromTextFile()}{addFromTextFile()}}
+{\footnotesize\ttfamily void Db\+Manager\+::add\+From\+Text\+File (\begin{DoxyParamCaption}\item[{bool}]{reset }\end{DoxyParamCaption})}
+
+
+
+Adds restaurants to db from file and deletes rest of db if reset is true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reset} & if the db should be reset or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_db_manager_a2519c88b728ae4faecd0d55734ee940d}\label{class_db_manager_a2519c88b728ae4faecd0d55734ee940d}} 
+\index{DbManager@{DbManager}!deleteCollegeById@{deleteCollegeById}}
+\index{deleteCollegeById@{deleteCollegeById}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{deleteCollegeById()}{deleteCollegeById()}}
+{\footnotesize\ttfamily bool Db\+Manager\+::delete\+College\+By\+Id (\begin{DoxyParamCaption}\item[{const int}]{id }\end{DoxyParamCaption})}
+
+
+
+Deletes the college with the given id from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the college\textquotesingle{}s id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if deleted, false if college didn\textquotesingle{}t exist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_db_manager_a2bbfb879b811e646ad26fb2780f9baa4}\label{class_db_manager_a2bbfb879b811e646ad26fb2780f9baa4}} 
+\index{DbManager@{DbManager}!getAllColleges@{getAllColleges}}
+\index{getAllColleges@{getAllColleges}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{getAllColleges()}{getAllColleges()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} Db\+Manager\+::get\+All\+Colleges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns a \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} of all colleges in the database. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} of all colleges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_db_manager_ae3c781d3203ad7eadd4776ceddf9eedc}\label{class_db_manager_ae3c781d3203ad7eadd4776ceddf9eedc}} 
+\index{DbManager@{DbManager}!getAllIds@{getAllIds}}
+\index{getAllIds@{getAllIds}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{getAllIds()}{getAllIds()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Db\+Manager\+::get\+All\+Ids (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns all ids in use in the databse for indexing into the hash table. 
+
+\begin{DoxyReturn}{Returns}
+a vector of all ids (int) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_db_manager_aec2e4e46e225c64f2804b0490c217489}\label{class_db_manager_aec2e4e46e225c64f2804b0490c217489}} 
+\index{DbManager@{DbManager}!isUnusedId@{isUnusedId}}
+\index{isUnusedId@{isUnusedId}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{isUnusedId()}{isUnusedId()}}
+{\footnotesize\ttfamily bool Db\+Manager\+::is\+Unused\+Id (\begin{DoxyParamCaption}\item[{const int}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the specified id is already in use in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if id is not use, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_db_manager_ac543053968c95b35adf674ac9bedaceb}\label{class_db_manager_ac543053968c95b35adf674ac9bedaceb}} 
+\index{DbManager@{DbManager}!updateCollege@{updateCollege}}
+\index{updateCollege@{updateCollege}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{updateCollege()}{updateCollege()}}
+{\footnotesize\ttfamily bool Db\+Manager\+::update\+College (\begin{DoxyParamCaption}\item[{const int}]{id,  }\item[{const \mbox{\hyperlink{class_college}{College}} \&}]{college }\end{DoxyParamCaption})}
+
+
+
+Updates the college with the specified id in the database with the passed college. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & college\textquotesingle{}s id \\
+\hline
+{\em college} & college to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if college was succesfully updated, false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Colleges/\mbox{\hyperlink{dbmanager_8h}{dbmanager.\+h}}\item 
+Colleges/\mbox{\hyperlink{dbmanager_8cpp}{dbmanager.\+cpp}}\end{DoxyCompactItemize}

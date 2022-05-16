@@ -1,0 +1,60 @@
+\hypertarget{dbmanager_8h_source}{}\doxysection{dbmanager.\+h}
+\label{dbmanager_8h_source}\index{Colleges/dbmanager.h@{Colleges/dbmanager.h}}
+\mbox{\hyperlink{dbmanager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DBMANAGER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DBMANAGER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <QSqlQuery>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <QString>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QtSql>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegehashmap_8h}{collegehashmap.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{parser_8h}{parser.h}}"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{comment}{// colleges table schema}}
+\DoxyCodeLine{15 \textcolor{comment}{//  id INTEGER NOT NULL}}
+\DoxyCodeLine{16 \textcolor{comment}{//  name TEXT NOT NULL}}
+\DoxyCodeLine{17 \textcolor{comment}{//  state TEXT NOT NULL}}
+\DoxyCodeLine{18 \textcolor{comment}{//  souvenirs TEXT NOT NULL}}
+\DoxyCodeLine{19 \textcolor{comment}{//  distances TEXT NOT NULL}}
+\DoxyCodeLine{20 \textcolor{comment}{//  num\_students INTEGER NOT NULL}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define NUM\_COLUMNS 6}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_db_manager}{DbManager}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{private}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_parser}{Parser}} *parser;}
+\DoxyCodeLine{30     QSqlDatabase dataBase;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \mbox{\hyperlink{class_college}{College}} getCollegeFromRecord(\textcolor{keyword}{const} QSqlRecord \&rec) \textcolor{keyword}{const};}
+\DoxyCodeLine{33     QString getSouvenirsString(\textcolor{keyword}{const} std::vector<Souvenir>\& souvenirs) \textcolor{keyword}{const};}
+\DoxyCodeLine{34     QString getDistancesString(\textcolor{keyword}{const} std::unordered\_map<int, float>\&}
+\DoxyCodeLine{35                                distances) \textcolor{keyword}{const};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \mbox{\hyperlink{class_db_manager_a449b4cc451c4ec493345d799891e7eaa}{DbManager}}(\textcolor{keyword}{const} QString \&path);}
+\DoxyCodeLine{47     \mbox{\hyperlink{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}{\string~DbManager}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{56     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_db_manager_ac543053968c95b35adf674ac9bedaceb}{updateCollege}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} \mbox{\hyperlink{class_college}{College}}\& college);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_db_manager_a318b77721d65aa497993f02cbf8f2a19}{addCollege}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_college}{College}} \&college);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_db_manager_a2519c88b728ae4faecd0d55734ee940d}{deleteCollegeById}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_db_manager_a045661b97064387fd38b06b7997e4d11}{deleteAllColleges}}();}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{82     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_db_manager_a0947a20e7aec371d045afa1484c31871}{addFromTextFile}}(\textcolor{keywordtype}{bool} reset);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{88     \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}} \mbox{\hyperlink{class_db_manager_a2bbfb879b811e646ad26fb2780f9baa4}{getAllColleges}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{95     std::vector<int> \mbox{\hyperlink{class_db_manager_ae3c781d3203ad7eadd4776ceddf9eedc}{getAllIds}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{102     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_db_manager_aec2e4e46e225c64f2804b0490c217489}{isUnusedId}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_db_manager_a6db40963c2cd18369d03513b3494b86e}{print}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// DBMANAGER\_H}}
+
+\end{DoxyCode}

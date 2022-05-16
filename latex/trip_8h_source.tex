@@ -1,0 +1,92 @@
+\hypertarget{trip_8h_source}{}\doxysection{trip.\+h}
+\label{trip_8h_source}\index{Colleges/trip.h@{Colleges/trip.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TRIP\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TRIP\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{dbmanager_8h}{dbmanager.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{college_8h}{college.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegehashmap_8h}{collegehashmap.h}}"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{purchaser_8h}{purchaser.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}graph.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}trippopup.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{namespace }Ui \{}
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{class_trip}{Trip}};}
+\DoxyCodeLine{18 \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_trip}{Trip}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     Q\_OBJECT}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{public}:}
+\DoxyCodeLine{31     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_trip_aa0ca7985fed2e749fa5af0749edcfef5}{Trip}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_trip_a57bc89b2bc4e794c94d5c994f286bd4d}{populateTable}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_trip_ae1e9f36cffa9acbc4d25230f77b8c4ed}{buyNext}}();}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48     \mbox{\hyperlink{class_trip_a2376daed3b03469163782ef0d0533d52}{\string~Trip}}();}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{55     \textcolor{keywordtype}{void} onAddItemClicked();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} on\_chooseStartTrip\_clicked();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} on\_executeTrip\_clicked();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} onAddCollegeClicked();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} on\_specificOrderTrip\_clicked();}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} on\_fromSaddlebackTrip\_clicked();}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{91     \textcolor{keywordtype}{void} on\_michiganTrip\_clicked();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{void} on\_nextCollegeButton\_clicked();}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{103     \textcolor{keywordtype}{void} on\_addAllButton\_clicked();}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{keyword}{private}:}
+\DoxyCodeLine{106     Ui::Trip *ui;}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \mbox{\hyperlink{class_db_manager}{DbManager}}*       db;              }
+\DoxyCodeLine{109     \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}}   currentColleges; }
+\DoxyCodeLine{110     std::vector<int> currentIDs;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     std::vector<Purchaser*> purchasers;}
+\DoxyCodeLine{113     \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}}   selectedColleges;}
+\DoxyCodeLine{114     std::vector<int> selectedIDs;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     std::queue<College> route;}
+\DoxyCodeLine{117     std::queue<College> routeToPass;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{keywordtype}{bool} planning;}
+\DoxyCodeLine{120     \textcolor{keywordtype}{bool} buying;}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{comment}{//type of college trip being done}}
+\DoxyCodeLine{123     \textcolor{comment}{/*}}
+\DoxyCodeLine{124 \textcolor{comment}{     * 1 -\/ Custom trip (choose initial)}}
+\DoxyCodeLine{125 \textcolor{comment}{     * 2 -\/ Custom trip (specific order)}}
+\DoxyCodeLine{126 \textcolor{comment}{     * 3 -\/ From Saddleback}}
+\DoxyCodeLine{127 \textcolor{comment}{     * 4 -\/ From Michigan}}
+\DoxyCodeLine{128 \textcolor{comment}{     */}}
+\DoxyCodeLine{129     \textcolor{keywordtype}{int} mode;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \mbox{\hyperlink{class_college}{College}} selected;}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{keywordtype}{double} totalDistance;}
+\DoxyCodeLine{134     \textcolor{keywordtype}{double} totalSpent;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \};}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TRIP\_H}}
+
+\end{DoxyCode}

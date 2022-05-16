@@ -1,0 +1,69 @@
+\hypertarget{graph_8h_source}{}\doxysection{graph.\+h}
+\label{graph_8h_source}\index{Colleges/graph.h@{Colleges/graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef GRAPH\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define GRAPH\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QDebug>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegehashmap_8h}{collegehashmap.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define INF std::numeric\_limits<float>::max()}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_weighted_graph}{WeightedGraph}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21     std::unordered\_map<int, std::vector<std::pair<int, float>>> adjList;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} numVertices;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} dfsUtil(\textcolor{keywordtype}{int} v,}
+\DoxyCodeLine{32                  std::unordered\_map<int, bool> \&visited,}
+\DoxyCodeLine{33                  std::vector<int> \&path,}
+\DoxyCodeLine{34                  std::vector<float> \&distances);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{public}:}
+\DoxyCodeLine{40     \mbox{\hyperlink{class_weighted_graph_a7fb338db7feeb73b25904bbd07e879bc}{WeightedGraph}}();}
+\DoxyCodeLine{44     \mbox{\hyperlink{class_weighted_graph_ad7b4a5c8206772f9f4fb5906c0d64923}{\string~WeightedGraph}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a106df822ee513e3ca928f0482b5dbb82}{addColleges}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}}\& collegeMap,}
+\DoxyCodeLine{53                      \textcolor{keyword}{const} std::vector<int>\& ids);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a9fdc14a6f340b97f02d8f61b47ebc879}{addVertex}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_aed518bb3aeb8337b21174ba3b597c5c6}{addEdge}}(\textcolor{keywordtype}{int} v, \textcolor{keywordtype}{int} w, \textcolor{keywordtype}{float} weight);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a79609a2713f5dd7a95672c202bc9851c}{removeEdge}}(\textcolor{keywordtype}{int} v, \textcolor{keywordtype}{int} w);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a0d9cc3018074f54f4c5ca898dd7575b9}{removeVertex}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a3b2608a590780921fdfde2d9f541a741}{printGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{92     std::vector<int> \mbox{\hyperlink{class_weighted_graph_acc5b0d5661cc5e363afb0ee52ae18fa3}{getNeighbors}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{100     \textcolor{keywordtype}{float} \mbox{\hyperlink{class_weighted_graph_a7aca9fac5f05c722ea0d42197e7c52d9}{getWeight}}(\textcolor{keywordtype}{int} v, \textcolor{keywordtype}{int} w);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{106     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_weighted_graph_a7422a1723d158ad77ba859aeb0e95008}{getNumVertices}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{115     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a34584fd39202f457ced8b760bcc6d3b5}{dfs}}(\textcolor{keywordtype}{int} v,}
+\DoxyCodeLine{116              std::vector<int> \&path,}
+\DoxyCodeLine{117              std::vector<float> \&distances);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{126     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a12809f0f4c97625b8a5cdcbc94bb5b20}{bfs}}(\textcolor{keywordtype}{int} v,}
+\DoxyCodeLine{127              std::vector<int> \&path,}
+\DoxyCodeLine{128              std::vector<float> \&distances);}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{136     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_af1e7867fc7d58b822c21f06f3fe4ce49}{dijkstra}}(\textcolor{keywordtype}{int} v,}
+\DoxyCodeLine{137                   std::unordered\_map<\textcolor{keywordtype}{int}, std::vector<int>>\& shortestPaths,}
+\DoxyCodeLine{138                   std::unordered\_map<int, float>\& costs);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{146     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_weighted_graph_a6acfb0f5c0addc3d35f9ed50997e7379}{mst}}(std::unordered\_map<int, int>\& mstVertices, \textcolor{keywordtype}{float}\& totalDist);}
+\DoxyCodeLine{147 \};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// GRAPH\_H\_}}
+
+\end{DoxyCode}

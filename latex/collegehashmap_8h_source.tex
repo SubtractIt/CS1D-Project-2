@@ -1,0 +1,47 @@
+\hypertarget{collegehashmap_8h_source}{}\doxysection{collegehashmap.\+h}
+\label{collegehashmap_8h_source}\index{Colleges/collegehashmap.h@{Colleges/collegehashmap.h}}
+\mbox{\hyperlink{collegehashmap_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#ifndef COLLEGEMAP\_H}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#define COLLEGEMAP\_H}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{college_8h}{college.h}}"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define NUM\_BUCKETS 20}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{16 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_college_wrapper}{CollegeWrapper}} \{}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} id;}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_college}{College}} college;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{26     \mbox{\hyperlink{struct_college_wrapper_a7220ce470427e6c79b0af2ed713ca643}{CollegeWrapper}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} \mbox{\hyperlink{class_college}{College}} \&college) : id(id), college(college) \{\}}
+\DoxyCodeLine{27 \};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}} \{}
+\DoxyCodeLine{33 \textcolor{keyword}{private}:}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} count;}
+\DoxyCodeLine{35     std::list<CollegeWrapper> table[NUM\_BUCKETS];}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{int} hash(\textcolor{keyword}{const} \textcolor{keywordtype}{int} key) \textcolor{keyword}{const};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \mbox{\hyperlink{class_college_hash_map_aaf28d3bbac6eae662d7b658b52cbadf2}{CollegeHashMap}}();}
+\DoxyCodeLine{47     \mbox{\hyperlink{class_college_hash_map_a37638652ebb1542a75b2856904c8d376}{\string~CollegeHashMap}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_hash_map_ac5d4c8128cfe6183cd5bcf9ceed69ce6}{insert}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} key, \textcolor{keyword}{const} \mbox{\hyperlink{class_college}{College}} \&college);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_hash_map_a24aa8f49dba653fe62905843ebc863ba}{erase}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} key);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67     \mbox{\hyperlink{class_college}{College}} \mbox{\hyperlink{class_college_hash_map_a61951f34ece1559826110ddf0b41c832}{find}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} key) \textcolor{keyword}{const};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_college_hash_map_afc8f0d93785f2b1564ac5d69a3661bcb}{size}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_college_hash_map_a26eb0bff88c0b9cc241cc7cecd5eaa43}{isEmpty}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{84     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_hash_map_a876e90e98367fa06461905fa31999ae1}{print}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{85 \};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// COLLEGEMAP\_H}}
+
+\end{DoxyCode}

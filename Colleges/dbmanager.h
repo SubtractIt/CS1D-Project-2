@@ -21,6 +21,9 @@
 
 #define NUM_COLUMNS 6
 
+///
+/// @brief The DbManager class - manages the database
+///
 class DbManager {
 private:
     Parser *parser;

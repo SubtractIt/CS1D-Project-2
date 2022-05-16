@@ -9,6 +9,9 @@ namespace Ui {
 class Login;
 }
 
+///
+/// @brief Login class - handles logging in admin
+///
 class Login : public QDialog
 {
     Q_OBJECT
@@ -18,10 +21,13 @@ public:
     ~Login();
 
 private slots:
+    ///
+    /// @brief Checks username and password and opens admin window if valid
+    ///
     void on_login_clicked();
 
 private:
     Ui::Login *ui;
 };
 
-#endif // LOGIN_H
+#endif

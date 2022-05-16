@@ -1,0 +1,290 @@
+\hypertarget{class_college}{}\doxysection{College Class Reference}
+\label{class_college}\index{College@{College}}
+
+
+The \mbox{\hyperlink{class_college}{College}} class -- Encapsulates all the data of a college, with various helper methods.  
+
+
+
+
+{\ttfamily \#include $<$college.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_college_a8104d99047feb3aad3b385153cf62bb4}\label{class_college_a8104d99047feb3aad3b385153cf62bb4}} 
+{\bfseries College} ()
+\begin{DoxyCompactList}\small\item\em empty constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_college_a42fcce4f87439592eaefd96564a796a8}\label{class_college_a42fcce4f87439592eaefd96564a796a8}} 
+{\bfseries $\sim$\+College} ()
+\begin{DoxyCompactList}\small\item\em empty destructor \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ int, float $>$ \mbox{\hyperlink{class_college_ab7d02d3ba3035413ec6b511a1c445f03}{get\+Distances}} () const
+\begin{DoxyCompactList}\small\item\em Finds the distance to a college specified. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$ \mbox{\hyperlink{class_college_af3a58773daab6a792d64d9cde16f167f}{get\+Souvenirs}} () const
+\begin{DoxyCompactList}\small\item\em Returns vector of college\textquotesingle{}s souvenirs. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_college_a025e22cd56bc64d090e62aa7d6498a66}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Returns the college\textquotesingle{}s name. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_college_a13863cbb46824f51cbf0066575fab44a}{get\+State}} () const
+\begin{DoxyCompactList}\small\item\em Returns the college\textquotesingle{}s state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_college_a1fd765287d70688f5f1070fc16752a47}{get\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Returns the college\textquotesingle{}s id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}{size}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}{size()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_college_af695f9a6661c1187d77c5cbad460d373}\label{class_college_af695f9a6661c1187d77c5cbad460d373}} 
+void {\bfseries re\+Initialize} ()
+\begin{DoxyCompactList}\small\item\em Reinitializes the restaurant to an empty state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_af44d87b3dc1cc98948f1b2c16fc8bb37}{set\+Souvenirs}} (std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$ updated\+Souvenirs)
+\begin{DoxyCompactList}\small\item\em Renitilizes the souvenirs vector to the vector passed in. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_aa7189e9ee5a658d978e3e8221c74f24c}{set\+Souvenir\+Price}} (const int index, float new\+Price)
+\begin{DoxyCompactList}\small\item\em Sets a new souvenir price for the souvenir at the passed in index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_aa25b50e5ab4b2de722accbebb4b9907f}{add\+Souvenir}} (const \mbox{\hyperlink{struct_souvenir}{Souvenir}} \&souvenir)
+\begin{DoxyCompactList}\small\item\em Adds a new souvenir to the college. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_a5fb5cc0d36ff8debd75f839e458b8fb6}{set\+Name}} (const QString \&name)
+\begin{DoxyCompactList}\small\item\em Redefines the name of the college. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_a7b12b71c39e3390913a329e17cd421ed}{set\+ID}} (int id)
+\begin{DoxyCompactList}\small\item\em Redefines the college ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_afba8a7b76da60c0c1246e49d837b70d7}{set\+State}} (const QString \&state)
+\begin{DoxyCompactList}\small\item\em Redefines the college state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_a660a9a9874f4157d2c776d1557e37053}{set\+Distance}} (int id, float distance)
+\begin{DoxyCompactList}\small\item\em Adds or changes a distance to a college into the distances map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_a8099c40b65529769ebb4ac4afb2445f7}{remove\+Distance}} (int id)
+\begin{DoxyCompactList}\small\item\em Removes distance from college with given id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_college_ad32ad86800d7f09f40c452f2ee8d0793}{set\+Size}} (int num\+Undergraduates)
+\begin{DoxyCompactList}\small\item\em Sets the number of undergraduates at the college. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_college_a8e37bcd69d22d8ea567bbb8c4084b914}\label{class_college_a8e37bcd69d22d8ea567bbb8c4084b914}} 
+void {\bfseries print} () const
+\begin{DoxyCompactList}\small\item\em Prints the details of this college. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_college}{College}} class -- Encapsulates all the data of a college, with various helper methods. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_college_aa25b50e5ab4b2de722accbebb4b9907f}\label{class_college_aa25b50e5ab4b2de722accbebb4b9907f}} 
+\index{College@{College}!addSouvenir@{addSouvenir}}
+\index{addSouvenir@{addSouvenir}!College@{College}}
+\doxysubsubsection{\texorpdfstring{addSouvenir()}{addSouvenir()}}
+{\footnotesize\ttfamily void College\+::add\+Souvenir (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_souvenir}{Souvenir}} \&}]{souvenir }\end{DoxyParamCaption})}
+
+
+
+Adds a new souvenir to the college. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em New} & souvenir object to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_ab7d02d3ba3035413ec6b511a1c445f03}\label{class_college_ab7d02d3ba3035413ec6b511a1c445f03}} 
+\index{College@{College}!getDistances@{getDistances}}
+\index{getDistances@{getDistances}!College@{College}}
+\doxysubsubsection{\texorpdfstring{getDistances()}{getDistances()}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$ int, float $>$ College\+::get\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finds the distance to a college specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of \mbox{\hyperlink{class_college}{College}} we are trying to find the distance to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a double representing the distance from the calling college to the college passed in 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_college_a1fd765287d70688f5f1070fc16752a47}\label{class_college_a1fd765287d70688f5f1070fc16752a47}} 
+\index{College@{College}!getID@{getID}}
+\index{getID@{getID}!College@{College}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily int College\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the college\textquotesingle{}s id. 
+
+\begin{DoxyReturn}{Returns}
+int of the college ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_college_a025e22cd56bc64d090e62aa7d6498a66}\label{class_college_a025e22cd56bc64d090e62aa7d6498a66}} 
+\index{College@{College}!getName@{getName}}
+\index{getName@{getName}!College@{College}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily QString College\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the college\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+QString name of the college 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_college_af3a58773daab6a792d64d9cde16f167f}\label{class_college_af3a58773daab6a792d64d9cde16f167f}} 
+\index{College@{College}!getSouvenirs@{getSouvenirs}}
+\index{getSouvenirs@{getSouvenirs}!College@{College}}
+\doxysubsubsection{\texorpdfstring{getSouvenirs()}{getSouvenirs()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$ College\+::get\+Souvenirs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns vector of college\textquotesingle{}s souvenirs. 
+
+\begin{DoxyReturn}{Returns}
+college\textquotesingle{}s souvenirs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_college_a13863cbb46824f51cbf0066575fab44a}\label{class_college_a13863cbb46824f51cbf0066575fab44a}} 
+\index{College@{College}!getState@{getState}}
+\index{getState@{getState}!College@{College}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily QString College\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the college\textquotesingle{}s state. 
+
+\begin{DoxyReturn}{Returns}
+QString name of the state the college is in 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_college_a8099c40b65529769ebb4ac4afb2445f7}\label{class_college_a8099c40b65529769ebb4ac4afb2445f7}} 
+\index{College@{College}!removeDistance@{removeDistance}}
+\index{removeDistance@{removeDistance}!College@{College}}
+\doxysubsubsection{\texorpdfstring{removeDistance()}{removeDistance()}}
+{\footnotesize\ttfamily void College\+::remove\+Distance (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes distance from college with given id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & college\textquotesingle{}s id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_a660a9a9874f4157d2c776d1557e37053}\label{class_college_a660a9a9874f4157d2c776d1557e37053}} 
+\index{College@{College}!setDistance@{setDistance}}
+\index{setDistance@{setDistance}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setDistance()}{setDistance()}}
+{\footnotesize\ttfamily void College\+::set\+Distance (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{float}]{distance }\end{DoxyParamCaption})}
+
+
+
+Adds or changes a distance to a college into the distances map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{class_college}{College}}} & we are trying to add a distance to \\
+\hline
+{\em distance} & of the current college to the new college \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_a7b12b71c39e3390913a329e17cd421ed}\label{class_college_a7b12b71c39e3390913a329e17cd421ed}} 
+\index{College@{College}!setID@{setID}}
+\index{setID@{setID}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setID()}{setID()}}
+{\footnotesize\ttfamily void College\+::set\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Redefines the college ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & of the new ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_a5fb5cc0d36ff8debd75f839e458b8fb6}\label{class_college_a5fb5cc0d36ff8debd75f839e458b8fb6}} 
+\index{College@{College}!setName@{setName}}
+\index{setName@{setName}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void College\+::set\+Name (\begin{DoxyParamCaption}\item[{const QString \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Redefines the name of the college. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em QString} & of the new name \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_ad32ad86800d7f09f40c452f2ee8d0793}\label{class_college_ad32ad86800d7f09f40c452f2ee8d0793}} 
+\index{College@{College}!setSize@{setSize}}
+\index{setSize@{setSize}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}}
+{\footnotesize\ttfamily void College\+::set\+Size (\begin{DoxyParamCaption}\item[{int}]{num\+Undergraduates }\end{DoxyParamCaption})}
+
+
+
+Sets the number of undergraduates at the college. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & of undergrads \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_aa7189e9ee5a658d978e3e8221c74f24c}\label{class_college_aa7189e9ee5a658d978e3e8221c74f24c}} 
+\index{College@{College}!setSouvenirPrice@{setSouvenirPrice}}
+\index{setSouvenirPrice@{setSouvenirPrice}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setSouvenirPrice()}{setSouvenirPrice()}}
+{\footnotesize\ttfamily void College\+::set\+Souvenir\+Price (\begin{DoxyParamCaption}\item[{const int}]{index,  }\item[{float}]{new\+Price }\end{DoxyParamCaption})}
+
+
+
+Sets a new souvenir price for the souvenir at the passed in index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & of the souvenir in our souvenirs vector \\
+\hline
+{\em The} & new price of the souvenir we\textquotesingle{}re updating \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_af44d87b3dc1cc98948f1b2c16fc8bb37}\label{class_college_af44d87b3dc1cc98948f1b2c16fc8bb37}} 
+\index{College@{College}!setSouvenirs@{setSouvenirs}}
+\index{setSouvenirs@{setSouvenirs}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setSouvenirs()}{setSouvenirs()}}
+{\footnotesize\ttfamily void College\+::set\+Souvenirs (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$}]{updated\+Souvenirs }\end{DoxyParamCaption})}
+
+
+
+Renitilizes the souvenirs vector to the vector passed in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Updated} & vector of souvenirs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_afba8a7b76da60c0c1246e49d837b70d7}\label{class_college_afba8a7b76da60c0c1246e49d837b70d7}} 
+\index{College@{College}!setState@{setState}}
+\index{setState@{setState}!College@{College}}
+\doxysubsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void College\+::set\+State (\begin{DoxyParamCaption}\item[{const QString \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Redefines the college state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em QString} & of the new state name \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}\label{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}} 
+\index{College@{College}!size@{size}}
+\index{size@{size}!College@{College}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int College\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}{size()}} 
+
+\begin{DoxyReturn}{Returns}
+int of the number of undergraduates in the college 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Colleges/\mbox{\hyperlink{college_8h}{college.\+h}}\item 
+Colleges/\mbox{\hyperlink{college_8cpp}{college.\+cpp}}\end{DoxyCompactItemize}

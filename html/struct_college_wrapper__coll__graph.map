@@ -1,0 +1,4 @@
+<map id="CollegeWrapper" name="CollegeWrapper">
+<area shape="rect" id="node1" title="Wraps the College class so we can store the insert key along with the object in the hash table." alt="" coords="5,95,132,121"/>
+<area shape="rect" id="node2" href="$class_college.html" title="The College class – Encapsulates all the data of a college, with various helper methods." alt="" coords="33,5,104,32"/>
+</map>

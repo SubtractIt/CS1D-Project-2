@@ -1,0 +1,4 @@
+<map id="SouvenirWrapper" name="SouvenirWrapper">
+<area shape="rect" id="node1" title="Wraps the Souvenir struct to include a sale count." alt="" coords="5,95,140,121"/>
+<area shape="rect" id="node2" href="$struct_souvenir.html" title="Represents a souvenir from the college with a name and price." alt="" coords="33,5,112,32"/>
+</map>

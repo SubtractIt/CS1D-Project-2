@@ -1,0 +1,62 @@
+\hypertarget{class_parser}{}\doxysection{Parser Class Reference}
+\label{class_parser}\index{Parser@{Parser}}
+
+
+The \mbox{\hyperlink{class_parser}{Parser}} class, parses csv to college objects.  
+
+
+
+
+{\ttfamily \#include $<$parser.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_parser_a12234f6cd36b61af4b50c94a179422c1}\label{class_parser_a12234f6cd36b61af4b50c94a179422c1}} 
+{\bfseries Parser} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_parser}{Parser}} constructor initializes db pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_parser_a3e658b5917a93a3ef648050d060e3a93}\label{class_parser_a3e658b5917a93a3ef648050d060e3a93}} 
+{\bfseries $\sim$\+Parser} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_parser}{Parser}} destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_parser_a927aba04bfcb75ea4dd37359353a7707}{read}} (\mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} \&college\+Train, const std\+::vector$<$ int $>$ \&existing\+Ids, std\+::vector$<$ int $>$ \&new\+Ids, std\+::string colleges=\char`\"{}college\char`\"{}, std\+::string souvs=\char`\"{}souvenir\char`\"{})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_college}{College}} and souvenir parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_parser}{Parser}} class, parses csv to college objects. 
+
+Used to parse csv files about colleges and souvenirs into objects with default being the initial 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parser_a927aba04bfcb75ea4dd37359353a7707}\label{class_parser_a927aba04bfcb75ea4dd37359353a7707}} 
+\index{Parser@{Parser}!read@{read}}
+\index{read@{read}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Parser\+::read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} \&}]{college\+Train,  }\item[{const std\+::vector$<$ int $>$ \&}]{existing\+Ids,  }\item[{std\+::vector$<$ int $>$ \&}]{new\+Ids,  }\item[{std\+::string}]{colleges = {\ttfamily \char`\"{}college\char`\"{}},  }\item[{std\+::string}]{souvs = {\ttfamily \char`\"{}souvenir\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_college}{College}} and souvenir parser. 
+
+Takes in two files of colleges and souvenirs which have default values to the names of the initial value files. The method reads the college and souvenir by college meaning the inital college info is read, then the program loops to read all distance info for that school. The souvenirs for that specific restaurant will then be read until the next college is reached. The method will return false if a file cannot be opened and true if the entire file is read. \begin{DoxyReturn}{Returns}
+bool indicating success of parsing
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em college\+Train} & where colleges will be added \\
+\hline
+{\em existing\+Ids} & the existing\+Ids in the datbase for making new ones \\
+\hline
+{\em new\+Ids} & the new ids used to give back to the database \\
+\hline
+{\em colleges} & file name to parse for college info, default = \char`\"{}college\char`\"{} \\
+\hline
+{\em souvs} & file name to parse for souvenir info, default = \char`\"{}souvenir\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Colleges/\mbox{\hyperlink{parser_8h}{parser.\+h}}\item 
+Colleges/\mbox{\hyperlink{parser_8cpp}{parser.\+cpp}}\end{DoxyCompactItemize}

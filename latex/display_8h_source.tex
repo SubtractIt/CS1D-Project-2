@@ -1,0 +1,55 @@
+\hypertarget{display_8h_source}{}\doxysection{display.\+h}
+\label{display_8h_source}\index{Colleges/display.h@{Colleges/display.h}}
+\mbox{\hyperlink{display_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef DISPLAY\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define DISPLAY\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <QFile>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{college_8h}{college.h}}"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegelist_8h}{collegelist.h}}"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{dbmanager_8h}{dbmanager.h}}"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegehashmap_8h}{collegehashmap.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }Ui \{}
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_display}{Display}};}
+\DoxyCodeLine{23 \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{class_display}{Display}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30     Q\_OBJECT}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{37     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_display_a751b596b9c83d0f05c41e7bdb85d92e6}{Display}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_display_a18e942854996bb86bbac3262db33a58a}{fillComboBox}}();}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47     \mbox{\hyperlink{class_display_ac2607a6bb236c55547a4223d40d85d1f}{\string~Display}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} on\_viewAll\_clicked();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} on\_collegeListComboBox\_currentTextChanged(QString selectedSchool);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keyword}{private}:}
+\DoxyCodeLine{63     Ui::Display *ui;}
+\DoxyCodeLine{64     \mbox{\hyperlink{class_db_manager}{DbManager}}* db;}
+\DoxyCodeLine{65     std::vector<int> currentIDs;}
+\DoxyCodeLine{66     \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}} currentColleges;}
+\DoxyCodeLine{67     QString selectedSchool;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// DISPLAY\_H}}
+
+\end{DoxyCode}

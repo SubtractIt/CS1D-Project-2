@@ -20,15 +20,15 @@
 #include <QStringList>
 
 namespace Ui {
+class Admin;
+}
 
 ///
 /// @brief   The Admin class, allows data manipulation
 /// @details Implements functionality to uplaod more colleges
 ///          from a file, edit the prices of souvenirs, and
 ///          add and delete souvs
-class Admin;
-}
-
+///
 class Admin : public QDialog
 {
    Q_OBJECT

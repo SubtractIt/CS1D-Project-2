@@ -1,0 +1,63 @@
+\hypertarget{collegelist_8h_source}{}\doxysection{collegelist.\+h}
+\label{collegelist_8h_source}\index{Colleges/collegelist.h@{Colleges/collegelist.h}}
+\mbox{\hyperlink{collegelist_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef COLLEGELIST\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define COLLEGELIST\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QFile>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{college_8h}{college.h}}"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{dbmanager_8h}{dbmanager.h}}"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{collegehashmap_8h}{collegehashmap.h}}"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}graph.h"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }Ui \{}
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_college_list}{CollegeList}};}
+\DoxyCodeLine{23 \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_college_list}{CollegeList}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29     Q\_OBJECT}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_college_list_ae724cc2706b73e0c382e590a895ffde0}{CollegeList}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a8ceb0c4a587e4e62e95127d639aa7ad7}{fillListView}}();}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a2dff5ef367882ba7e52e6dfc1ca6d5f3}{fillCaliforniaList}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a71369b77f8368bfa9a2a06e531edde1b}{fillUndergradList}}();}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a2f8b010367ec85279fbadb8f39401bae}{fillListStateName}}();}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_ae622d9fee3d2ac845e13d6aa7ba9bb5f}{fillSaddlebackDistanceList}}();}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a880eb31e3ebf0d0d5955d30736498d28}{printDFS}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_aada62a3c1081afd4013adf1248c3b15e}{printBFS}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_list_a3f4185a0b408b7fe294bec50fb7ed046}{printMST}}();}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{82     \mbox{\hyperlink{class_college_list_a3dd93f9dbf7ca55a54d4bff9212b0c8a}{\string~CollegeList}}();}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{private}:}
+\DoxyCodeLine{85     Ui::CollegeList *ui;}
+\DoxyCodeLine{86     \mbox{\hyperlink{class_db_manager}{DbManager}}* db;}
+\DoxyCodeLine{87     std::vector<int> currentIDs;}
+\DoxyCodeLine{88     \mbox{\hyperlink{class_college_hash_map}{CollegeHashMap}} currentColleges;}
+\DoxyCodeLine{89     \mbox{\hyperlink{class_weighted_graph}{WeightedGraph}} graph;}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// COLLEGELIST\_H}}
+
+\end{DoxyCode}

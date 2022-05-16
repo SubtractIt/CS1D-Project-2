@@ -12,7 +12,9 @@
 
 #define MAX_SOUVENIR_ITEMS 7
 
-// Represents a souvenir from the college with a name and price
+///
+/// @brief Represents a souvenir from the college with a name and price
+///
 struct Souvenir {
     QString name;
     float price;

@@ -9,12 +9,20 @@
 
 #define NUM_BUCKETS 20
 
-// Wraps the College class so we can store the insert key along with the object
-// in the hash table
+///
+/// @brief Wraps the College class so we can store the insert key along with the object
+///        in the hash table
+///
 struct CollegeWrapper {
     int id;
     College college;
 
+    ///
+    /// @brief CollegeWrapper - constructs the object to wrap it with it's id for the
+    ///                         hash map
+    /// @param id      - id
+    /// @param college - college
+    ///
     CollegeWrapper(int id, const College &college) : id(id), college(college) {}
 };
 

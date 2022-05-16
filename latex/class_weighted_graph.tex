@@ -1,0 +1,269 @@
+\hypertarget{class_weighted_graph}{}\doxysection{Weighted\+Graph Class Reference}
+\label{class_weighted_graph}\index{WeightedGraph@{WeightedGraph}}
+
+
+Represents a weighted graph using adjacency list representation.  
+
+
+
+
+{\ttfamily \#include $<$graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_weighted_graph_a7fb338db7feeb73b25904bbd07e879bc}\label{class_weighted_graph_a7fb338db7feeb73b25904bbd07e879bc}} 
+{\bfseries Weighted\+Graph} ()
+\begin{DoxyCompactList}\small\item\em Initializes the number of vertices to 0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_weighted_graph_ad7b4a5c8206772f9f4fb5906c0d64923}\label{class_weighted_graph_ad7b4a5c8206772f9f4fb5906c0d64923}} 
+{\bfseries $\sim$\+Weighted\+Graph} ()
+\begin{DoxyCompactList}\small\item\em Empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a106df822ee513e3ca928f0482b5dbb82}{add\+Colleges}} (const \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} \&college\+Map, const std\+::vector$<$ int $>$ \&ids)
+\begin{DoxyCompactList}\small\item\em Adds the colleges of a \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} to the graph using their ids as vertices and distances to other colleges as edge weights. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a9fdc14a6f340b97f02d8f61b47ebc879}{add\+Vertex}} (int v)
+\begin{DoxyCompactList}\small\item\em Adds a vertex to the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_aed518bb3aeb8337b21174ba3b597c5c6}{add\+Edge}} (int v, int w, float weight)
+\begin{DoxyCompactList}\small\item\em Adds an edge to the graph or updates its weight if already exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a79609a2713f5dd7a95672c202bc9851c}{remove\+Edge}} (int v, int w)
+\begin{DoxyCompactList}\small\item\em Removes an edge from the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a0d9cc3018074f54f4c5ca898dd7575b9}{remove\+Vertex}} (int v)
+\begin{DoxyCompactList}\small\item\em Removes a vertex from the graph (and all edges connected to it) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_weighted_graph_a3b2608a590780921fdfde2d9f541a741}\label{class_weighted_graph_a3b2608a590780921fdfde2d9f541a741}} 
+void {\bfseries print\+Graph} () const
+\begin{DoxyCompactList}\small\item\em Prints the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_weighted_graph_acc5b0d5661cc5e363afb0ee52ae18fa3}{get\+Neighbors}} (int v)
+\begin{DoxyCompactList}\small\item\em Gets the neighbors of a vertex. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_weighted_graph_a7aca9fac5f05c722ea0d42197e7c52d9}{get\+Weight}} (int v, int w)
+\begin{DoxyCompactList}\small\item\em Gets the weight of an edge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_weighted_graph_a7422a1723d158ad77ba859aeb0e95008}{get\+Num\+Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of vertices in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a34584fd39202f457ced8b760bcc6d3b5}{dfs}} (int v, std\+::vector$<$ int $>$ \&path, std\+::vector$<$ float $>$ \&distances)
+\begin{DoxyCompactList}\small\item\em Performs a depth first search on the graph, choosing the next adjacent vertex to visit based on the distance from the source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a12809f0f4c97625b8a5cdcbc94bb5b20}{bfs}} (int v, std\+::vector$<$ int $>$ \&path, std\+::vector$<$ float $>$ \&distances)
+\begin{DoxyCompactList}\small\item\em Performs a breadth first search on the graph, sorting the neighbors by distance from the source and then visiting them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_af1e7867fc7d58b822c21f06f3fe4ce49}{dijkstra}} (int v, std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ int $>$ $>$ \&shortest\+Paths, std\+::unordered\+\_\+map$<$ int, float $>$ \&costs)
+\begin{DoxyCompactList}\small\item\em Calclates the shortest paths from a vertex to all other vertices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_weighted_graph_a6acfb0f5c0addc3d35f9ed50997e7379}{mst}} (std\+::unordered\+\_\+map$<$ int, int $>$ \&mst\+Vertices, float \&total\+Dist)
+\begin{DoxyCompactList}\small\item\em Create the MST for the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a weighted graph using adjacency list representation. 
+
+vertices are college ids, and edges are disances in miles 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_weighted_graph_a106df822ee513e3ca928f0482b5dbb82}\label{class_weighted_graph_a106df822ee513e3ca928f0482b5dbb82}} 
+\index{WeightedGraph@{WeightedGraph}!addColleges@{addColleges}}
+\index{addColleges@{addColleges}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{addColleges()}{addColleges()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::add\+Colleges (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} \&}]{college\+Map,  }\item[{const std\+::vector$<$ int $>$ \&}]{ids }\end{DoxyParamCaption})}
+
+
+
+Adds the colleges of a \mbox{\hyperlink{class_college_hash_map}{College\+Hash\+Map}} to the graph using their ids as vertices and distances to other colleges as edge weights. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em college\+Map} & Map of colleges to add \\
+\hline
+{\em ids} & Ids of the colleges for indexing into the map \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_aed518bb3aeb8337b21174ba3b597c5c6}\label{class_weighted_graph_aed518bb3aeb8337b21174ba3b597c5c6}} 
+\index{WeightedGraph@{WeightedGraph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{w,  }\item[{float}]{weight }\end{DoxyParamCaption})}
+
+
+
+Adds an edge to the graph or updates its weight if already exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to add the edge to \\
+\hline
+{\em w} & The vertex to add the edge from \\
+\hline
+{\em weight} & The weight of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_a9fdc14a6f340b97f02d8f61b47ebc879}\label{class_weighted_graph_a9fdc14a6f340b97f02d8f61b47ebc879}} 
+\index{WeightedGraph@{WeightedGraph}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::add\+Vertex (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Adds a vertex to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_a12809f0f4c97625b8a5cdcbc94bb5b20}\label{class_weighted_graph_a12809f0f4c97625b8a5cdcbc94bb5b20}} 
+\index{WeightedGraph@{WeightedGraph}!bfs@{bfs}}
+\index{bfs@{bfs}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::bfs (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{std\+::vector$<$ int $>$ \&}]{path,  }\item[{std\+::vector$<$ float $>$ \&}]{distances }\end{DoxyParamCaption})}
+
+
+
+Performs a breadth first search on the graph, sorting the neighbors by distance from the source and then visiting them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The vertex to start the search from \\
+\hline
+{\em path} & vector of the vertices in the order they were visited \\
+\hline
+{\em distances} & vector of the distances from the source to each vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_a34584fd39202f457ced8b760bcc6d3b5}\label{class_weighted_graph_a34584fd39202f457ced8b760bcc6d3b5}} 
+\index{WeightedGraph@{WeightedGraph}!dfs@{dfs}}
+\index{dfs@{dfs}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{std\+::vector$<$ int $>$ \&}]{path,  }\item[{std\+::vector$<$ float $>$ \&}]{distances }\end{DoxyParamCaption})}
+
+
+
+Performs a depth first search on the graph, choosing the next adjacent vertex to visit based on the distance from the source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The vertex to start the search from \\
+\hline
+{\em path} & vector of the vertices in the order they were visited \\
+\hline
+{\em distances} & vector of the distances from the source to each vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_af1e7867fc7d58b822c21f06f3fe4ce49}\label{class_weighted_graph_af1e7867fc7d58b822c21f06f3fe4ce49}} 
+\index{WeightedGraph@{WeightedGraph}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::dijkstra (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ int $>$ $>$ \&}]{shortest\+Paths,  }\item[{std\+::unordered\+\_\+map$<$ int, float $>$ \&}]{costs }\end{DoxyParamCaption})}
+
+
+
+Calclates the shortest paths from a vertex to all other vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & the vertex to calculate the shortest paths from \\
+\hline
+{\em paths} & the shortest paths from v to all other vertices \\
+\hline
+{\em costs} & the costs of the shortest paths starting from v \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_acc5b0d5661cc5e363afb0ee52ae18fa3}\label{class_weighted_graph_acc5b0d5661cc5e363afb0ee52ae18fa3}} 
+\index{WeightedGraph@{WeightedGraph}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Weighted\+Graph\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Gets the neighbors of a vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to get the neighbors of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of the neighbors of the vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_weighted_graph_a7422a1723d158ad77ba859aeb0e95008}\label{class_weighted_graph_a7422a1723d158ad77ba859aeb0e95008}} 
+\index{WeightedGraph@{WeightedGraph}!getNumVertices@{getNumVertices}}
+\index{getNumVertices@{getNumVertices}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{getNumVertices()}{getNumVertices()}}
+{\footnotesize\ttfamily int Weighted\+Graph\+::get\+Num\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of vertices in the graph. 
+
+\begin{DoxyReturn}{Returns}
+The number of vertices in the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_weighted_graph_a7aca9fac5f05c722ea0d42197e7c52d9}\label{class_weighted_graph_a7aca9fac5f05c722ea0d42197e7c52d9}} 
+\index{WeightedGraph@{WeightedGraph}!getWeight@{getWeight}}
+\index{getWeight@{getWeight}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{getWeight()}{getWeight()}}
+{\footnotesize\ttfamily float Weighted\+Graph\+::get\+Weight (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+
+
+Gets the weight of an edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to get the weight of the edge from \\
+\hline
+{\em w} & The vertex to get the weight of the edge to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weight of the edge or -\/1 if no such edge exists 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_weighted_graph_a6acfb0f5c0addc3d35f9ed50997e7379}\label{class_weighted_graph_a6acfb0f5c0addc3d35f9ed50997e7379}} 
+\index{WeightedGraph@{WeightedGraph}!mst@{mst}}
+\index{mst@{mst}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{mst()}{mst()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::mst (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+map$<$ int, int $>$ \&}]{mst\+Vertices,  }\item[{float \&}]{total\+Dist }\end{DoxyParamCaption})}
+
+
+
+Create the MST for the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mst\+Vertices} & map holding the edges with which vertices (holds the ids of the colleges) \\
+\hline
+{\em total\+Dist} & total distance traversed in MST \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_a79609a2713f5dd7a95672c202bc9851c}\label{class_weighted_graph_a79609a2713f5dd7a95672c202bc9851c}} 
+\index{WeightedGraph@{WeightedGraph}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{removeEdge()}{removeEdge()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::remove\+Edge (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+
+
+Removes an edge from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to remove the edge from \\
+\hline
+{\em w} & The vertex to remove the edge to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_weighted_graph_a0d9cc3018074f54f4c5ca898dd7575b9}\label{class_weighted_graph_a0d9cc3018074f54f4c5ca898dd7575b9}} 
+\index{WeightedGraph@{WeightedGraph}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!WeightedGraph@{WeightedGraph}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily void Weighted\+Graph\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Removes a vertex from the graph (and all edges connected to it) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to remove \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Colleges/graph.\+h\item 
+Colleges/graph.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,76 @@
+\hypertarget{college_8h_source}{}\doxysection{college.\+h}
+\label{college_8h_source}\index{Colleges/college.h@{Colleges/college.h}}
+\mbox{\hyperlink{college_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef COLLEGE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define COLLEGE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <QString>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define MAX\_SOUVENIR\_ITEMS 7}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_souvenir}{Souvenir}} \{}
+\DoxyCodeLine{19     QString name;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{float} price;}
+\DoxyCodeLine{21 \};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_college}{College}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_college_a8104d99047feb3aad3b385153cf62bb4}{College}}() \{\}}
+\DoxyCodeLine{36     \mbox{\hyperlink{class_college_a42fcce4f87439592eaefd96564a796a8}{\string~College}}() \{\}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{//Accesors}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{46     std::unordered\_map<int, float> \mbox{\hyperlink{class_college_ab7d02d3ba3035413ec6b511a1c445f03}{getDistances}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} distances; \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{52     std::vector<Souvenir> \mbox{\hyperlink{class_college_af3a58773daab6a792d64d9cde16f167f}{getSouvenirs}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} souvenirs; \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{58     QString \mbox{\hyperlink{class_college_a025e22cd56bc64d090e62aa7d6498a66}{getName}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} name; \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64     QString \mbox{\hyperlink{class_college_a13863cbb46824f51cbf0066575fab44a}{getState}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} state; \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_college_a1fd765287d70688f5f1070fc16752a47}{getID}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} id; \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_college_a092a947f6afcbc0c1b96a4ff5bbf035d}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} numUndergraduates; \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{// Mutators}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{83     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_af695f9a6661c1187d77c5cbad460d373}{reInitialize}}();}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{89     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_af44d87b3dc1cc98948f1b2c16fc8bb37}{setSouvenirs}}(std::vector<Souvenir> updatedSouvenirs);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{96     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_aa7189e9ee5a658d978e3e8221c74f24c}{setSouvenirPrice}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} index, \textcolor{keywordtype}{float} newPrice);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{102     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_aa25b50e5ab4b2de722accbebb4b9907f}{addSouvenir}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_souvenir}{Souvenir}} \&souvenir);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{108     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_a5fb5cc0d36ff8debd75f839e458b8fb6}{setName}}(\textcolor{keyword}{const} QString \&name);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{114     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_a7b12b71c39e3390913a329e17cd421ed}{setID}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_afba8a7b76da60c0c1246e49d837b70d7}{setState}}(\textcolor{keyword}{const} QString \&state);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_a660a9a9874f4157d2c776d1557e37053}{setDistance}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{float} distance);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{133     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_a8099c40b65529769ebb4ac4afb2445f7}{removeDistance}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_ad32ad86800d7f09f40c452f2ee8d0793}{setSize}}(\textcolor{keywordtype}{int} numUndergraduates);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{144     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_college_a8e37bcd69d22d8ea567bbb8c4084b914}{print}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{keyword}{private}:}
+\DoxyCodeLine{148     QString name;}
+\DoxyCodeLine{149     \textcolor{keywordtype}{int} id;}
+\DoxyCodeLine{150     QString state;}
+\DoxyCodeLine{151     \textcolor{keywordtype}{int} numUndergraduates;}
+\DoxyCodeLine{152     std::unordered\_map<int, float> distances;}
+\DoxyCodeLine{153     std::vector<Souvenir> souvenirs;}
+\DoxyCodeLine{154 \};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// COLLEGE\_H}}
+
+\end{DoxyCode}

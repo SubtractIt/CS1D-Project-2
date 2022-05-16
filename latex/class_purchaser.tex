@@ -1,0 +1,99 @@
+\hypertarget{class_purchaser}{}\doxysection{Purchaser Class Reference}
+\label{class_purchaser}\index{Purchaser@{Purchaser}}
+
+
+Enables the user to purchase souvenirs from a specific college.  
+
+
+
+
+{\ttfamily \#include $<$purchaser.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_purchaser_a5217366d5eff0171d0706157d2ebd66b}{Purchaser}} (const std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$ \&souvenirs, const int id)
+\begin{DoxyCompactList}\small\item\em Initializes wrapped\+Souvenirs vector with passed \mbox{\hyperlink{struct_souvenir}{Souvenir}} vector, converting each \mbox{\hyperlink{struct_souvenir}{Souvenir}} to a \mbox{\hyperlink{struct_souvenir_wrapper}{Souvenir\+Wrapper}} struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchaser_a575b58b410f8a2cdfb871caec3cd010b}\label{class_purchaser_a575b58b410f8a2cdfb871caec3cd010b}} 
+{\bfseries $\sim$\+Purchaser} ()
+\begin{DoxyCompactList}\small\item\em Empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_purchaser_abc31d3ae4fbefe9e50cc272834c82aa0}{purchase\+Item}} (const int index)
+\begin{DoxyCompactList}\small\item\em Purchases the item specified by the passed index so long as it has not yet been purchased MAX\+\_\+\+ITEM\+\_\+\+COUNT times (will never be more) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchaser_a75dafe4f59c6aa2bd70a04da902b52b9}\label{class_purchaser_a75dafe4f59c6aa2bd70a04da902b52b9}} 
+void {\bfseries print} () const
+\begin{DoxyCompactList}\small\item\em Print the details of this purchaser including Souvenirs and how many times they have been purchased as well as this college\textquotesingle{}s total revenue. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_purchaser_a4e57a77130a250fc2526a7295404ee99}{get\+Total\+Spent}} () const
+\begin{DoxyCompactList}\small\item\em Returns the amount of money spent at a particular college. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_purchaser_ad7fc7d57dff5183a8e9bb704a944545f}{get\+College\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Returns the college ID associated with the purchaser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Enables the user to purchase souvenirs from a specific college. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_purchaser_a5217366d5eff0171d0706157d2ebd66b}\label{class_purchaser_a5217366d5eff0171d0706157d2ebd66b}} 
+\index{Purchaser@{Purchaser}!Purchaser@{Purchaser}}
+\index{Purchaser@{Purchaser}!Purchaser@{Purchaser}}
+\doxysubsubsection{\texorpdfstring{Purchaser()}{Purchaser()}}
+{\footnotesize\ttfamily Purchaser\+::\+Purchaser (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_souvenir}{Souvenir}} $>$ \&}]{souvenirs,  }\item[{const int}]{id }\end{DoxyParamCaption})}
+
+
+
+Initializes wrapped\+Souvenirs vector with passed \mbox{\hyperlink{struct_souvenir}{Souvenir}} vector, converting each \mbox{\hyperlink{struct_souvenir}{Souvenir}} to a \mbox{\hyperlink{struct_souvenir_wrapper}{Souvenir\+Wrapper}} struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em souvenir} & this college\textquotesingle{}s souvenirs \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_purchaser_ad7fc7d57dff5183a8e9bb704a944545f}\label{class_purchaser_ad7fc7d57dff5183a8e9bb704a944545f}} 
+\index{Purchaser@{Purchaser}!getCollegeID@{getCollegeID}}
+\index{getCollegeID@{getCollegeID}!Purchaser@{Purchaser}}
+\doxysubsubsection{\texorpdfstring{getCollegeID()}{getCollegeID()}}
+{\footnotesize\ttfamily int Purchaser\+::get\+College\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the college ID associated with the purchaser. 
+
+\begin{DoxyReturn}{Returns}
+returns a college ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_purchaser_a4e57a77130a250fc2526a7295404ee99}\label{class_purchaser_a4e57a77130a250fc2526a7295404ee99}} 
+\index{Purchaser@{Purchaser}!getTotalSpent@{getTotalSpent}}
+\index{getTotalSpent@{getTotalSpent}!Purchaser@{Purchaser}}
+\doxysubsubsection{\texorpdfstring{getTotalSpent()}{getTotalSpent()}}
+{\footnotesize\ttfamily float Purchaser\+::get\+Total\+Spent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the amount of money spent at a particular college. 
+
+\begin{DoxyReturn}{Returns}
+returns how much has been spent at a college 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_purchaser_abc31d3ae4fbefe9e50cc272834c82aa0}\label{class_purchaser_abc31d3ae4fbefe9e50cc272834c82aa0}} 
+\index{Purchaser@{Purchaser}!purchaseItem@{purchaseItem}}
+\index{purchaseItem@{purchaseItem}!Purchaser@{Purchaser}}
+\doxysubsubsection{\texorpdfstring{purchaseItem()}{purchaseItem()}}
+{\footnotesize\ttfamily void Purchaser\+::purchase\+Item (\begin{DoxyParamCaption}\item[{const int}]{index }\end{DoxyParamCaption})}
+
+
+
+Purchases the item specified by the passed index so long as it has not yet been purchased MAX\+\_\+\+ITEM\+\_\+\+COUNT times (will never be more) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & index of Souvenirin the colleges\textquotesingle{}s souvenirs vector (same indices as Wrapped\+Souvenir vector as they were pushed back in the same order) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Colleges/\mbox{\hyperlink{purchaser_8h}{purchaser.\+h}}\item 
+Colleges/\mbox{\hyperlink{purchaser_8cpp}{purchaser.\+cpp}}\end{DoxyCompactItemize}
