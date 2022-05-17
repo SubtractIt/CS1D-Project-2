@@ -339,7 +339,7 @@ void Trip::on_executeTrip_clicked() {
             }
 
             WeightedGraph graph;
-            graph.addColleges(this->selectedColleges, this->selectedIDs);
+            graph.addColleges(this->currentColleges, this->currentIDs);
             int v = 5;
             std::unordered_map<int, std::vector<int>> routes;
             std::unordered_map<int, float> costs;
@@ -349,21 +349,25 @@ void Trip::on_executeTrip_clicked() {
             College currentCollege = this->currentColleges.find(currentID);
             double shortestDistance = 1000000.0;
 
+            //Call Dijkstra's
+            graph.dijkstra(currentID, routes, costs);
+
             std::vector<int> visited;
             visited.push_back(currentID);
             this->selectedIDs.push_back(currentID);
 
             qInfo() << "first id : " << currentID;
+            qInfo() << "size: " << selectedColleges.size();
             while (selectedColleges.size() != 1){
                 qInfo() << "Current college: " << currentCollege.getName();
                 qInfo() << "selected colleges size: " << selectedColleges.size();
                 shortestDistance = 10000000.0;
                 std::vector<int>::iterator found;
                 for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
-                    if (currentCollege.getDistances()[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
+                    if (costs[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
                         qInfo() << "found: " << *itr;
-                        shortestDistance = currentCollege.getDistances()[*itr];
-                        qInfo() << "shortest distance: " << currentCollege.getDistances()[*itr];
+                        shortestDistance = costs[*itr];
+                        qInfo() << "shortest distance: " << costs[*itr];
                         selectedID = *itr;
                         found = itr;
                     }
@@ -380,9 +384,10 @@ void Trip::on_executeTrip_clicked() {
                 qInfo() << "route for cost: ";
                 std::vector<int> route = routes[selectedID];
                 for (int j : route){
-                    qInfo() << currentColleges.find(route[j]).getName();
+                    qInfo() << currentColleges.find(j).getName();
                 }
 
+                graph.dijkstra(selectedID, routes, costs);
                 visited.push_back(selectedID);
                 selectedColleges.erase(currentID);
                 currentID = selectedID;
@@ -402,7 +407,6 @@ void Trip::on_executeTrip_clicked() {
             break;
         case 2:
             //Use Dijkstra's now
-            //maybe call dijkstra's for each next college that we've added to the route queue
             this->buyNext();
             break;
         case 3:
@@ -414,11 +418,11 @@ void Trip::on_executeTrip_clicked() {
             //test
             College saddlebackobj = this->currentColleges.find(5);
             selectedColleges.insert(5, saddlebackobj);
-            graph.addColleges(this->selectedColleges, this->selectedIDs);
+            graph.addColleges(this->currentColleges, this->currentIDs);
             int v = 5;
             std::unordered_map<int, std::vector<int>> routes;
             std::unordered_map<int, float> costs;
-            //graph.dijkstra(v, routes, costs);
+            graph.dijkstra(v, routes, costs);
 
 
             int currentID = 5;
@@ -433,9 +437,9 @@ void Trip::on_executeTrip_clicked() {
                 shortestDistance = 10000000.0;
                 std::vector<int>::iterator found;
                 for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
-                    if (currentCollege.getDistances()[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
+                    if (costs[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
                         //qInfo() << "found: " << *itr;
-                        shortestDistance = currentCollege.getDistances()[*itr];
+                        shortestDistance = costs[*itr];
                         selectedID = *itr;
                         found = itr;
                     }
@@ -450,6 +454,7 @@ void Trip::on_executeTrip_clicked() {
                 totalDistance += costs[selectedID];
                 qInfo() << "cost: " << QString::number(costs[selectedID]);
 
+                graph.dijkstra(selectedID, routes, costs);
                 visited.push_back(selectedID);
                 selectedColleges.erase(currentID);
                 currentID = selectedID;
@@ -496,7 +501,7 @@ void Trip::on_executeTrip_clicked() {
             College michigan = this->currentColleges.find(6);
             selectedColleges.insert(6, michigan);
 
-            graph.addColleges(this->selectedColleges, this->selectedIDs);
+            graph.addColleges(this->currentColleges, this->currentIDs);
             int v = 6;
             std::unordered_map<int, std::vector<int>> routes;
             std::unordered_map<int, float> costs;
@@ -514,9 +519,9 @@ void Trip::on_executeTrip_clicked() {
                 shortestDistance = 10000000.0;
                 std::vector<int>::iterator found;
                 for (std::vector<int>::iterator itr = selectedIDs.begin(); itr != selectedIDs.end(); itr++){
-                    if (currentCollege.getDistances()[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
+                    if (costs[*itr] < shortestDistance && *itr != currentID && std::find(visited.begin(), visited.end(), *itr) == visited.end()){
                         //qInfo() << "found: " << *itr;
-                        shortestDistance = currentCollege.getDistances()[*itr];
+                        shortestDistance = costs[*itr];
                         selectedID = *itr;
                         found = itr;
                     }
@@ -528,9 +533,10 @@ void Trip::on_executeTrip_clicked() {
 
                 //Find the distance now between currentCollege and selectedCollege using Dijkstra's now
                 graph.dijkstra(currentID, routes, costs);
-                totalDistance += costs[selectedID];
+                totalDistance += shortestDistance;
                 qInfo() << "cost: " << QString::number(costs[selectedID]);
 
+                graph.dijkstra(selectedID, routes, costs);
                 visited.push_back(selectedID);
                 selectedColleges.erase(currentID);
                 currentID = selectedID;
