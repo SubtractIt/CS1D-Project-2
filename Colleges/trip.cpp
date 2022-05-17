@@ -330,8 +330,17 @@ void Trip::on_executeTrip_clicked() {
         switch(this->mode){
         case 1:
         {
+
+            qInfo() << currentColleges.size();
+            qInfo() << "all ids" << currentIDs.size();
             //initial restaurant is already at the top of the route at this point
             qInfo() << "initial pick";
+
+            College texas = currentColleges.find(13);
+            std::unordered_map<int, float> distances = texas.getDistances();
+            for (const auto itr : distances){
+                qInfo() << itr.first << " - " << itr.second;
+            }
 
             qInfo() << "selected ids size: " << selectedIDs.size();
             for (int i : selectedIDs){
