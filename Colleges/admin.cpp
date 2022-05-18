@@ -46,7 +46,7 @@ Admin::Admin(QWidget *parent) :
    }
 
    // For the sake of ease have the upload fields already set
-   ui->collegeUpload->setText("college2");
+   ui->collegeUpload->setText("colleges2");
    ui->souvUpload->setText("souvenir2");
 }
 
